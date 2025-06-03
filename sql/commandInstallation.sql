@@ -1,12 +1,12 @@
 #-- executer tous les autres sql avant
-INSERT INTO panneaux_marque(panneaux_marque) SELECT distinct panneaux_marque from mytable;
+INSERT INTO panneaux_marque(panneau_marque) SELECT distinct panneaux_marque from mytable;
 
-insert into panneaux_modele(panneaux_modele) SELECT DISTINCT mytable.panneaux_modele from mytable;
+insert into panneaux_modele(panneau_modele) SELECT DISTINCT mytable.panneaux_modele from mytable;
 
-insert into panneau(id_modele_panneau, id_panneaux_marque)
-    SELECT DISTINCT modele.id_modele_panneau,marque.id_panneaux_marque from mytable
-    INNER JOIN panneaux_modele modele using (panneaux_modele)
-    INNER JOIN panneaux_marque marque using(panneaux_marque);
+insert into panneau(id_panneau_modele, id_panneau_marque)
+    SELECT DISTINCT modele.id_panneau_modele,marque.id_panneau_marque from mytable
+    INNER JOIN panneaux_modele modele on modele.panneau_modele=mytable.panneaux_modele
+    INNER JOIN panneaux_marque marque on marque.panneau_marque=mytable.panneaux_marque;
 
 INSERT INTO installateur (installateur) SELECT distinct installateur FROM mytable;
 
@@ -14,8 +14,8 @@ INSERT INTO onduleur_marque(onduleur_marque) SELECT distinct onduleur_marque fro
 
 insert into onduleur_modele(onduleur_modele) SELECT DISTINCT mytable.onduleur_modele from mytable;
 
-INSERT INTO onduleur (id_marque, id_modele_onduleur)
-SELECT DISTINCT m.id_marque, mo.id_modele_onduleur
+INSERT INTO onduleur (id_onduleur_marque, id_onduleur_modele)
+SELECT DISTINCT marque.id_onduleur_marque, modele.id_onduleur_modele
 FROM mytable t
-         JOIN onduleur_marque m ON t.onduleur_marque = m.onduleur_marque
-         JOIN onduleur_modele mo ON t.onduleur_modele = mo.onduleur_modele;
+        INNER JOIN onduleur_marque marque ON t.onduleur_marque = marque.onduleur_marque
+         INNER JOIN onduleur_modele modele ON t.onduleur_modele = modele.onduleur_modele;
