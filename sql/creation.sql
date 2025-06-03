@@ -32,7 +32,7 @@ CREATE TABLE panneaux_marque(
 
 CREATE TABLE panneaux_modele(
                                 id_panneau_modele Int AUTO_INCREMENT NOT NULL ,
-                                panneaux_modele   Varchar (50) NOT NULL
+                                panneau_modele   Varchar (50) NOT NULL
     ,CONSTRAINT panneaux_modele_PK PRIMARY KEY (id_panneau_modele)
 )ENGINE=InnoDB;
 
