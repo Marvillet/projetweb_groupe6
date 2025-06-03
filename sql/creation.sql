@@ -89,7 +89,7 @@ CREATE TABLE region(
   #------------------------------------------------------------
 ;
 CREATE TABLE departement(
-                            dep_code  Int NOT NULL ,
+                            dep_code  varchar(5) NOT NULL ,
                             dep_nom   Varchar (50) NOT NULL ,
                             reg_code  Int NOT NULL
     ,CONSTRAINT departement_PK PRIMARY KEY (dep_code)
@@ -103,11 +103,11 @@ CREATE TABLE departement(
   #------------------------------------------------------------
 
 CREATE TABLE commune(
-                        code_insee   Int NOT NULL ,
+                        code_insee   Varchar(10) NOT NULL ,
                         nom_standard Varchar (50) NOT NULL ,
                         code_postal  Int NOT NULL ,
                         population   Int NOT NULL ,
-                        dep_code     Int
+                        dep_code     VARCHAR(5) NOT NULL
     ,CONSTRAINT Commune_PK PRIMARY KEY (code_insee)
 
     ,CONSTRAINT Commune_departement_FK FOREIGN KEY (dep_code) REFERENCES departement(dep_code)
@@ -176,7 +176,7 @@ CREATE TABLE installation(
                              puissance_pvgis     Int NOT NULL ,
                              id_panneau          Int NOT NULL ,
                              id_onduleur         Int NOT NULL ,
-                             code_insee          Int NOT NULL ,
+                             code_insee          VARCHAR(10) NOT NULL ,
                              id_installateur     Int
     ,CONSTRAINT installation_PK PRIMARY KEY (id)
 
