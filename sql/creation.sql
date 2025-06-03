@@ -54,7 +54,7 @@ CREATE TABLE onduleur_modele(
 
 CREATE TABLE installateur(
                              id_installateur Int AUTO_INCREMENT NOT NULL ,
-                             installateur    Varchar (50) NOT NULL
+                             installateur    Varchar (50)
     ,CONSTRAINT Installateur_PK PRIMARY KEY (id_installateur)
 )ENGINE=InnoDB;
 
