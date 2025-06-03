@@ -20,7 +20,7 @@ DROP Table if exists panneaux_modele;
 DROP TABLE if exists panneaux_marque;
 
 CREATE TABLE panneaux_marque(
-                                id_panneaux_marque Int NOT NULL ,
+                                id_panneaux_marque Int  AUTO_INCREMENT NOT NULL ,
                                 panneaux_marque    Varchar (50) NOT NULL
     ,CONSTRAINT panneaux_marque_PK PRIMARY KEY (id_panneaux_marque)
 )ENGINE=InnoDB;
@@ -31,7 +31,7 @@ CREATE TABLE panneaux_marque(
   #------------------------------------------------------------
 
 CREATE TABLE panneaux_modele(
-                                id_modele_panneau Int NOT NULL ,
+                                id_modele_panneau Int AUTO_INCREMENT NOT NULL ,
                                 panneaux_modele   Varchar (50) NOT NULL
     ,CONSTRAINT panneaux_modele_PK PRIMARY KEY (id_modele_panneau)
 )ENGINE=InnoDB;
@@ -42,7 +42,7 @@ CREATE TABLE panneaux_modele(
   #------------------------------------------------------------
 
 CREATE TABLE onduleur_modele(
-                                id_modele_onduleur Int NOT NULL ,
+                                id_modele_onduleur Int AUTO_INCREMENT NOT NULL ,
                                 onduleur_modele    Varchar (50) NOT NULL
     ,CONSTRAINT onduleur_modele_PK PRIMARY KEY (id_modele_onduleur)
 )ENGINE=InnoDB;
@@ -53,7 +53,7 @@ CREATE TABLE onduleur_modele(
   #------------------------------------------------------------
 
 CREATE TABLE installateur(
-                             id_installateur Int NOT NULL ,
+                             id_installateur Int AUTO_INCREMENT NOT NULL ,
                              installateur    Varchar (50) NOT NULL
     ,CONSTRAINT Installateur_PK PRIMARY KEY (id_installateur)
 )ENGINE=InnoDB;
@@ -119,7 +119,7 @@ CREATE TABLE commune(
   #------------------------------------------------------------
 
 CREATE TABLE panneau(
-                        id_panneau         Int NOT NULL ,
+                        id_panneau         Int AUTO_INCREMENT NOT NULL ,
                         id_modele_panneau  Int NOT NULL ,
                         id_panneaux_marque Int NOT NULL
     ,CONSTRAINT panneau_PK PRIMARY KEY (id_panneau)
@@ -134,7 +134,7 @@ CREATE TABLE panneau(
   #------------------------------------------------------------
 
 CREATE TABLE onduleur_marque(
-                                id_marque       Int NOT NULL ,
+                                id_marque  Int AUTO_INCREMENT NOT NULL ,
                                 onduleur_marque Varchar (50) NOT NULL
     ,CONSTRAINT onduleur_marque_PK PRIMARY KEY (id_marque)
 )ENGINE=InnoDB;
@@ -145,7 +145,7 @@ CREATE TABLE onduleur_marque(
   #------------------------------------------------------------
 
 CREATE TABLE onduleur(
-                         id_onduleur        Int NOT NULL ,
+                         id_onduleur        Int AUTO_INCREMENT NOT NULL ,
                          id_marque          Int NOT NULL ,
                          id_modele_onduleur Int NOT NULL
     ,CONSTRAINT onduleur_PK PRIMARY KEY (id_onduleur)
