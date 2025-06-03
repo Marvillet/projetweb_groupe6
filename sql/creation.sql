@@ -179,7 +179,7 @@ CREATE TABLE installation(
                              puissance_pvgis     Int NOT NULL ,
                              id_panneau          Int NOT NULL ,
                              id_onduleur         Int NOT NULL ,
-                             code_insee          VARCHAR(10) NOT NULL ,
+                             code_insee          VARCHAR(10) ,
                              id_installateur     Int
     ,CONSTRAINT installation_PK PRIMARY KEY (id)
 
