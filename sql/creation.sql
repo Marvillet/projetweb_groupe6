@@ -20,9 +20,9 @@ DROP Table if exists panneaux_modele;
 DROP TABLE if exists panneaux_marque;
 
 CREATE TABLE panneaux_marque(
-                                id_panneaux_marque Int  AUTO_INCREMENT NOT NULL ,
-                                panneaux_marque    Varchar (50) NOT NULL
-    ,CONSTRAINT panneaux_marque_PK PRIMARY KEY (id_panneaux_marque)
+                                id_panneau_marque Int  AUTO_INCREMENT NOT NULL ,
+                                panneau_marque    Varchar (50) NOT NULL
+    ,CONSTRAINT panneaux_marque_PK PRIMARY KEY (id_panneau_marque)
 )ENGINE=InnoDB;
 
 
@@ -31,9 +31,9 @@ CREATE TABLE panneaux_marque(
   #------------------------------------------------------------
 
 CREATE TABLE panneaux_modele(
-                                id_modele_panneau Int AUTO_INCREMENT NOT NULL ,
+                                id_panneau_modele Int AUTO_INCREMENT NOT NULL ,
                                 panneaux_modele   Varchar (50) NOT NULL
-    ,CONSTRAINT panneaux_modele_PK PRIMARY KEY (id_modele_panneau)
+    ,CONSTRAINT panneaux_modele_PK PRIMARY KEY (id_panneau_modele)
 )ENGINE=InnoDB;
 
 
@@ -42,9 +42,51 @@ CREATE TABLE panneaux_modele(
   #------------------------------------------------------------
 
 CREATE TABLE onduleur_modele(
-                                id_modele_onduleur Int AUTO_INCREMENT NOT NULL ,
+                                id_onduleur_modele Int AUTO_INCREMENT NOT NULL ,
                                 onduleur_modele    Varchar (50) NOT NULL
-    ,CONSTRAINT onduleur_modele_PK PRIMARY KEY (id_modele_onduleur)
+    ,CONSTRAINT onduleur_modele_PK PRIMARY KEY (id_onduleur_modele)
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: onduleur_marque
+#------------------------------------------------------------
+
+CREATE TABLE onduleur_marque(
+                                id_onduleur_marque  Int AUTO_INCREMENT NOT NULL ,
+                                onduleur_marque Varchar (50) NOT NULL
+    ,CONSTRAINT onduleur_marque_PK PRIMARY KEY (id_onduleur_marque)
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: panneau
+#------------------------------------------------------------
+
+CREATE TABLE panneau(
+                        id_panneau         Int AUTO_INCREMENT NOT NULL ,
+                        id_panneau_modele  Int NOT NULL ,
+                        id_panneau_marque Int NOT NULL
+    ,CONSTRAINT panneau_PK PRIMARY KEY (id_panneau)
+
+    ,CONSTRAINT panneau_panneaux_modele_FK FOREIGN KEY (id_panneau_modele) REFERENCES panneaux_modele(id_panneau_modele)
+    ,CONSTRAINT panneau_panneaux_marque0_FK FOREIGN KEY (id_panneau_marque) REFERENCES panneaux_marque(id_panneau_marque)
+)ENGINE=InnoDB;
+
+
+
+
+
+#------------------------------------------------------------
+# Table: onduleur
+#------------------------------------------------------------
+
+CREATE TABLE onduleur(
+                         id_onduleur        Int AUTO_INCREMENT NOT NULL ,
+                         id_onduleur_marque          Int NOT NULL ,
+                         id_onduleur_modele Int NOT NULL
+    ,CONSTRAINT onduleur_PK PRIMARY KEY (id_onduleur)
+
+    ,CONSTRAINT onduleur_onduleur_marque_FK FOREIGN KEY (id_onduleur_marque) REFERENCES onduleur_marque(id_onduleur_marque)
+    ,CONSTRAINT onduleur_onduleur_modele0_FK FOREIGN KEY (id_onduleur_modele) REFERENCES onduleur_modele(id_onduleur_modele)
 )ENGINE=InnoDB;
 
 
@@ -114,45 +156,6 @@ CREATE TABLE commune(
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
-# Table: panneau
-  #------------------------------------------------------------
-
-CREATE TABLE panneau(
-                        id_panneau         Int AUTO_INCREMENT NOT NULL ,
-                        id_modele_panneau  Int NOT NULL ,
-                        id_panneaux_marque Int NOT NULL
-    ,CONSTRAINT panneau_PK PRIMARY KEY (id_panneau)
-
-    ,CONSTRAINT panneau_panneaux_modele_FK FOREIGN KEY (id_modele_panneau) REFERENCES panneaux_modele(id_modele_panneau)
-    ,CONSTRAINT panneau_panneaux_marque0_FK FOREIGN KEY (id_panneaux_marque) REFERENCES panneaux_marque(id_panneaux_marque)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: onduleur_marque
-  #------------------------------------------------------------
-
-CREATE TABLE onduleur_marque(
-                                id_marque  Int AUTO_INCREMENT NOT NULL ,
-                                onduleur_marque Varchar (50) NOT NULL
-    ,CONSTRAINT onduleur_marque_PK PRIMARY KEY (id_marque)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: onduleur
-  #------------------------------------------------------------
-
-CREATE TABLE onduleur(
-                         id_onduleur        Int AUTO_INCREMENT NOT NULL ,
-                         id_marque          Int NOT NULL ,
-                         id_modele_onduleur Int NOT NULL
-    ,CONSTRAINT onduleur_PK PRIMARY KEY (id_onduleur)
-
-    ,CONSTRAINT onduleur_onduleur_marque_FK FOREIGN KEY (id_marque) REFERENCES onduleur_marque(id_marque)
-    ,CONSTRAINT onduleur_onduleur_modele0_FK FOREIGN KEY (id_modele_onduleur) REFERENCES onduleur_modele(id_modele_onduleur)
-)ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
