@@ -170,7 +170,7 @@ CREATE TABLE installation(
                              puissance_crete     Int NOT NULL ,
                              surface             Int NOT NULL ,
                              pente               Int NOT NULL ,
-                             pente_optimum       Int ,
+                             pente_optimum       Int,
                              orientation         Int NOT NULL ,
                              orientation_optimum Int NOT NULL ,
                              puissance_pvgis     Int NOT NULL ,
