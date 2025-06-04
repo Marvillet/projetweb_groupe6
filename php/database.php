@@ -83,7 +83,7 @@ function nbMarqueOnd($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_onduleur FROM onduleur_marque");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result['total_marque_onduleur'];
+  return $result['nb_marque_onduleur'];
 }
 
 // Nombre de marques de panneaux solaires
@@ -91,7 +91,7 @@ function nbMarquePan($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_panneau FROM panneaux_marque");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result["nb_marque_panneau"];
+  return $result['nb_marque_panneau'];
 }
 
 // Installation par marque d'onduleur
