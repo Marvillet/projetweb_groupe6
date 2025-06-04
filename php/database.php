@@ -405,8 +405,8 @@ LIMIT 100;
 function coord($db,$dep,$annee){
     $stmt = $db->prepare("
    SELECT lat, lon,id
-FROM Installation
-JOIN Commune ON Installation.commune_code_insee = Commune.code_insee
+FROM installation
+JOIN commune ON installation.code_insee = commune.code_insee
 WHERE an_installation =:annee AND dep_code =:dep;
    ");
     $stmt->execute(['annee'=>$annee,'dep'=>$dep]);

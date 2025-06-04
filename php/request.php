@@ -61,7 +61,7 @@
       require_once "controleur/recherche_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
-    case "lieu":
+    case "lieux":
       require_once "controleur/lieux_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
