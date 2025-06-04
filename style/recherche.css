@@ -1,0 +1,100 @@
+#logo{
+    height: 40px;
+    margin-right: 15px;
+}
+
+#navbar{
+    background-color: #001f3f;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#navbar div {
+    display: flex;
+    align-items: center;
+}
+
+#navbar div span{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#navbar ul{
+    list-style: none; margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#navbar ul li{
+    margin-right: 20px;
+}
+
+#mainWindow{
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #e0f2f7;
+    color: #001f3f;
+}
+
+#windows{
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border-color: #ffffff;
+    border: 1px solid;
+}
+
+#search {
+    --bg: #000;
+    --hover-bg: #0d6efd;
+    --hover-text: #000;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid var(--bg);
+    border-radius: 4px;
+    padding: 0.8em 2em;
+    background: var(--bg);
+    transition: 0.2s;
+}
+
+#search:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: radial-gradient(#e0f2f7, rgba(0, 42, 59, 0.341));
+    box-shadow: 0.25rem 0.25rem var(--bg);
+}
+
+#search:active {
+    transform: translate(0);
+    box-shadow: none;
+}
+
+div h1{
+    font-size: 2em;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #000000;
+    background: #001f3f;
+    height: 80px;
+    width: 550px;
+    background: radial-gradient(rgb(38, 26, 106), rgb(0, 42, 59));
+    padding-top: 7px;
+
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#windows:hover{
+    background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
+}

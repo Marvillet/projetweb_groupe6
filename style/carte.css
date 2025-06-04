@@ -1,0 +1,158 @@
+#logo {
+    height: 40px;
+    margin-right: 15px;
+}
+
+#navbar {
+    background-color: #001f3f;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#navbar div {
+    display: flex;
+    align-items: center;
+}
+
+#navbar div span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#navbar ul li {
+    margin-right: 20px;
+}
+
+#mainWindow {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #e0f2f7;
+    color: #001f3f;
+}
+
+#windows {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border-color: #ffffff;
+    border: 1px solid;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#map {
+    height: 80vh;
+    width: 100%;
+}
+
+nav {
+    background-color: #001f3f;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+nav ul li a.active {
+    background-color: #e0f2f7;
+    color: #001f3f;
+    border-color: transparent;
+}
+
+footer {
+    background-color: #001f3f;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#info {
+    --border-radius: 1.25rem;
+    --border-width: 0.5rem;
+
+    position: relative;
+
+    width: 600px;
+    height: 300px;
+    border-radius: var(--border-radius);
+    padding: 20px;
+
+    background: #001f3f;
+    color: white;
+    flex: 0 0 400px;
+}
+
+#info::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background-image: linear-gradient(144deg, #e0f2f7, #001f3f 50%, #e0f2f7);
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+
+    margin: calc(-1 * var(--border-width));
+    border-radius: calc(var(--border-radius) + var(--border-width));
+    border-left: 200px;
+}
+
+#info ul{
+    text-align: left;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    gap: 40px;
+}
+
+#map {
+    flex: 1 1 0;
+    max-width: 50vw;
+    height: 80vh;
+}
+
+
+#windows:hover{
+    background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
+}

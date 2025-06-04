@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/vnd.icon" href="../images/logo.png">
-    <meta name="Mathis B / Mathis L / Louis M" content="">
-    <title>Recherche</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/vnd.icon" href="../images/logo.png">
+  <link rel="stylesheet" href="../style/recherche.css" />
+  <meta name="Mathis B / Mathis L / Louis M" content="">
+  <title>Recherche</title>
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -14,26 +15,27 @@
 <body>
 
 <!-- Navigation -->
-<nav style="background-color: #001f3f; color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;">
-  <div style="display: flex; align-items: center;">
-    <img src="../images/logo.png" alt="ML Photovoltaic Logo" style="height: 40px; margin-right: 15px;">
-    <span style="font-size: 1.5em; font-weight: bold;">ML Photovoltaic</span>
+<nav id="navbar">
+  <div>
+    <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
+    <span>ML Photovoltaic</span>
   </div>
-  <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
-    <li style="margin-right: 20px;">
-      <a href="accueil.html" style="text-decoration: none; color: white; padding: 8px 15px; border: 1px solid white; border-radius: 20px;">Accueil</a>
-    </li>
-    <li style="margin-right: 20px;">
-      <a href="recherche.html" style="text-decoration: none; color: white; padding: 8px 15px; border-radius: 20px; background-color: #e0f2f7; color: #001f3f; ">Recherche</a>
+  <ul>
+    <li>
+      <a href="accueil.html" id="windows">Accueil</a>
     </li>
     <li>
-      <a href="carte.html" style="text-decoration: none; color: white; padding: 8px 15px; border: 1px solid white; border-radius: 20px;">Carte</a>
+      <a href="recherche.html" id="mainWindow">Recherche</a>
+    </li>
+    <li>
+      <a href="carte.html" id="windows">Carte</a>
     </li>
   </ul>
 </nav>
+
 <!-- Titre -->
-<section class="py-5 bg-secondary text-center">
-  <div class="container">
+<section id="title" class="py-5">
+  <div class="title">
     <h1 class="display-5">Recherche d'installations</h1>
   </div>
 </section>
@@ -85,7 +87,7 @@
 
       <!-- Bouton de recherche -->
       <div class="text-center">
-        <button type="submit" class="btn btn-primary px-4">🔍 Lancer la recherche</button>
+        <button type="submit" id="search" class="btn btn-primary px-4">Lancer la recherche</button>
       </div>
     </form>
   </div>
@@ -145,7 +147,7 @@
 <footer style="background-color: #001f3f" class="text-white text-center py-3 mt-5">
   <div class="container">
     <p class="mb-0">© 2025 ML photovoltaic . Tous droits réservés<p>
-      <p>Louis Marvillet / Mathis Brosseau / Mathis Letellier CIR2</p>
+    <p>Louis Marvillet / Mathis Brosseau / Mathis Letellier CIR2</p>
   </div>
 </footer>
 

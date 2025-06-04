@@ -7,6 +7,7 @@
     <!-- Icône et auteurs -->
     <meta name="author" content="Mathis B / Mathis L / Louis M">
     <link rel="icon" type="image/vnd.icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../style/carte.css" />
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -16,75 +17,29 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        #map {
-            height: 80vh;
-            width: 100%;
-        }
-
-        nav {
-            background-color: #001f3f;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            padding: 8px 15px;
-            border: 1px solid white;
-            border-radius: 20px;
-        }
-
-        nav ul li a.active {
-            background-color: #e0f2f7;
-            color: #001f3f;
-            border-color: transparent;
-        }
-
-        footer {
-            background-color: #001f3f;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-    </style>
 </head>
+
 <body>
 
 <!-- Navigation -->
-<nav>
-    <div style="display: flex; align-items: center;">
-        <img src="../images/logo.png" alt="Logo" style="height: 40px; margin-right: 15px;">
-        <span style="font-size: 1.5em; font-weight: bold;">ML Photovoltaic</span>
+<nav id="navbar">
+    <div>
+        <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
+        <span>ML Photovoltaic</span>
     </div>
     <ul>
-        <li><a href="accueil.html">Accueil</a></li>
-        <li><a href="recherche.html">Recherche</a></li>
-        <li><a class="active" href="carte.html">Carte</a></li>
+        <li>
+            <a href="accueil.html" id="windows">Accueil</a>
+        </li>
+        <li>
+            <a href="recherche.html" id="windows">Recherche</a>
+        </li>
+        <li>
+            <a href="carte.html" id="mainWindow">Carte</a>
+        </li>
     </ul>
 </nav>
-
+<br>
 
 <div class="container text-center">
     <div class="row">
@@ -124,6 +79,8 @@
         .addTo(map)
         .bindPopup('<b>Installation photovoltaïque</b><br>Chartres<br><a href="#">Voir détail</a>');
 </script>
+<br>
+
 
 <!-- Footer -->
 <footer>

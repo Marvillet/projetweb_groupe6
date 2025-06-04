@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="Mathis B / Mathis L / Louis M" content="">
     <link rel="icon" type="image/vnd.icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../style/accueil.css" />
     <title>Accueil</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -14,20 +15,20 @@
 </head>
 <body>
 <!-- Navigation -->
-<nav style="background-color: #001f3f; color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;">
-    <div style="display: flex; align-items: center;">
-        <img src="../images/logo.png" alt="ML Photovoltaic Logo" style="height: 40px; margin-right: 15px;">
-        <span style="font-size: 1.5em; font-weight: bold;">ML Photovoltaic</span>
+<nav id="navbar">
+    <div>
+        <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
+        <span>ML Photovoltaic</span>
     </div>
-    <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
-        <li style="margin-right: 20px;">
-            <a href="accueil.html" style="text-decoration: none; color: white; padding: 8px 15px; border-radius: 20px; background-color: #e0f2f7; color: #001f3f;">Accueil</a>
-        </li>
-        <li style="margin-right: 20px;">
-            <a href="recherche.html" style="text-decoration: none; color: white; padding: 8px 15px; border: 1px solid white; border-radius: 20px;">Recherche</a>
+    <ul>
+        <li>
+            <a href="accueil.html" id="mainWindow">Accueil</a>
         </li>
         <li>
-            <a href="carte.html" style="text-decoration: none; color: white; padding: 8px 15px; border: 1px solid white; border-radius: 20px;">Carte</a>
+            <a href="recherche.html" id="windows">Recherche</a>
+        </li>
+        <li>
+            <a href="carte.html" id="windows">Carte</a>
         </li>
     </ul>
 </nav>
@@ -36,7 +37,25 @@
 <section class="bg-light text-center py-5">
     <div class="container">
         <h1 class="display-4">Vers un avenir plus vert</h1>
-        <p class="lead">Bienvenue sur notre plateforme dédiée à la visualisation et l'analyse des installations photovoltaïques en France.</p>
+        <section class="container mt-4">
+            <h2>🌞 Présentation du site</h2>
+            <p>
+                Bienvenue sur <strong>ML Photovoltaic</strong>, une plateforme de gestion et de visualisation des installations photovoltaïques chez les particuliers en France.
+            </p>
+            <p>
+                Ce site a pour objectif de <strong>centraliser, analyser et représenter visuellement</strong> les données liées à l’énergie solaire. Il permet aux utilisateurs de :
+            </p>
+            <ul>
+                <li>Consulter des statistiques détaillées sur les installations solaires dans différentes régions et années,</li>
+                <li>Rechercher des installations selon plusieurs critères (marques, départements…),</li>
+                <li>Visualiser leur répartition sur une carte interactive,</li>
+                <li>Explorer les détails techniques de chaque installation.</li>
+            </ul>
+            <p>
+                Grâce à une interface claire, fluide et accessible, notre solution facilite la compréhension et le suivi du développement des énergies renouvelables dans le secteur résidentiel.
+            </p>
+        </section>
+
     </div>
 </section>
 
