@@ -58,5 +58,11 @@ function httpErrors(errorCode)
     503: 'Service indisponible'
   };
 
-
+// Affiche l'erreur.
+  if (errorCode in messages)
+  {
+    $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>' +
+        messages[errorCode] + '</strong>');
+    $('#errors').show();
+  }
 }
