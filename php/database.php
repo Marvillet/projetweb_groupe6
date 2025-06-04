@@ -116,3 +116,26 @@ function marqueOnd($db){
   return $result;
 
 }
+
+// Installation par marque de panneau
+function installByPanneau($db,$marque){
+  $stmt = $db->prepare("
+    SELECT * 
+    FROM installation i
+    JOIN panneau p ON p.id_panneau = i.id_panneau
+    JOIN panneau_marque pm ON o.id_panneau_marque = pm.id_panneau_marque
+    WHERE pm.panneau_marque=:marque;
+");
+  $stmt->execute(['marque'=>$marque]);
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $results;
+}
+
+// Marque panneau
+function marquePan($db){
+  $stmt = $db->prepare("SELECT panneau_marque FROM panneaux_marque ");
+  $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result;
+}
+
