@@ -45,8 +45,32 @@
       //ici l'id représente la stat demandée
       GestionDemande($db,$requestMethod,$id,$data);
       break;
+    case "instalation":
+      require_once "controleur/installation_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
+    case "panneau":
+      require_once "controleur/panneau_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
+    case "onduleur":
+      require_once "controleur/onduleur_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
+    case "recherche":
+      require_once "controleur/recherche_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
+    case "lieu":
+      require_once "controleur/lieux_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
     case 'test':
       echo "oui";
+      break;
+    default:
+      echo json_encode(["error" => "Ressource inexistante"]);
+
   }
   exit;
 ?>
