@@ -37,7 +37,7 @@ function installByYear($db, $year){
   $stmt=$db->prepare($sql);
   $stmt->execute(['annee'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results['total'];
+  return $results;
 }
 
 // Nombre d'installations par région
