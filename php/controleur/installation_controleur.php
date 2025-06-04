@@ -6,9 +6,12 @@ function GestionDemande($db,$method, $id, $data)
     $result=false;
     switch ($method) {
         case 'GET':
-            if ($id) {
+            if ($id !=NULL) {
                 //on renvoie les result d'une installation précise
                 $result = infosInstall($db,$id);
+            }
+            else{
+                $result=infosInstalls($db);
             }
             break;
         case 'POST':
@@ -17,10 +20,11 @@ function GestionDemande($db,$method, $id, $data)
                 $result = 'on ajoute la result';
             }
             */
+            insert($db,$data);
             break;
         case 'DELETE':
             if ($id != NULL) {
-                $result = 'on supprime la data d\'id ';
+                delete($db,$id);
             }
             break;
         case 'PUT':
