@@ -19,14 +19,34 @@
   $id = array_shift($request);
   if ($id == '')
     $id = NULL;
-  $data = false;
 
+  //On récupère les datas en fonctions de la méthode
+  switch ($requestMethod) {
+    case 'GET':
+      $data = $_GET;
+      break;
+    case 'POST':
+      $data = $_POST;
+      break;
+    case 'PUT':
+    case 'DELETE':
+      $data = json_decode(file_get_contents("php://input"), true);
+      break;
+    default:
+      //http_response_code(405);
+      echo json_encode(["error" => "Méthode non autorisée"]);
+      exit;
+  }
 
-  // Envoie des données au client
-  header('Content-Type: application/json; charset=utf-8');
-  header('Cache-control: no-store, no-cache, must-revalidate');
-  header('Pragma: no-cache');
-  header('HTTP/1.1 200 OK');
-  echo json_encode($data);
+  //si la requête porte sur une installation
+  switch ($requestRessource) {
+    case "stat":
+      require_once "controleur/statistique_controleur.php";
+      //ici l'id représente la stat demandée
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
+    case 'test':
+      echo "oui";
+  }
   exit;
 ?>
