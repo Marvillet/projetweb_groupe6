@@ -23,10 +23,10 @@ function dbConnect()
 
 // Nombre enregistrement en base
 function countInstal($db){
-  $stmt = $db->prepare("SELECT COUNT(*) AS total_installations FROM installation");
+  $stmt = $db->prepare("SELECT COUNT(*) FROM installation");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result['total_installations'];
+  return $result;
 }
 
 // Nombre d'installations par années
