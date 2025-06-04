@@ -36,7 +36,9 @@ function main(){
     ajaxRequest('GET','../php/request.php/stat/installateur',nbInstallateurs)
     ajaxRequest('GET','../php/request.php/stat/panneau',nbPanneau)
     ajaxRequest('GET','../php/request.php/stat/onduleur',nbOnduleur)
-    let annee=document.getElementById('selectYear').value
-    ajaxRequest('GET','../php/request.php/stat/annee?id_an='+annee,byYear)
+    document.getElementById("selectYear").addEventListener("change", function () {
+        let annee=document.getElementById('selectYear').value
+        ajaxRequest('GET','../php/request.php/stat/annee?id_an='+annee,byYear)
+    });
 }
 window.addEventListener("DOMContentLoaded",main)
