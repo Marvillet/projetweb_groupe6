@@ -33,9 +33,9 @@ function countInstal($db){
 function installByYear($db, $year){
   $sql = "SELECT an_installation,COUNT(*) AS total 
         FROM installation 
-        WHERE an_installation:=year;";
+        WHERE an_installation=:annee;";
   $stmt=$db->prepare($sql);
-  $stmt->execute(['year'=>$year]);
+  $stmt->execute(['annee'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $results;
 }
