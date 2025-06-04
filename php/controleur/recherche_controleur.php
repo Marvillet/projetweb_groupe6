@@ -8,16 +8,16 @@ function GestionDemande($db, $method, $gestion, $data)
     switch ($method) {
         case 'GET':
             if(!empty($data['id_ond']) && !empty($data['id_pan']) && !empty($data['id_dep'])){
-                $result='soon';
+                $result=infosTrois($db,$data['id_dep'],$data['id_pan'],$data['id_ond']);
             }
             elseif(!empty($data['id_pan']) && !empty($data['id_dep'])){
-                $result='soon';
+                $result=infosDepPann($db,$data['id_dep'],$data['id_pan']);
             }
             elseif(!empty($data['id_ond']) && !empty($data['id_dep'])){
-                $result='soon';
+                $result=infosDepOndul($db,$data['id_dep'],$data['id_ond']);
             }
             elseif(!empty($data['id_ond']) && !empty($data['id_pan'])){
-                $result='yes';
+                $result=infosDeuxMarque($db,$data['id_pan'],$data['id_ond']);
             }
             elseif(!empty($data['id_pan'])){
                 $result='soon';
