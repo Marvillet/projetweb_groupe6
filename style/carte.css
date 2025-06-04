@@ -199,7 +199,7 @@ footer {
     box-shadow: none;
 }
 
-#filter {
+#filtres {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,4 +215,26 @@ footer {
     cursor: pointer;
     align-items: center;
     text-align: center;
+}
+
+.filtre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 162px;
+    height: 30px;
+    background-color: radial-gradient(#e0f2f7, rgba(0, 42, 59, 0.341));
+    color: #001f3f;
+    border: 1px solid #001f3f;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filtre:hover {
+    background-color: #001f3f;
+    color: #e0f2f7;
+    border: 1px solid #e0f2f7;
+    
 }
