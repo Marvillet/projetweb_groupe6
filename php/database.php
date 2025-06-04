@@ -52,7 +52,7 @@ function installByRegion($db, $region){
 ");
   $stmt->execute(['region'=>$region]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+  return $results['total'];
 }
 
 // Nombre d'installations par années et région
@@ -102,7 +102,7 @@ function installByOnduleur($db,$marque){
     JOIN onduleur o ON o.id_onduleur = i.id_onduleur
     JOIN onduleur_marque om ON o.id_onduleur_marque = om.id_onduleur_marque
     WHERE om.id_onduleur_marque=:marque
-    LIMITE 100;
+    LIMIT 100;
 ");
   $stmt->execute(['marque'=>$marque]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -128,7 +128,7 @@ function installByPanneau($db,$marque){
     JOIN panneau p ON p.id_panneau = i.id_panneau
     JOIN panneau_marque pm ON o.id_panneau_marque = pm.id_panneau_marque
     WHERE pm.id_panneau_marque=:marque
-    LIMITE 100;
+    LIMIT 100;
 ");
   $stmt->execute(['marque'=>$marque]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -159,7 +159,7 @@ function installByDep($db,$dep){
     JOIN Commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
     WHERE d.dep_code=:dep
-    LIMITE 100;
+    LIMIT 100;
 ");
   $stmt->execute(['dep'=>$dep]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -241,7 +241,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
     
-LIMITE 100;
+LIMIT 100;
 ");
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
