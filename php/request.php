@@ -1,7 +1,7 @@
 <?php
   require_once('database.php');
 
-  // Database connexion.
+  // Connexion à la bdd
   $db = dbConnect();
   if (!$db)
   {
@@ -9,28 +9,20 @@
     exit;
   }
 
-  // Check the request.
+  // Vérifie la requête
   $requestMethod = $_SERVER['REQUEST_METHOD'];
   $request = substr($_SERVER['PATH_INFO'], 1);
   $request = explode('/', $request);
   $requestRessource = array_shift($request);
   
-  // Check the id associated to the request.
+  // Vérifie l'id associé à la requête
   $id = array_shift($request);
   if ($id == '')
     $id = NULL;
   $data = false;
 
-  // Polls request.
-  if ($requestRessource == 'polls')
-  {
-    if ($id != NULL)
-      $data = dbRequestPoll($db, intval($id));
-    else
-      $data = dbRequestPolls($db);
-  }
 
-  // Send data to the client.
+  // Envoie des données au client
   header('Content-Type: application/json; charset=utf-8');
   header('Cache-control: no-store, no-cache, must-revalidate');
   header('Pragma: no-cache');

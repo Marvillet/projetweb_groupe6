@@ -1,5 +1,5 @@
 <?php
-  // Database constants.
+  // Bdd constantes
   define('DB_USER', 'groupe6');
   define('DB_PASSWORD', 'isen');
   define('DB_NAME', 'groupe6');
