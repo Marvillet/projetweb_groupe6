@@ -214,7 +214,25 @@ function insert($db,$data){
     INSERT INTO Installation (
   mois_installation, an_installation, nb_panneaux, surface, puissance_crete,
   orientation, lat, lon, commune_code_insee, id_panneau, id_onduleur, id_installateur)
-    VALUES (:=mois,:=annee,:=nb,:=surface,:=pcrete,:=orientation,:=lat,:lon,:commune_code_insee,:=id_panneau,:id_onduleur,:id_installateur);
+    VALUES (:=mois,:=annee,:=nb,:=surface,:=pcrete,:=orientation,:=lat,:lon,:commune_code,:=id_panneau,:id_onduleur,:id_installateur);
  ");
-    $stmt->execute(['mois'=>$data['mois'],'annee'=>$data['annee'],'']);
+    $stmt->execute(['mois'=>$data['mois'],'annee'=>$data['annee'],'nb'=>$data['nb_pan'],'surface'=>$data['surface'],'pcrete'=>$data['crete'],'orientation'=>$data['orientation'],'lat'=>$data['lat'],'lon'=>$data['lon'],'commune_code'=>$data['commune_code'],'id_panneau'=>$data['id_panneau'],'id_onduleur'=>$data['id_onduleur'],'id_installateur'=>$data['id_installateur']]);
+}
+
+// Suppression installation
+function delete($db,$id){
+    $stmt = $db->prepare("
+   DELETE FROM Installation WHERE id :=id;
+");
+    $stmt->execute(['id'=>$id]);
+}
+
+// Modification installation
+function update($db,$data,$id){
+    $stmt = $db->prepare("
+       UPDATE Installation
+    SET nb_panneaux :=nb , surface := surface, puissance_crete := crete
+    WHERE id := id;
+");
+    $stmt->execute(['id'=>$id,'nb'=>$data['nb'],'surface'=>$data['surface'],'crete'=>$data['crete']]);
 }
