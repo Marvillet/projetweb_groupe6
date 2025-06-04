@@ -139,3 +139,24 @@ function marquePan($db){
   return $result;
 }
 
+// Departements
+function recupDep($db){
+  $stmt = $db->prepare("Select dep_nom from departement");
+  $stmt->execute();
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $results;
+}
+
+// Installation par departement
+function installByDep($db,$dep){
+  $stmt = $db->prepare("
+    SELECT * 
+    FROM installation i
+    JOIN Commune c ON i.code_insee = c.code_insee
+    JOIN departement d ON c.dep_code = d.dep_code
+    WHERE d.dep_nom=:dep;
+");
+  $stmt->execute(['dep'=>$dep]);
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $results;
+}
