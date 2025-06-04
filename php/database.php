@@ -33,7 +33,7 @@ function countInstal($db){
 function installByYear($db, $year){
   $sql = "SELECT COUNT(*) AS total 
         FROM installation 
-        WHERE an_installation:=annee;";
+        WHERE an_installation=:annee;";
   $stmt=$db->prepare($sql);
   $stmt->execute(['annee'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ function installByRegion($db, $region){
     JOIN commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
     JOIN region r ON d.reg_code = r.reg_code
-    WHERE i.reg_code:=region;
+    WHERE r.reg_code=:region;
 ");
   $stmt->execute(['region'=>$region]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -63,7 +63,7 @@ function installYearRegion($db, $year, $region){
     JOIN commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
     JOIN region r ON d.reg_code = r.reg_code
-    WHERE r.reg_nom:=region AND i.reg_nom:=year;
+    WHERE r.reg_nom=:region AND i.reg_nom=:year;
 ");
   $stmt->execute(['region'=>$region, 'year'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -101,7 +101,7 @@ function installByOnduleur($db,$marque){
     FROM installation i
     JOIN onduleur o ON o.id_onduleur = i.id_onduleur
     JOIN onduleur_marque om ON o.id_onduleur_marque = om.id_onduleur_marque
-    WHERE om.onduleur_marque:=marque;
+    WHERE om.onduleur_marque=:marque;
 ");
   $stmt->execute(['marque'=>$marque]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -124,7 +124,7 @@ function installByPanneau($db,$marque){
     FROM installation i
     JOIN panneau p ON p.id_panneau = i.id_panneau
     JOIN panneau_marque pm ON o.id_panneau_marque = pm.id_panneau_marque
-    WHERE pm.panneau_marque:=marque;
+    WHERE pm.panneau_marque=:marque;
 ");
   $stmt->execute(['marque'=>$marque]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -154,7 +154,7 @@ function installByDep($db,$dep){
     FROM installation i
     JOIN Commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
-    WHERE d.dep_nom:=dep;
+    WHERE d.dep_nom=:dep;
 ");
   $stmt->execute(['dep'=>$dep]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -214,7 +214,7 @@ function insert($db,$data){
     INSERT INTO Installation (
   mois_installation, an_installation, nb_panneaux, surface, puissance_crete,
   orientation, lat, lon, commune_code_insee, id_panneau, id_onduleur, id_installateur)
-    VALUES (:=mois,:=annee,:=nb,:=surface,:=pcrete,:=orientation,:=lat,:lon,:commune_code,:=id_panneau,:id_onduleur,:id_installateur);
+    VALUES (=:mois,=:annee,=:nb,=:surface,=:pcrete,=:orientation,=:lat,:lon,:commune_code,=:id_panneau,:id_onduleur,:id_installateur);
  ");
     $stmt->execute(['mois'=>$data['mois'],'annee'=>$data['annee'],'nb'=>$data['nb_pan'],'surface'=>$data['surface'],'pcrete'=>$data['crete'],'orientation'=>$data['orientation'],'lat'=>$data['lat'],'lon'=>$data['lon'],'commune_code'=>$data['commune_code'],'id_panneau'=>$data['id_panneau'],'id_onduleur'=>$data['id_onduleur'],'id_installateur'=>$data['id_installateur']]);
 }
@@ -222,7 +222,7 @@ function insert($db,$data){
 // Suppression installation
 function delete($db,$id){
     $stmt = $db->prepare("
-   DELETE FROM Installation WHERE id :=id;
+   DELETE FROM Installation WHERE id =:id;
 ");
     $stmt->execute(['id'=>$id]);
 }
@@ -231,8 +231,8 @@ function delete($db,$id){
 function update($db,$data,$id){
     $stmt = $db->prepare("
        UPDATE Installation
-    SET nb_panneaux :=nb , surface := surface, puissance_crete := crete
-    WHERE id := id;
+    SET nb_panneaux =:nb , surface =: surface, puissance_crete =: crete
+    WHERE id =: id;
 ");
     $stmt->execute(['id'=>$id,'nb'=>$data['nb'],'surface'=>$data['surface'],'crete'=>$data['crete']]);
 }
