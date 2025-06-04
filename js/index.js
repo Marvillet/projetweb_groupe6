@@ -1,4 +1,4 @@
-const rowsPerPage = 10;
+const rowsPerPage = 7;
 const table = document.getElementById("data-table");
 const tbody = table.querySelector("tbody");
 const pagination = document.getElementById("pagination");
