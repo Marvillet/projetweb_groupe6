@@ -107,9 +107,7 @@ footer {
 #info {
     --border-radius: 1.25rem;
     --border-width: 0.5rem;
-
     position: relative;
-
     width: 600px;
     height: 300px;
     border-radius: var(--border-radius);
@@ -134,7 +132,7 @@ footer {
     border-left: 200px;
 }
 
-#info ul{
+#info ul {
     text-align: left;
 }
 
@@ -153,15 +151,15 @@ footer {
 }
 
 
-.windows:hover{
+.windows:hover {
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }
 
-.info{
-    display:flex;
+.info {
+    display: flex;
 }
 
-.infos{
+.infos {
     display: flex;
     align-items: right;
     justify-content: right;
@@ -170,7 +168,7 @@ footer {
     height: 30px;
 }
 
-.value{
+.value {
     padding-left: 15px;
 }
 
@@ -207,7 +205,7 @@ footer {
 }
 
 #button {
-    
+
     color: white;
     border: none;
     padding: 10px 20px;
@@ -217,7 +215,7 @@ footer {
     text-align: center;
 }
 
-.filtre{
+.filtre {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,5 +234,109 @@ footer {
     background-color: #001f3f;
     color: #e0f2f7;
     border: 1px solid #e0f2f7;
-    
+
+}
+
+.showInfo {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: #0366d6;
+    cursor: pointer;
+    text-decoration: underline;
+    line-height: inherit;
+}
+
+/* Variation : pas de soulignement par défaut, seulement au survol/focus */
+
+.showInfo:hover,
+.showInfo:focus {
+    text-decoration: underline;
+}
+
+/* Accessibilité : conserver un repère de focus clavier */
+.showInfo:focus-visible {
+    outline: 2px solid #0366d6;
+    /* ou le style de votre thème */
+    outline-offset: 2px;
+}
+
+.showInfo:focus:not(:focus-visible) {
+    outline: none;
+    /* masque l’outline après clic souris */
+}
+
+
+/* From Uiverse.io by javierBarroso */
+.button {
+    position: relative;
+    width: 2em;
+    height: 2em;
+    border: none;
+    background: rgba(180, 83, 107, 0.11);
+    border-radius: 5px;
+    transition: background 0.5s;
+    transform: translateX(11em) translateY(-16em);
+}
+
+.X {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1.5px;
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.Y {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1.5px;
+    background-color: #fff;
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    padding: 0.8rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    top: -70%;
+    left: 50%;
+    width: 3em;
+    height: 1.7em;
+    font-size: 12px;
+    background-color: rgb(19, 22, 24);
+    color: rgb(187, 229, 236);
+    border: none;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.button:hover {
+    background-color: rgb(211, 21, 21);
+}
+
+.button:active {
+    background-color: rgb(130, 0, 0);
+}
+
+.button:hover>.close {
+    animation: close 0.2s forwards 0.25s;
+}
+
+@keyframes close {
+    100% {
+        opacity: 1;
+    }
 }
