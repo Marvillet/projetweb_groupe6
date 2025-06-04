@@ -161,9 +161,9 @@ CREATE TABLE commune(
 #------------------------------------------------------------
 # Table: installation
   #------------------------------------------------------------
-
+DROP TABLE if exists installation;
 CREATE TABLE installation(
-                             id                  Int NOT NULL ,
+                             id                  INT NOT NULL ,
                              mois_installation   Int NOT NULL ,
                              an_installation     Int NOT NULL ,
                              nb_panneaux         Int NOT NULL ,
@@ -175,11 +175,11 @@ CREATE TABLE installation(
                              pente               Int NOT NULL ,
                              pente_optimum       Int,
                              orientation         Int NOT NULL ,
-                             orientation_optimum Int NOT NULL ,
+                             orientation_optimum Int ,
                              puissance_pvgis     Int NOT NULL ,
                              id_panneau          Int NOT NULL ,
                              id_onduleur         Int NOT NULL ,
-                             code_insee          VARCHAR(10) NOT NULL ,
+                             code_insee          VARCHAR(10) ,
                              id_installateur     Int
     ,CONSTRAINT installation_PK PRIMARY KEY (id)
 
