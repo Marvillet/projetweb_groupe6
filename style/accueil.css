@@ -53,3 +53,87 @@
 .windows:hover{
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }
+
+/* From Uiverse.io by gharsh11032000 */ 
+.card {
+  background-color: #001f3f;
+  background-image: linear-gradient(43deg, #949ab8 0%, #bcb5c9 46%, #94bb9e 100%);
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.card:hover:before {
+  transform: translateX(-100%);
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+}
+
+.card:hover:after {
+  transform: translateX(100%);
+}
+
+.card-body{
+    color: #ffffff;
+}
+
+.titre{
+  display:flex;
+  align-items:baseline;
+  gap:0.25rem;
+  content: space-between;
+  text-align: center;
+  justify-content: center;
+}
+
+.titre h1{
+  margin-left: 10px;
+}
+
+.shadow-dance-text {
+    font-size: 4rem;
+    color: #00ff00;
+    text-shadow: 5px 5px 0 #38b9ca, 10px 10px 0 #a6f0ff;
+    animation: shadow-dance 3s infinite;
+}
+
+@keyframes shadow-dance {
+    0%, 100% {
+        text-shadow: 5px 5px 0 #001f3f, 10px 10px 0 #699174;
+    }
+    50% {
+        text-shadow: -5px -5px 0 #001f3f, -10px -10px 0 #3d7246;
+    }
+}
