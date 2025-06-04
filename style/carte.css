@@ -153,6 +153,6 @@ footer {
 }
 
 
-#windows:hover{
+.windows:hover{
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }

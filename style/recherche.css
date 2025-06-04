@@ -41,7 +41,7 @@
     color: #001f3f;
 }
 
-#windows{
+.windows{
     text-decoration: none;
     color: white;
     padding: 8px 15px;
@@ -95,6 +95,6 @@ div h1{
     align-items: center;
 }
 
-#windows:hover{
+.windows:hover{
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }
