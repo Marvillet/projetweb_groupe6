@@ -24,6 +24,9 @@ function GestionDemande($db,$method, $id, $data)
             }
             break;
         case 'PUT':
+            if($id != NULL && isset($data['nb']) && isset($data['surface']) && isset($data['crete'])) {
+                 update($db,$data,$id);
+            }
             /*
             if (isset($_PUT['comment']) && $id != NULL) {
                 $data = dbModifyComment($db, $login, $id, $_PUT['comment']);
