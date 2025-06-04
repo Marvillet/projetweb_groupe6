@@ -9,7 +9,7 @@ let currentPage = 1;
 function displayPage(page) {
     const totalPages = Math.ceil(rows.length / rowsPerPage);
 
-    // Empêche d'aller hors des bornes
+    // Bloque les débordements
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
     currentPage = page;
@@ -21,12 +21,12 @@ function displayPage(page) {
         row.style.display = (index >= start && index < end) ? "" : "none";
     });
 
-    // Mise à jour de la pagination
+    // Réinitialise la pagination
     pagination.innerHTML = "";
 
     // --- Bouton Précédent ---
     const prevLi = document.createElement("li");
-    prevLi.className = `page-item${page === 1 ? " disabled" : ""}`;
+    prevLi.className = `page-item ${page === 1 ? "disabled" : ""}`;
     const prevBtn = document.createElement("button");
     prevBtn.className = "page-link";
     prevBtn.textContent = "Précédent";
@@ -37,7 +37,7 @@ function displayPage(page) {
     // --- Boutons de pages ---
     for (let i = 1; i <= totalPages; i++) {
         const li = document.createElement("li");
-        li.className = `page-item${i === page ? " active" : ""}`;
+        li.className = `page-item ${i === page ? "active" : ""}`;
         const btn = document.createElement("button");
         btn.className = "page-link";
         btn.textContent = i;
@@ -48,7 +48,7 @@ function displayPage(page) {
 
     // --- Bouton Suivant ---
     const nextLi = document.createElement("li");
-    nextLi.className = `page-item${page === totalPages ? " disabled" : ""}`;
+    nextLi.className = `page-item ${page === totalPages ? "disabled" : ""}`;
     const nextBtn = document.createElement("button");
     nextBtn.className = "page-link";
     nextBtn.textContent = "Suivant";
