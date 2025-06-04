@@ -6,6 +6,6 @@ function displayInfo(data){
 }
 
 function main(){
-    ajaxRequest('GET','php/request.php/stat/total',displayInfo)
+    ajaxRequest('GET','../php/request.php/stat/total',displayInfo)
 }
 window.addEventListener("DOMContentLoaded",main)
