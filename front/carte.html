@@ -42,6 +42,7 @@
 <br>
 <div>
     <form method="GET" action=" ">
+        <div id="filter">
         <label for="annee">Année d'installation :</label>
         <select name="annee" id="annee" required>
             <option value="">-- Sélectionner --</option>
@@ -54,9 +55,13 @@
         <select name="departement" id="departement" required>
             <option value="">-- Sélectionner --</option>
         </select>
+        </div>
         <br><br>
-        <button type="submit">Rechercher</button>
+        <div id="button">
+            <button type="submit" id="search">Lancer la recherche</button>
+        </div>
     </form>
+    <br><br>
 
 </div>
 <div class="container text-center">
