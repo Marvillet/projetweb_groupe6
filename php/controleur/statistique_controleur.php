@@ -40,7 +40,7 @@ function GestionDemande($db,$method, $stat, $data)
         //seule la methode Get est autorisé pour les statistiques
         default:
             //http_response_code(405);
-            echo json_encode(["error" => "Méthode non autorisée"]);
+            echo json_encode(["error" => "Méthode non autorisee"]);
     }
     if($result!=false){
         // Envoie des données au client
@@ -52,6 +52,6 @@ function GestionDemande($db,$method, $stat, $data)
     }
     else{
         header('HTTP/1.1 400 Bad Request');
-        echo json_encode(["error" => "Statistique demandée non valide"]);
+        echo json_encode(["error" => "Statistique demandee non valide"]);
     }
 }
