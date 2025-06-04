@@ -56,7 +56,7 @@
 
 /* From Uiverse.io by gharsh11032000 */ 
 .card {
-  background-color: #001f3f;
+  background-color: #ebebeb;
   background-image: linear-gradient(43deg, #ffffff 0%, #ffffff 46%, rgb(255, 255, 255) 100%);
   border-radius: 8px;
   color: rgb(255, 255, 255);
@@ -69,8 +69,8 @@
 }
 
 .card:hover {
-  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: rotateY(10deg) rotateX(10deg) scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.149);
 }
 
 .card:before {

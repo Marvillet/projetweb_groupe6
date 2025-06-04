@@ -98,3 +98,9 @@ div h1{
 .windows:hover{
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }
+
+button:hover{
+    background: radial-gradient(rgb(120, 174, 255), rgb(120, 174, 253));
+    color: white;
+    border: 1px solid #ffffff;
+}
