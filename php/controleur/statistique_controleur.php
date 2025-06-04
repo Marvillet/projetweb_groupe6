@@ -35,6 +35,8 @@ function GestionDemande($db,$method, $stat, $data)
                 case 'panneau':
                     $result=nbMarquePan($db);
                     break;
+                default:
+                    $result="stat demande n'esxiste pas ou pas de stat demandee";
             }
             break;
         //seule la methode Get est autorisé pour les statistiques
