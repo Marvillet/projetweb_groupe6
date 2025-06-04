@@ -84,8 +84,7 @@
                 <div class="col-md-12">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Nombre d'installations</h5>
-                            <span id="byRegion" class="fs-3"></span>
+                            <h5 class="card-title">Tous certifiés par ML Photovoltaïque</h5>
                         </div>
                     </div>
                 </div>
@@ -102,8 +101,8 @@
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Marques d'onduleurs</h5>
-                        <span id="byYear" class="fs-3"></span>
+                        <h5 class="card-title">Nombre de marques d'onduleurs</h5>
+                        <span id="nb_onduleur" class="fs-3"></span>
                     </div>
                 </div>
             </div>
@@ -111,8 +110,8 @@
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Marques de panneaux solaires</h5>
-                        <span class="fs-3">333 * 2</span>
+                        <h5 class="card-title">Nombre de marques de panneaux solaires</h5>
+                        <span id="nb_panneau" class="fs-3"></span>
                     </div>
                 </div>
             </div>
@@ -141,10 +140,10 @@
             <div class="col-md-6">
                 <label for="selectYear" class="form-label">Sélectionnez une année :</label>
                 <select id="selectYear" class="form-select">
-                    <option>2021</option>
-                    <option>2022</option>
-                    <option selected>2023</option>
-                    <option>2024</option>
+                    <option value="2012">2021</option>
+                    <option value="2011">2022</option>
+                    <option value="2010">2023</option>
+                    <option value="2015">2024</option>
                 </select>
             </div>
         </div>
@@ -154,8 +153,8 @@
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Installations en Nouvelle-Aquitaine</h5>
-                        <span class="fs-3">2100</span>
+                        <h5 class="card-title">Installations en ...</h5>
+                        <span id="byRegion" class="fs-3"></span>
                     </div>
                 </div>
             </div>
@@ -163,8 +162,8 @@
             <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Installations en 2023</h5>
-                        <span class="fs-3">24000</span>
+                        <h5 class="card-title">Installations en ...</h5>
+                        <span id="byYear" class="fs-3"></span>
                     </div>
                 </div>
             </div>

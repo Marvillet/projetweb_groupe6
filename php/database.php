@@ -37,7 +37,7 @@ function installByYear($db, $year){
   $stmt=$db->prepare($sql);
   $stmt->execute(['annee'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+  return $results[0]['total'];
 }
 
 // Nombre d'installations par région
@@ -83,7 +83,7 @@ function nbMarqueOnd($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_onduleur FROM onduleur_marque");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result;
+  return $result['nb_marque_onduleur'];
 }
 
 // Nombre de marques de panneaux solaires
@@ -91,7 +91,7 @@ function nbMarquePan($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_panneau FROM panneaux_marque");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result;
+  return $result['nb_marque_panneau'];
 }
 
 // Installation par marque d'onduleur
