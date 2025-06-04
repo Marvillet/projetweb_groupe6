@@ -41,25 +41,28 @@
 </nav>
 <br>
 <div>
-    <form method="GET" action=" ">
-        <div id="filtres">
-        <label for="annee">Année d'installation :</label>
-        <select class="filtre" name="annee" id="annee" required>
-            <option value="">-- Sélectionner --</option>
-            <option value="">-- Sélectionner --</option>
-        </select>
+    <form method="GET" action="" class="container mt-4 p-4 border rounded bg-light shadow-sm">
 
-        <br><br>
+        <div class="mb-3">
+            <label for="annee" class="form-label">Année d'installation :</label>
+            <select class="form-select" name="annee" id="annee" required>
+                <option value="">-- Sélectionner --</option>
+                <!-- options dynamiques -->
+            </select>
+        </div>
 
-        <label for="departement">Département :</label>
-        <select class="filtre" name="departement" id="departement" required>
-            <option value="">-- Sélectionner --</option>
-        </select>
+        <div class="mb-3">
+            <label for="departement" class="form-label">Département :</label>
+            <select class="form-select" name="departement" id="departement" required>
+                <option value="">-- Sélectionner --</option>
+                <!-- options dynamiques -->
+            </select>
         </div>
-        <br><br>
-        <div id="button">
-            <button type="submit" id="search">Lancer la recherche</button>
+
+        <div class="text-center">
+            <button type="submit" id="search" class="btn btn-primary px-4">Lancer la recherche</button>
         </div>
+
     </form>
     <br><br>
 
