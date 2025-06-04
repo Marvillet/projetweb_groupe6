@@ -31,7 +31,7 @@ function countInstal($db){
 
 // Nombre d'installations par années
 function installByYear($db, $year){
-  $sql = "SELECT i.an_installation,COUNT(*) AS total 
+  $sql = "SELECT COUNT(*) AS total 
         FROM installation 
         WHERE an_installation=:annee;";
   $stmt=$db->prepare($sql);
@@ -43,7 +43,7 @@ function installByYear($db, $year){
 // Nombre d'installations par région
 function installByRegion($db, $region){
   $stmt = $db->prepare("
-    SELECT  r.reg_nom,COUNT(*) AS total 
+    SELECT COUNT(*) AS total 
     FROM installation i
     JOIN commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
