@@ -52,7 +52,7 @@ function installByRegion($db, $region){
 ");
   $stmt->execute(['region'=>$region]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+  return $results['total'];
 }
 
 // Nombre d'installations par années et région
