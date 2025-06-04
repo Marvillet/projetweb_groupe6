@@ -2,10 +2,10 @@
 switch ($requestMethod) {
     case 'GET':
         if ($id) {
-            //on renvoie les datas d'une installation précise
+            //on renvoie les data d'une installation précise
             $data = 'installation de l\'id id';
         } else {
-            $data = '100 installations avec moin de data';
+            $data = '100 installations avec moins de data';
         }
         break;
     case 'POST':
@@ -15,7 +15,7 @@ switch ($requestMethod) {
         break;
     case 'DELETE':
         if ($id != NULL) {
-            $data = 'on supprime la data d\' id  ';
+            $data = 'on supprime la data d\'id ';
         }
         break;
     case 'PUT':

@@ -38,11 +38,11 @@
       exit;
   }
 
-  //si la requète porte sur une installation
+  //si la requête porte sur une installation
   switch ($requestRessource) {
     case "stat":
       require_once "controleur/statistique_controleur.php";
-      //ici l'id représente la stat demandé
+      //ici l'id représente la stat demandée
       GestionDemande($db,$requestMethod,$id,$data);
       break;
     case 'test':
