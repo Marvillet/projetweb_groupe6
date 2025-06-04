@@ -54,60 +54,44 @@
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }
 
-/* From Uiverse.io by gharsh11032000 */ 
 .card {
-  background-color: #001f3f;
-  background-image: linear-gradient(43deg, #ffffff 0%, #ffffff 46%, rgb(255, 255, 255) 100%);
-  border-radius: 8px;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  position: relative;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  box-sizing: border-box;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 5px 10px 20px rgba(48, 51, 81, 0.22);
+  border-radius: 17px;
+  text-align: center;
   cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover {
-  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgb(0, 0, 0);
+  transform: scale(1.01);
 }
 
-.card:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-  z-index: 1;
+.mainCard {
+  box-sizing: border-box;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.22);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card:hover:before {
-  transform: translateX(-100%);
+.mainCard:hover {
+  border: 1px solid #0d6efd;
+  transform: scale(1.01);
 }
 
-.card:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
-  z-index: 1;
-}
-
-.card:hover:after {
-  transform: translateX(100%);
-}
-
-.card-body{
-    color: #ffffff;
-}
 
 .titre{
   display:flex;
