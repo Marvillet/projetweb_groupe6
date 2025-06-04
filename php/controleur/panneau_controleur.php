@@ -21,6 +21,7 @@ function GestionDemande($db,$method, $demande, $data)
                     echo json_encode(["error" => "Méthode non autorisee"]);
                     break;
             }
+            break;
         //seule la methode Get est autorisé pour les statistiques
         default:
             //http_response_code(405);
