@@ -75,7 +75,7 @@ function nbInstallateurs($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS total_installateurs FROM installateur");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result;
+  return $result['total_installateurs'];
 }
 
 // Nombre de marques d'onduleurs
