@@ -142,6 +142,19 @@ function marquePan($db){
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
   return $result;
 }
+//Récupère 20 marques de panneau commençant par $text
+function marquePanFiltre($db,$text){
+    $stmt = $db->prepare("
+        SELECT id_panneau_marque,panneau_marque FROM panneaux_marque 
+        WHERE LOWER(panneau_marque) LIKE LOWER(:term) 
+        LIMIT 20;
+    ");
+    $stmt->bindParam(':term','%'.$text.'%');
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+
 
 // Departements
 function recupDep($db){
@@ -149,6 +162,18 @@ function recupDep($db){
   $stmt->execute();
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $results;
+}
+//Récupère 20 departement de panneau commençant par $text
+function depFiltre($db,$text){
+    $stmt = $db->prepare("
+        Select dep_code,dep_nom from departement
+        WHERE LOWER(dep_nom) LIKE LOWER(:term) 
+        LIMIT 20;
+    ");
+    $stmt->bindParam(':term','%'.$text.'%');
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Installation par departement

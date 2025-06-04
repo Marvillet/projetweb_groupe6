@@ -10,7 +10,7 @@ function GestionDemande($db, $method, $demande, $data)
                 case 'departement':
                     //si une marque à commencé à être taper
                     if (isset($data['dep'])) {
-                        $result = "bientot les departements commençant par" . $data['dep'];
+                        $result = depFiltre($db, $data['dep']);
                     } else {
                         //sinon 20 marques hazard
                         $result = recupDep($db);

@@ -8,7 +8,7 @@ function GestionDemande($db,$method, $demande, $data)
                 case 'marque':
                     //si une marque à commencé à être taper
                     if(isset($data['marque'])){
-                        $result="bientot les marques commençant par".$data['marque'];
+                        $result=marquePanFiltre($db,$data['marque']);
                     }
                     else{
                         //sinon 20 marques hazard
