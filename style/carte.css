@@ -156,3 +156,20 @@ footer {
 .windows:hover{
     background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
 }
+
+.info{
+    display:flex;
+}
+
+.infos{
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    gap: 10px;
+    width: 162px;
+    height: 30px;
+}
+
+.value{
+    padding-left: 15px;
+}
