@@ -116,3 +116,47 @@ function marqueOnd($db){
   return $result;
 
 }
+
+// Installation par marque de panneau
+function installByPanneau($db,$marque){
+  $stmt = $db->prepare("
+    SELECT * 
+    FROM installation i
+    JOIN panneau p ON p.id_panneau = i.id_panneau
+    JOIN panneau_marque pm ON o.id_panneau_marque = pm.id_panneau_marque
+    WHERE pm.panneau_marque=:marque;
+");
+  $stmt->execute(['marque'=>$marque]);
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $results;
+}
+
+// Marque panneau
+function marquePan($db){
+  $stmt = $db->prepare("SELECT panneau_marque FROM panneaux_marque ");
+  $stmt->execute();
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $result;
+}
+
+// Departements
+function recupDep($db){
+  $stmt = $db->prepare("Select dep_nom from departement");
+  $stmt->execute();
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $results;
+}
+
+// Installation par departement
+function installByDep($db,$dep){
+  $stmt = $db->prepare("
+    SELECT * 
+    FROM installation i
+    JOIN Commune c ON i.code_insee = c.code_insee
+    JOIN departement d ON c.dep_code = d.dep_code
+    WHERE d.dep_nom=:dep;
+");
+  $stmt->execute(['dep'=>$dep]);
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $results;
+}
