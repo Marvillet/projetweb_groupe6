@@ -45,7 +45,7 @@ function installByRegion($db, $region){
   $stmt = $db->prepare("
     SELECT r.reg_nom,COUNT(*) AS total 
     FROM installation i
-    JOIN Commune c ON i.code_insee = c.code_insee
+    JOIN commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
     JOIN region r ON d.reg_code = r.reg_code
     WHERE i.reg_nom=:region;
@@ -60,7 +60,7 @@ function installYearRegion($db, $year, $region){
   $stmt = $db->prepare("
     SELECT i.an_installation, r.reg_nom, COUNT(*) AS total 
     FROM installation i
-    JOIN Commune c ON i.code_insee = c.code_insee
+    JOIN commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
     JOIN region r ON d.reg_code = r.reg_code
     WHERE r.reg_nom=:region AND i.reg_nom=:year;
