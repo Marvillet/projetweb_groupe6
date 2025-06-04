@@ -26,7 +26,7 @@ function countInstal($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS total_installations FROM installation");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result;
+  return $result['total_installations'];
 }
 
 // Nombre d'installations par années
