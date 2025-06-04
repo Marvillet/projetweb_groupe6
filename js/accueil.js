@@ -2,7 +2,7 @@
 
 function displayInfo(data){
     let chambre=document.getElementById('nb_install')
-    data.forEach(lst=>{chambre.innerHTML+=data})
+     chambre.innerHTML+=data
 }
 
 function main(){
