@@ -45,7 +45,7 @@
       //ici l'id représente la stat demandée
       GestionDemande($db,$requestMethod,$id,$data);
       break;
-    case "instalation":
+    case "installation":
       require_once "controleur/installation_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
