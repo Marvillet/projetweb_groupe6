@@ -400,3 +400,17 @@ LIMIT 100;
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
 }
+
+// Récupération coordonnées pour la carte
+function coord($db,$dep,$annee){
+    $stmt = $db->prepare("
+   SELECT lat, lon,id
+FROM Installation
+JOIN Commune ON Installation.commune_code_insee = Commune.code_insee
+WHERE an_installation =:annee AND dep_code =:dep;
+   ");
+    $stmt->execute(['annee'=>$annee,'dep'=>$dep]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+
+}
