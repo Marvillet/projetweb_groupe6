@@ -20,17 +20,17 @@ function remplirDetails(data) {
     const list2 = document.querySelectorAll(".list-group")[1].children;
 
     // Colonne 1
-    list1[0].innerHTML = `<strong>Mois d'installation :</strong> ${data.mois_installation}`;
-    list1[1].innerHTML = `<strong>Année d'installation :</strong> ${data.annee_installion}`;
-    list1[2].innerHTML = `<strong>Nombre de panneaux :</strong> ${data.nb_panneaux}`;
-    list1[3].innerHTML = `<strong>Marque des panneaux :</strong> ${data.panneau_marque}`;
-    list1[4].innerHTML = `<strong>Modèle des panneaux :</strong> ${data.panneau_modele}`;
-    list1[5].innerHTML = `<strong>Marque onduleur :</strong> ${data.onduleur_marque}`;
-    list1[6].innerHTML = `<strong>Modèle onduleur :</strong> ${data.onduleur_modele}`;
-    list1[7].innerHTML = `<strong>Puissance crête :</strong> ${data.puissance_crete} kWc`;
-    list1[8].innerHTML = `<strong>Surface :</strong> ${data.surface} m²`;
-    list1[9].innerHTML = `<strong>Pente :</strong> ${data.pente}°`;
-    list1[10].innerHTML = `<strong>Pente optimale :</strong> ${data.pente_optimum}°`;
+    list1[0].innerHTML = `<strong>Mois d'installation :</strong> ${data[0]['mois_installation']}`;
+    list1[1].innerHTML = `<strong>Année d'installation :</strong> ${data[0]['annee_installion']}`;
+    list1[2].innerHTML = `<strong>Nombre de panneaux :</strong> ${data[0]['nb_panneaux']}`;
+    list1[3].innerHTML = `<strong>Marque des panneaux :</strong> ${data[0]['panneau_marque']}`;
+    list1[4].innerHTML = `<strong>Modèle des panneaux :</strong> ${data[0]['panneau_modele']}`;
+    list1[5].innerHTML = `<strong>Marque onduleur :</strong> ${data[0]['onduleur_marque']}`;
+    list1[6].innerHTML = `<strong>Modèle onduleur :</strong> ${data[0]['onduleur_modele']}`;
+    list1[7].innerHTML = `<strong>Puissance crête :</strong> ${data[0]['puissance_crete']} kWc`;
+    list1[8].innerHTML = `<strong>Surface :</strong> ${data[0]['surface']} m²`;
+    list1[9].innerHTML = `<strong>Pente :</strong> ${data[0]['pente']}°`;
+    list1[10].innerHTML = `<strong>Pente optimale :</strong> ${data[0]['pente_optimum']}°`;
 
     // Colonne 2
     list2[0].innerHTML = `<strong>Orientation :</strong> ${data.orientation}`;
