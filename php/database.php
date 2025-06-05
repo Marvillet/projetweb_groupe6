@@ -136,7 +136,7 @@ function installByPanneau($db,$marque){
     SELECT id,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon 
     FROM installation i
     JOIN panneau p ON p.id_panneau = i.id_panneau
-    JOIN panneau_marque pm ON o.id_panneau_marque = pm.id_panneau_marque
+    JOIN panneaux_marque pm ON p.id_panneau_marque = pm.id_panneau_marque
     WHERE pm.id_panneau_marque=:marque
     LIMIT 100;
 ");
@@ -362,7 +362,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE d.dep_code =:dep  AND omq.id_onduleur_marque =: onduleur
+WHERE d.dep_code =:dep  AND omq.id_onduleur_marque =:onduleur
 
 LIMIT 100;
 
@@ -393,7 +393,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =: panneau
+WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =:panneau
 
 LIMIT 100;
 
@@ -424,7 +424,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =: panneau AND omq.id_onduleur_marque =: onduleur
+WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =:panneau AND omq.id_onduleur_marque =:onduleur
 
 LIMIT 100;
 

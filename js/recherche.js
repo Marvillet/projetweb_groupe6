@@ -1,24 +1,54 @@
 'use strict'
 
-function getselect($data){
+function getselect(data){
     let select=document.getElementById("panneau");
     let text="<option value=\"\">-- Toutes les marques --</option>";
-    $data.forEach((value)=>{
+    data.forEach((value)=>{
         text+="<option id='"+value["id_panneau_marque"]+"'>"+value["panneau_marque"]+"</option>";
     })
     select.innerHTML=text;
 }
-function recherche(){
+function tableau_insertion(data){
+    if(data.indexOf("error")===-1){
+        $('#errors').hide();
+        let mois=["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"]
+        let tableau=document.getElementById("resultat");
+        let text="";
+        data.forEach((value)=> {
+            text+="<tr>\n"+
+                "            <td>"+mois[value["mois_installation"]]+" "+value["an_installation"]+"</td>\n"+
+                "            <td>"+value["nb_panneaux"]+"</td>\n"+
+                "            <td>"+value["surface"]+"</td>\n"+
+                "            <td>"+value["puissance_crete"]+"</td>\n"+
+                "            <td>"+value["lat"]+"lat, "+value["lon"]+"lon</td>\n"+
+                "            <td><a href=\"detail.html?id="+value["id"]+"\" className=\"btn btn-outline-primary btn-sm\" title=\"Voir le détail\"><i \n"+
+                "                className=\"bi bi-search\"></i></a></td>\n"+
+                "        </tr>";
+
+        })
+        tableau.innerHTML=text;}
+    else{
+        $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>Aucune installation avec ces filtres</strong>');
+        $('#errors').show();
+    }
+
+}
+
+function recherche() {
     console.log("oui");
-    let panneau;
-    let onduleur;
-    let departement;
-    ajaxRequest('GET', "/projetweb_groupe6/php/request.php/recherche?id_ond="+onduleur+"&id_pan="+panneau+"&id_dep="+departement, tableau_insertion)
+    let panneau = $('#panneau').val();
+    let onduleur = $('#onduleur').val();
+    let departement = $('#departement').val();
+    console.log(panneau);
+    console.log(onduleur);
+    console.log(departement);
+    //+onduleur+"&id_pan="+panneau+"&id_dep="+departement
+    ajaxRequest('GET', "../php/request.php/recherche?id_ond=1", tableau_insertion)
 
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
-    document.getElementById("search").addEventListener("submit",(event)=>{
+    document.getElementById("formulaire").addEventListener("submit",(event)=>{
         event.preventDefault();
         recherche();
     })

@@ -20,20 +20,20 @@ function GestionDemande($db, $method, $gestion, $data)
                 $result=infosDeuxMarque($db,$data['id_pan'],$data['id_ond']);
             }
             elseif(!empty($data['id_pan'])){
-                $result='soon';
+                $result=installByPanneau($db,$data['id_ond']);
             }
             elseif(!empty($data['id_dep'])){
-                $result='soon';
+                $result=installByDep($db,$data['id_dep']);
             }
             elseif(!empty($data['id_ond'])){
                 //affiche les 100 premières instalations de la marque
-                $result=installByPanneau($db,$data['id_ond']);
+                $result=installByOnduleur($db,$data['id_ond']);
             }
             break;
         //seule la methode Get est autorisé pour les statistiques
         default:
             //http_response_code(405);
-            echo json_encode(["error" => "Méthode non autorisee"]);
+            echo json_encode(["error" => "Methode de recherche non autorisee"]);
     }
     if ($result != false) {
         // Envoie des données au client
@@ -44,6 +44,6 @@ function GestionDemande($db, $method, $gestion, $data)
         echo json_encode($result);
     } else {
         header('HTTP/1.1 400 Bad Request');
-        echo json_encode(["error" => "Statistique demandee non valide"]);
+        echo json_encode(["error" => "Installation demandee inexistante","data" => null]);
     }
 }
