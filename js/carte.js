@@ -47,7 +47,7 @@ function recupDep(departements) {
 
 function main() {
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee)
-    ajaxRequest('GET', '../php/request.php/lieu/dep', recupDep)
+    ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep)
     ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
 }
 window.addEventListener("DOMContentLoaded", main);
