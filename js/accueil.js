@@ -37,7 +37,7 @@ function updateYearStats(annee) {
     if (titleByYear) titleByYear.textContent = annee
 }
 function updateRegionStats(region) {
-    ajaxRequest('GET','../php/request.php/stat/annee?id_an=' + region, byRegion)
+    ajaxRequest('GET','../php/request.php/stat/region?id_reg=' + region, byRegion)
     // Mise à jour dynamique des titres
     const titleByRegion = document.getElementById('titleByRegion')
     if (titleByRegion) titleByRegion.textContent = region
@@ -47,7 +47,7 @@ function updateRegionYearStats(region,annee) {
     ajaxRequest('GET','../php/request.php/stat/an_reg?id_an='+annee+'&id_reg=' + region, byRegionYear)
     // Mise à jour dynamique des titres
     const titleByRegionYear = document.getElementById('titleByRegionYear')
-    if (titleByRegionYear) titleByRegionYear.textContent = region
+    if (titleByRegionYear) titleByRegionYear.textContent = region+' '+annee
 }
 
 function main() {
