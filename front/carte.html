@@ -100,25 +100,8 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script>
-        // Initialisation de la carte centrée sur la France
-        const map = L.map('map').setView([46.603354, 1.888334], 6);
-
-        // Couche OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        // Marqueur de test
-        L.marker([43.296482, 5.369780])
-            .addTo(map)
-            .bindPopup('<b>Installation photovoltaïque</b><br>Marseille<br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
-        L.marker([48.443854, 1.489012])
-            .addTo(map)
-            .bindPopup('<b>Installation photovoltaïque</b><br>Chartres<br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
-    </script>
+    <script src="../js/ajax.js"></script>
+    <script src="../js/carte.js"></script>
     <br>
 
 
