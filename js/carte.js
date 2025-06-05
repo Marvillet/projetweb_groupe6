@@ -32,5 +32,4 @@ function ajoutCoord(data) {
 function main() {
     ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
 }
-
 window.addEventListener("DOMContentLoaded", main);
