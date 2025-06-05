@@ -3,9 +3,14 @@
 let map;
 let markersLayer; // Pour regrouper tous les marqueurs
 
-function showInfo() {
+function showInfo(villeId) {
     const info = document.getElementById('info');
-    info.style.display = (info.style.display === 'none' || info.style.display === '') ? 'block' : 'none';
+    info.style.display = 'block';
+
+    console.log("ID de la ville sélectionnée :", villeId);
+
+    // Appelle une requête AJAX pour charger les détails si besoin
+    ajaxRequest('GET', `../php/request.php/lieu/details?id=${villeId}`, remplirDetailsVille);
 }
 
 function hideInfo() {
@@ -44,7 +49,7 @@ function ajoutCoord(data) {
     data.forEach(dt => {
         if (dt.lat && dt.lon) {
             const marker = L.marker([dt.lat, dt.lon])
-                .bindPopup('<b>Installation photovoltaïque</b><br><button id=` ${data.id}` class="showInfo" onclick="showInfo()">Voir détail</button>');
+                .bindPopup('<b>Installation photovoltaïque</b><br><button class="showInfo" onclick="showInfo(${dt.ville_id})">Voir détail</button>');
             markersLayer.addLayer(marker);
         }
     });
@@ -88,6 +93,18 @@ function filtrerCoordonnees(event) {
 
     ajaxRequest('GET', `../php/request.php/lieu/coord?dep=${dep}&annee=${annee}`, ajoutCoord);
 }
+
+function remplirDetailsVille(data) {
+    if (!data) return;
+
+    // Exemple si data = { lieu: "Marseille", nbPanneaux: 20, surface: 50, puissance: 3.2 }
+
+    document.getElementById('lieu-value').textContent = data.lieu || "N/A";
+    document.getElementById('nbPanneaux-value').textContent = data.nbPanneaux || "N/A";
+    document.getElementById('surface-value').textContent = data.surface + " m²" || "N/A";
+    document.getElementById('puissance-value').textContent = data.puissance + " kWc" || "N/A";
+}
+
 
 function main() {
 
