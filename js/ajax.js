@@ -10,35 +10,28 @@
 // \param callback La fonction de rappel à appeler lorsque la requête réussit.
 // \param data Les données associées à la requête.
 
-function ajaxRequest(type, url, callback, data = null)
-{
-  let xhr;
-
-  // Create XML HTTP request.
-  xhr = new XMLHttpRequest();
-  if (type == 'GET' && data != null)
-    url += '?' + data;
-  xhr.open(type, url);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-  // Add the onload function.
-  xhr.onload = () =>
-  {
-    switch (xhr.status)
-    {
-      case 200:
-      case 201:
-        console.log(xhr.responseText);
-        callback(JSON.parse(xhr.responseText));
-        break;
-      default:
-        httpErrors(xhr.status);
+function ajaxRequest(method, url, callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.open(method, url);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        try {
+          const response = JSON.parse(xhr.responseText);
+          callback(response);
+        } catch (e) {
+          console.error("Erreur de parsing JSON :", e);
+          callback([]); // réponse vide ou corrompue
+        }
+      } else {
+        console.warn(`Requête échouée (${xhr.status}) : ${url}`);
+        callback([]); // On appelle quand même avec un tableau vide
+      }
     }
   };
-
-  // Send XML HTTP request.
-  xhr.send(data);
+  xhr.send();
 }
+
 
 //------------------------------------------------------------------------------
 //--- httpErrors ---------------------------------------------------------------
