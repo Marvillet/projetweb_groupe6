@@ -470,13 +470,4 @@ function region($db){
     return $results;
 }
 
-//récupération de tous les départements
-function dep($db){
-    $stmt = $db->prepare("
-   SELECT dep_code,dep_nom
-   FROM departement;
-   ");
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
-}
+
