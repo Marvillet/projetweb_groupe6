@@ -9,7 +9,7 @@ function GestionDemande($db, $method, $demande, $data)
                 case 'marque':
                     //si une marque à commencé à être taper
                     if (isset($data['marque'])) {
-                        $result = "bientot les marques commençant par" . $data['marque'];
+                        $result = marqueOndFiltre($db, $data['marque']);
                     } else {
                         //sinon 20 marques hazard
                         $result = marqueOnd($db);
@@ -20,6 +20,7 @@ function GestionDemande($db, $method, $demande, $data)
                     echo json_encode(["error" => "Méthode non autorisee"]);
                     break;
             }
+            break;
         //seule la methode Get est autorisé pour les statistiques
         default:
             //http_response_code(405);
