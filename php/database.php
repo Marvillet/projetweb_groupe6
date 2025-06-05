@@ -239,7 +239,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque 
 
-WHERE i.id_installateur=:id;
+WHERE i.id=:id;
 ");
     $stmt->execute(['id'=>$id]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
