@@ -90,7 +90,6 @@ function filtrerCoordonnees(event) {
 }
 
 function main() {
-    document.getElementById('info').style.display = 'none';
 
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee);
     ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep);
