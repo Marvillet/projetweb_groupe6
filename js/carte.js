@@ -3,9 +3,14 @@
 let map;
 let markersLayer; // Pour regrouper tous les marqueurs
 
-function showInfo() {
+function showInfo(villeId) {
     const info = document.getElementById('info');
     info.style.display = 'block';
+
+    console.log("ID de la ville sélectionnée :", villeId);
+
+    // Appelle une requête AJAX pour charger les détails si besoin
+    ajaxRequest('GET', `../php/request.php/lieu/detail?id=${villeId}`, remplirDetailsVille);
 }
 
 function hideInfo() {
