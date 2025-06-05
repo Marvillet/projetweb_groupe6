@@ -50,7 +50,7 @@ function ajoutCoord(data) {
         console.log(dt.id)
         if (dt.lat && dt.lon) {
             const marker = L.marker([dt.lat, dt.lon])
-                .bindPopup('<b>Installation photovoltaïque</b><br><button class="showInfo" onclick="showInfo(dt.id})">Voir détail</button>');
+                .bindPopup('<b>Installation photovoltaïque</b><br><button class="showInfo" onclick="showInfo(dt.id)">Voir détail</button>');
             markersLayer.addLayer(marker);
         }
     });
