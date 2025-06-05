@@ -43,11 +43,23 @@ function recupDep(departements) {
         dep.innerHTML += `<option value="${departement.dep_code}">${departement.dep_nom}</option>`;
     });
 }
+function filtrerCoordonnees() {
+    const annee = document.getElementById('annee').value;
+    const dep = document.getElementById('departement').value;
+
+    // Debug :
+    console.log("Année :", annee);
+    console.log("Département :", dep);
+
+    // Appel AJAX avec les valeurs choisies
+    ajaxRequest('GET', `../php/request.php/lieu/coord?dep=${dep}&annee=${annee}`, ajoutCoord);
+}
+
 
 
 function main() {
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee)
     ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep)
-    ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
+    document.getElementById('search').addEventListener('click', filtrerCoordonnees);
 }
 window.addEventListener("DOMContentLoaded", main);
