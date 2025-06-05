@@ -24,10 +24,22 @@ function initMap() {
 }
 
 function ajoutCoord(data) {
+    // Référence au message
+    const messageDiv = document.getElementById('message');
+
     // Efface tous les anciens marqueurs
     markersLayer.clearLayers();
 
-    console.log("Coordonnées reçues :", data);
+    if (data.length === 0) {
+        // Aucun résultat
+        messageDiv.classList.remove('d-none');
+        messageDiv.classList.add('d-block');
+        return;
+    } else {
+        // Résultats trouvés → on masque le message
+        messageDiv.classList.add('d-none');
+        messageDiv.classList.remove('d-block');
+    }
 
     data.forEach(dt => {
         if (dt.lat && dt.lon) {
@@ -38,11 +50,10 @@ function ajoutCoord(data) {
     });
 
     // Zoom automatique si des données sont présentes
-    if (data.length > 0) {
-        const bounds = L.latLngBounds(data.map(d => [d.lat, d.lon]));
-        map.fitBounds(bounds, { padding: [50, 50] });
-    }
+    const bounds = L.latLngBounds(data.map(d => [d.lat, d.lon]));
+    map.fitBounds(bounds, { padding: [50, 50] });
 }
+
 
 // ==== Remplissage dynamique des <select> ====
 
