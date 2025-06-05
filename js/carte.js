@@ -25,19 +25,27 @@ function ajoutCoord(data) {
         initMap();
     }
 
-    // Supprime tous les anciens marqueurs
+    // Supprime anciens marqueurs
     map.eachLayer(layer => {
         if (layer instanceof L.Marker) {
             map.removeLayer(layer);
         }
     });
 
+    // DEBUG : Affiche les données reçues
+    console.log("Coordonnées reçues :", data);
+
     data.forEach(dt => {
-        L.marker([dt.lat, dt.lon])
-            .addTo(map)
-            .bindPopup('<b>Installation photovoltaïque</b><br>Localisation inconnue<br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
+        console.log("Point :", dt.lat, dt.lon); // Vérifie si les valeurs existent
+
+        if (dt.lat && dt.lon) {
+            L.marker([dt.lat, dt.lon])
+                .addTo(map)
+                .bindPopup('<b>Installation photovoltaïque</b><br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
+        }
     });
 }
+
 
 // ==== Remplissage dynamique des <select> + stats associées ====
 
