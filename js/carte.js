@@ -44,7 +44,7 @@ function ajoutCoord(data) {
     data.forEach(dt => {
         if (dt.lat && dt.lon) {
             const marker = L.marker([dt.lat, dt.lon])
-                .bindPopup('<b>Installation photovoltaïque</b><br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
+                .bindPopup('<b>Installation photovoltaïque</b><br><button id=` ${data.id}` class="showInfo" onclick="showInfo()">Voir détail</button>');
             markersLayer.addLayer(marker);
         }
     });
