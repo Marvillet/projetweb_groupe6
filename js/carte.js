@@ -10,7 +10,7 @@ function showInfo(villeId) {
     console.log("ID de la ville sélectionnée :", villeId);
 
     // Appelle une requête AJAX pour charger les détails si besoin
-    ajaxRequest('GET', `../php/request.php/lieu/detail?id=${villeId}`, remplirDetailsVille);
+    ajaxRequest('GET', `../php/request.php/installation/detail?id=${villeId}`, remplirDetailsVille);
 }
 
 function hideInfo() {
@@ -96,7 +96,6 @@ function filtrerCoordonnees(event) {
 }
 
 function remplirDetailsVille(data) {
-    console.log('coucou')
     if (!data) return;
 
     // Exemple si data = { lieu: "Marseille", nbPanneaux: 20, surface: 50, puissance: 3.2 }
