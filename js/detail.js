@@ -43,4 +43,14 @@ function remplirDetails(data) {
     list2[8].innerHTML = `<strong>Ville :</strong> ${data.commune}`;
     list2[9].innerHTML = `<strong>Région :</strong> ${data.region}`;
     list2[10].innerHTML = `<strong>Département :</strong> ${data.departement}`;
+
+    // Mettre à jour la carte Google
+    updateMap(data.lat, data.lon);
+}
+
+function updateMap(lat, lon) {
+    const iframe = document.querySelector("iframe");
+    if (iframe && lat && lon) {
+        iframe.src = `https://maps.google.com/maps?q=${lat},${lon}&z=15&output=embed`;
+    }
 }
