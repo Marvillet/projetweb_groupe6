@@ -64,11 +64,13 @@ function main() {
     updateRegionYearStats(region,region_nom,annee)
     document.getElementById("selectYear").addEventListener("change", function () {
         let annee = this.value
+        let region_nom=document.getElementById('selectRegion').options[document.getElementById('selectRegion').selectedIndex].text
         updateYearStats(annee)
         updateRegionYearStats(region,region_nom,annee)
     });
     document.getElementById("selectRegion").addEventListener("change", function () {
         let region = this.value
+        let region_nom=this.options[this.selectedIndex].text
         updateRegionStats(region,region_nom)
         updateRegionYearStats(region,region_nom,annee)
     });
