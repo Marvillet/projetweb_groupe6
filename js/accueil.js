@@ -60,6 +60,7 @@ function main() {
     ajaxRequest('GET','../php/request.php/stat/installateur',nbInstallateurs)
     ajaxRequest('GET','../php/request.php/stat/panneau',nbPanneau)
     ajaxRequest('GET','../php/request.php/stat/onduleur',nbOnduleur)
+    ajaxRequest('GET','../php/request.php/date/annee',recupAnnee)
 
     let annee = document.getElementById('selectYear').value
     updateYearStats(annee)
