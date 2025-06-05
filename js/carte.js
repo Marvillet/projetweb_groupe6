@@ -99,9 +99,9 @@ function remplirDetailsVille(data) {
     console.log(data)
     if (!data) return;
     document.getElementById('lieu-value').textContent = data[0]['commune'] || "N/A";
-    document.getElementById('nbPanneaux-value').textContent = data.nb_panneaux || "N/A";
-    document.getElementById('surface-value').textContent = data.surface + " m²" || "N/A";
-    document.getElementById('puissance-value').textContent = data.puissance_crete + " kWc" || "N/A";
+    document.getElementById('nbPanneaux-value').textContent = data[0]['nb_panneaux'] || "N/A";
+    document.getElementById('surface-value').textContent = data[0]['surface'] + " m²" || "N/A";
+    document.getElementById('puissance-value').textContent = data[0]['puissance_crete'] + " kWc" || "N/A";
 }
 
 
