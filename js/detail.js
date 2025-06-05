@@ -3,11 +3,14 @@
 window.addEventListener("DOMContentLoaded", main);
 
 function main() {
-    let id=2;
+    const id = getIdFromUrl();
     ajaxRequest("GET", `../php/request.php/installation/${id}`, remplirDetails);
 }
 
-
+function getIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+}
 
 function remplirDetails(data) {
     if (!data) return;
