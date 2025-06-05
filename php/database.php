@@ -67,7 +67,7 @@ function installYearRegion($db, $year, $region){
 ");
   $stmt->execute(['region'=>$region, 'year'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+  return $results['total'];
 }
 
 // Nombre d'installateurs
