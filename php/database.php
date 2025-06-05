@@ -91,7 +91,7 @@ function nbMarquePan($db){
   $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_panneau FROM panneaux_marque");
   $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $result;
+  return $result['nb_marque_panneau'];
 }
 
 // Installation par marque d'onduleur
