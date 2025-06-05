@@ -52,7 +52,7 @@ function remplirDetails(data) {
     list2[2].innerHTML = `<strong>Installateur :</strong> ${data[0]['installateur']}`;
     list2[3].innerHTML = `<strong>Production PVGIS estimée :</strong> ${data[0]['puissance_pvgis']}`;
     list2[4].innerHTML = `<strong>Latitude :</strong> ${data[0]['lat']}`;
-    list2[5].innerHTML = `<strong>Longitude :</strong> ${data[0]['long']}`;
+    list2[5].innerHTML = `<strong>Longitude :</strong> ${data[0]['lon']}`;
     list2[6].innerHTML = `<strong>Pays :</strong> ${data[0]['pays']}`;
     list2[7].innerHTML = `<strong>Code postal :</strong> ${data[0]['code_postal']}`;
     list2[8].innerHTML = `<strong>Ville :</strong> ${data[0]['commune']}`;
