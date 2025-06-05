@@ -112,10 +112,11 @@ footer {
     height: 300px;
     border-radius: var(--border-radius);
     padding: 20px;
-    display: none;
+
     background: #001f3f;
     color: white;
     flex: 0 0 400px;
+    display: none;
 }
 
 #info::before {
