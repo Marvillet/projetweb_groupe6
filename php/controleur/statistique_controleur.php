@@ -11,7 +11,6 @@ function GestionDemande($db,$method, $stat, $data)
                 case 'region':
                     if(isset($data['id_reg'])){
                         $result=installByRegion($db,$data['id_reg']);
-                        echo $data['id_reg'];
                     }
 
                     break;
@@ -39,6 +38,7 @@ function GestionDemande($db,$method, $stat, $data)
                     break;
                 default:
                     $result="stat demande n'esxiste pas ou pas de stat demandee";
+                     break;
             }
             break;
         //seule la methode Get est autorisé pour les statistiques
