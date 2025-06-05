@@ -439,3 +439,25 @@ WHERE an_installation =:annee AND dep_code =:dep;
     return $results;
 
 }
+
+//récupération de toutes les années
+function annee($db){
+    $stmt = $db->prepare("
+   SELECT distinct(annee) as annee
+   FROM installation;
+   ");
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+
+//récupération de toutes les régions
+function region($db){
+    $stmt = $db->prepare("
+   SELECT reg_code,reg_name
+   FROM region;
+   ");
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
