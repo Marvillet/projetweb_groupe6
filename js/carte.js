@@ -1,6 +1,7 @@
-'use strict'
+'use strict';
 
-let map; // variable globale pour garder une seule instance de carte
+let map;
+let markersLayer; // Pour regrouper tous les marqueurs
 
 function showInfo() {
     const info = document.getElementById('info');
@@ -18,40 +19,36 @@ function initMap() {
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    markersLayer = L.layerGroup().addTo(map);
 }
 
 function ajoutCoord(data) {
-    if (!map) {
-        initMap();
-    }
+    // Efface tous les anciens marqueurs
+    markersLayer.clearLayers();
 
-    // Supprime anciens marqueurs
-    map.eachLayer(layer => {
-        if (layer instanceof L.Marker) {
-            map.removeLayer(layer);
-        }
-    });
-
-    // DEBUG : Affiche les données reçues
     console.log("Coordonnées reçues :", data);
 
     data.forEach(dt => {
-        console.log("Point :", dt.lat, dt.lon); // Vérifie si les valeurs existent
-
         if (dt.lat && dt.lon) {
-            L.marker([dt.lat, dt.lon])
-                .addTo(map)
+            const marker = L.marker([dt.lat, dt.lon])
                 .bindPopup('<b>Installation photovoltaïque</b><br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
+            markersLayer.addLayer(marker);
         }
     });
+
+    // Zoom automatique si des données sont présentes
+    if (data.length > 0) {
+        const bounds = L.latLngBounds(data.map(d => [d.lat, d.lon]));
+        map.fitBounds(bounds, { padding: [50, 50] });
+    }
 }
 
-
-// ==== Remplissage dynamique des <select> + stats associées ====
+// ==== Remplissage dynamique des <select> ====
 
 function recupAnnee(annees) {
     const an = document.getElementById('annee');
-    an.innerHTML = '';
+    an.innerHTML = '<option value="">-- Sélectionner --</option>';
     annees.forEach(annee => {
         an.innerHTML += `<option value="${annee.annee}">${annee.annee}</option>`;
     });
@@ -59,20 +56,24 @@ function recupAnnee(annees) {
 
 function recupDep(departements) {
     const dep = document.getElementById('departement');
-    dep.innerHTML = '';
+    dep.innerHTML = '<option value="">-- Sélectionner --</option>';
     departements.forEach(departement => {
         dep.innerHTML += `<option value="${departement.dep_code}">${departement.dep_nom}</option>`;
     });
 }
 
 function filtrerCoordonnees(event) {
-    event.preventDefault(); // ← empêche le rechargement de la page
+    event.preventDefault(); // ← important pour empêcher la soumission du formulaire
 
     const annee = document.getElementById('annee').value;
     const dep = document.getElementById('departement').value;
 
-    console.log("Année :", annee);
-    console.log("Département :", dep);
+    if (!annee || !dep) {
+        alert("Veuillez sélectionner une année et un département.");
+        return;
+    }
+
+    console.log("Filtrage - Année :", annee, "| Département :", dep);
 
     ajaxRequest('GET', `../php/request.php/lieu/coord?dep=${dep}&annee=${annee}`, ajoutCoord);
 }
@@ -81,15 +82,13 @@ function main() {
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee);
     ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep);
 
-    // Initialise la carte au démarrage
-    initMap();
+    initMap(); // Crée la carte une seule fois
 
-    // Vérifie que le bouton existe bien
     const bouton = document.getElementById('search');
     if (bouton) {
         bouton.addEventListener('click', filtrerCoordonnees);
     } else {
-        console.error("Le bouton avec l'id 'search' est introuvable.");
+        console.error("Le bouton #search est introuvable !");
     }
 }
 
