@@ -50,6 +50,11 @@ function updateRegionYearStats(region,region_nom,annee) {
     if (titleByRegionYear) titleByRegionYear.textContent = region_nom+' en '+annee
 }
 
+function recupAnnee(annnes){
+    let an=document.getElementById('selectRegion')
+    annees.forEach(annee=>{an.innerHTML+='<option value='+annee.annee+'>'+annee.annee+'</option>'})
+}
+
 function main() {
     ajaxRequest('GET','../php/request.php/stat/total',nbInstall)
     ajaxRequest('GET','../php/request.php/stat/installateur',nbInstallateurs)
