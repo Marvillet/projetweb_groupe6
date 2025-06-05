@@ -33,6 +33,6 @@ function ajoutCoord(data){
 }
 
 function main(){
-    ajaxRequest('GET','php/request.php/lieu/coord?dep='+dep+'&annee='+annee,ajoutCoord)
+    ajaxRequest('GET','php/request.php/lieu/coord?dep='+14+'&annee='+2010,ajoutCoord)
 }
 window.addEventListener("DOMContentLoaded", main)
