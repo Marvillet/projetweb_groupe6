@@ -51,8 +51,8 @@ function installByRegion($db, $region){
     WHERE r.reg_code=:region;
 ");
   $stmt->execute(['region'=>$region]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results[0]['total'];
+  $results = $stmt->fetch(PDO::FETCH_ASSOC);
+  return $results;
 }
 
 // Nombre d'installations par années et région
