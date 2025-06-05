@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", main);
 
 function main() {
     const id = getIdFromUrl();
+    console.log(`Appel API pour l'installation ID=${id}`);
     ajaxRequest("GET", `../php/request.php/installation/${id}`, remplirDetails);
 }
 
