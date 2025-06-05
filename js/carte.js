@@ -30,7 +30,7 @@ function ajoutCoord(data) {
 }
 
 function recupAnnee(annees) {
-    const an = document.getElementById('selectYear');
+    const an = document.getElementById('annee');
     an.innerHTML = '';
     annees.forEach(annee => {
         an.innerHTML += `<option value="${annee.annee}">${annee.annee}</option>`;
@@ -38,7 +38,7 @@ function recupAnnee(annees) {
 }
 
 function recupDep(departements) {
-    const dep = document.getElementById('selectDepartement');
+    const dep = document.getElementById('departement');
     dep.innerHTML = '';
     departements.forEach(departement => {
         dep.innerHTML += `<option value="${departement.dep_code}">${departement.dep_nom}</option>`;
