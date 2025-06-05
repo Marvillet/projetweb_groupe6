@@ -111,14 +111,23 @@ function installByOnduleur($db,$marque){
 
 // Marque ondulateur
 function marqueOnd($db){
-  $stmt = $db->prepare("SELECT id_onduleur_marque,ondulateur_marque 
+  $stmt = $db->prepare("SELECT id_onduleur_marque,onduleur_marque 
 FROM onduleur_marque om
 ORDER BY RAND()
 LIMIT 20;");
   $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $result;
-
+}
+function marqueOndFiltre($db,$text){
+    $stmt = $db->prepare("
+        SELECT id_onduleur_marque,onduleur_marque FROM onduleur_marque
+        WHERE LOWER(onduleur_marque) LIKE LOWER(:term) 
+        LIMIT 20;
+    ");
+    $stmt->execute(['term'=>'%'.$text.'%']);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Installation par marque de panneau
