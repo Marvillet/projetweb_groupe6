@@ -13,6 +13,7 @@ const fakeData = [
 ];
 
 function ajoutCoord(data) {
+    console.log("Données reçues :", data);
     const map = L.map('map').setView([46.603354, 1.888334], 6);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -28,8 +29,7 @@ function ajoutCoord(data) {
 }
 
 function main() {
-    ajoutCoord(fakeData)
-    //ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
+    ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
 }
 
 window.addEventListener("DOMContentLoaded", main);
