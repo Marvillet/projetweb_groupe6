@@ -65,7 +65,9 @@ function recupDep(departements) {
     });
 }
 
-function filtrerCoordonnees() {
+function filtrerCoordonnees(event) {
+    event.preventDefault(); // ← empêche le rechargement de la page
+
     const annee = document.getElementById('annee').value;
     const dep = document.getElementById('departement').value;
 
