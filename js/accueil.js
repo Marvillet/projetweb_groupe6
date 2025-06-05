@@ -61,16 +61,16 @@ function main() {
     let region = document.getElementById('selectRegion').value
     let region_nom=document.getElementById('selectRegion').options[document.getElementById('selectRegion').selectedIndex].text
     updateRegionStats(region,region_nom)
-    updateRegionYearStats(region,annee)
+    updateRegionYearStats(region,region_nom,annee)
     document.getElementById("selectYear").addEventListener("change", function () {
         let annee = this.value
         updateYearStats(annee)
-        updateRegionYearStats(region,annee)
+        updateRegionYearStats(region,region_nom,annee)
     });
     document.getElementById("selectRegion").addEventListener("change", function () {
         let region = this.value
-        updateRegionStats(region)
-        updateRegionYearStats(region,annee)
+        updateRegionStats(region,region_nom)
+        updateRegionYearStats(region,region_nom,annee)
     });
 
 }
