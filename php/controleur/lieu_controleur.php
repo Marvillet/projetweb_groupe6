@@ -16,8 +16,8 @@ function GestionDemande($db, $method, $demande, $data)
                         $result = recupDep($db);
                     }
                     break;
-                case 'annee':
-                    $result = listeAnnees($db);     // pas de paramètre nécessaire
+                case 'region':
+                    $result = region($db);     // pas de paramètre nécessaire
                     break;
                 case 'coord':
                     if (isset($data['dep']) && isset($data['annee'])) {
