@@ -10,6 +10,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- J query -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </head>
 <body>
@@ -48,38 +52,23 @@
       <div class="row g-4 mb-4">
         <!-- Marque onduleur -->
         <div class="col-md-4">
-          <label for="inverterBrand" class="form-label">Marque de l’onduleur</label>
-          <select id="inverterBrand" name="inverter_brand" class="form-select">
-            <option value="">-- Toutes les marques --</option>
-            <option>SMA</option>
-            <option>Huawei</option>
-            <option>Fronius</option>
-            <option>Enphase</option>
+          <label for="onduleur" class="form-label">Marque de l’onduleur</label>
+          <select id="onduleur" name="inverter_brand" class="form-select">
           </select>
         </div>
 
         <!-- Marque panneaux -->
         <div class="col-md-4">
-          <label for="panelBrand" class="form-label">Marque des panneaux</label>
-          <select id="panelBrand" name="panel_brand" class="form-select">
-            <option value="">-- Toutes les marques --</option>
-            <option>LG</option>
-            <option>SunPower</option>
-            <option>Trina Solar</option>
-            <option>Jinko Solar</option>
+          <label for="panneau" class="form-label">Marque des panneaux</label>
+          <select id="panneau" name="panel_brand" class="form-select">
           </select>
         </div>
 
         <!-- Département -->
         <div class="col-md-4">
-          <label for="department" class="form-label">Département</label>
-          <select id="department" name="department" class="form-select">
-            <option value="">-- Tous les départements --</option>
-            <option value="33">Gironde (33)</option>
-            <option value="75">Paris (75)</option>
-            <option value="13">Bouches-du-Rhône (13)</option>
-            <option value="69">Rhône (69)</option>
-            <option value="31">Haute-Garonne (31)</option>
+          <label for="departement" class="form-label">Département</label>
+          <select id="departement" name="department" class="form-select">
+
           </select>
         </div>
       </div>
@@ -118,6 +107,16 @@
         <tr><td>Août 2023</td><td>13</td><td>26</td><td>4,6</td><td>Nantes (44)</td><td><a href="details.html?id=8" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
         <tr><td>Septembre 2023</td><td>17</td><td>34</td><td>5,9</td><td>Rennes (35)</td><td><a href="details.html?id=9" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
         <tr><td>Octobre 2023</td><td>20</td><td>40</td><td>7,0</td><td>Lille (59)</td><td><a href="details.html?id=10" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Janvier 2023</td><td>12</td><td>24</td><td>4,2</td><td>Montpellier (34)</td><td><a href="details.html?id=1" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Février 2023</td><td>10</td><td>20</td><td>3,5</td><td>Lyon (69)</td><td><a href="details.html?id=2" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Mars 2023</td><td>14</td><td>28</td><td>4,8</td><td>Toulouse (31)</td><td><a href="details.html?id=3" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Avril 2023</td><td>16</td><td>32</td><td>5,6</td><td>Bordeaux (33)</td><td><a href="details.html?id=4" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Mai 2023</td><td>18</td><td>36</td><td>6,0</td><td>Marseille (13)</td><td><a href="details.html?id=5" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Juin 2023</td><td>15</td><td>30</td><td>5,2</td><td>Nice (06)</td><td><a href="details.html?id=6" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Juillet 2023</td><td>11</td><td>22</td><td>3,8</td><td>Strasbourg (67)</td><td><a href="details.html?id=7" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Août 2023</td><td>13</td><td>26</td><td>4,6</td><td>Nantes (44)</td><td><a href="details.html?id=8" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Septembre 2023</td><td>17</td><td>34</td><td>5,9</td><td>Rennes (35)</td><td><a href="details.html?id=9" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
+        <tr><td>Octobre 2023</td><td>20</td><td>40</td><td>7,0</td><td>Lille (59)</td><td><a href="details.html?id=10" class="btn btn-outline-primary btn-sm" title="Voir le détail"><i class="bi bi-search"></i></a></td></tr>
         </tbody>
       </table>
     </div>
@@ -135,6 +134,7 @@
     <p>Louis Marvillet / Mathis Brosseau / Mathis Letellier CIR2</p>
   </div>
 </footer>
-<script src="../js/index.js"></script>
+<script src="../js/ajax.js"></script>
+<script src="../js/recherche.js"></script>
 </body>
 </html>

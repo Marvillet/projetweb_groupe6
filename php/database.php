@@ -179,8 +179,7 @@ function depFiltre($db,$text){
         WHERE LOWER(dep_nom) LIKE LOWER(:term) 
         LIMIT 20;
     ");
-    $stmt->bindParam('term','%'.$text.'%');
-    $stmt->execute();
+    $stmt->execute(['term'=>'%'.$text.'%']);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
 }
