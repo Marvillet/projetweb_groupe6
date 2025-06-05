@@ -1,5 +1,5 @@
 <?php
-  require_once('constants.php');
+require_once('constants.php');
 
 //----------------------------------------------------------------------------
 //--- dbConnect --------------------------------------------------------------
@@ -7,42 +7,42 @@
 // Crée la connexion à la base de données.
 // \return False en cas d'erreur, sinon la base de données.
 function dbConnect()
-  {
+{
     try
     {
-      $db = new PDO('mysql:host='.DB_SERVER.';port='.DB_PORT.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = new PDO('mysql:host='.DB_SERVER.';port='.DB_PORT.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $exception)
     {
-      error_log('Connection error: '.$exception->getMessage());
-      return false;
+        error_log('Connection error: '.$exception->getMessage());
+        return false;
     }
     return $db;
-  }
+}
 
 // Nombre enregistrement en base
 function countInstal($db){
-  $stmt = $db->prepare("SELECT COUNT(*) AS total_installations FROM installation");
-  $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result['total_installations'];
+    $stmt = $db->prepare("SELECT COUNT(*) AS total_installations FROM installation");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total_installations'];
 }
 
 // Nombre d'installations par années
 function installByYear($db, $year){
-  $sql = "SELECT COUNT(*) AS total 
+    $sql = "SELECT COUNT(*) AS total 
         FROM installation 
         WHERE an_installation=:annee;";
-  $stmt=$db->prepare($sql);
-  $stmt->execute(['annee'=>$year]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results[0]['total'];
+    $stmt=$db->prepare($sql);
+    $stmt->execute(['annee'=>$year]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results[0]['total'];
 }
 
 // Nombre d'installations par région
 function installByRegion($db, $region){
-  $stmt = $db->prepare("
+    $stmt = $db->prepare("
     SELECT COUNT(*) AS total 
     FROM installation i
     JOIN commune c ON i.code_insee = c.code_insee
@@ -50,14 +50,14 @@ function installByRegion($db, $region){
     JOIN region r ON d.reg_code = r.reg_code
     WHERE r.reg_code=:region;
 ");
-  $stmt->execute(['region'=>$region]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results['total'];
+    $stmt->execute(['region'=>$region]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results[0]['total'];
 }
 
 // Nombre d'installations par années et région
 function installYearRegion($db, $year, $region){
-  $stmt = $db->prepare("
+    $stmt = $db->prepare("
     SELECT i.an_installation, r.reg_nom, COUNT(*) AS total 
     FROM installation i
     JOIN commune c ON i.code_insee = c.code_insee
@@ -65,38 +65,38 @@ function installYearRegion($db, $year, $region){
     JOIN region r ON d.reg_code = r.reg_code
     WHERE r.reg_code=:region AND i.an_installation=:year;
 ");
-  $stmt->execute(['region'=>$region, 'year'=>$year]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+    $stmt->execute(['region'=>$region, 'year'=>$year]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results[0]['total'];
 }
 
 // Nombre d'installateurs
 function nbInstallateurs($db){
-  $stmt = $db->prepare("SELECT COUNT(*) AS total_installateurs FROM installateur");
-  $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result['total_installateurs'];
+    $stmt = $db->prepare("SELECT COUNT(*) AS total_installateurs FROM installateur");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total_installateurs'];
 }
 
 // Nombre de marques d'onduleurs
 function nbMarqueOnd($db){
-  $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_onduleur FROM onduleur_marque");
-  $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result['nb_marque_onduleur'];
+    $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_onduleur FROM onduleur_marque");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['nb_marque_onduleur'];
 }
 
 // Nombre de marques de panneaux solaires
 function nbMarquePan($db){
-  $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_panneau FROM panneaux_marque");
-  $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result['nb_marque_panneau'];
+    $stmt = $db->prepare("SELECT COUNT(*) AS nb_marque_panneau FROM panneaux_marque");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['nb_marque_panneau'];
 }
 
 // Installation par marque d'onduleur
 function installByOnduleur($db,$marque){
-  $stmt = $db->prepare("
+    $stmt = $db->prepare("
     SELECT id,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon 
     FROM installation i
     JOIN onduleur o ON o.id_onduleur = i.id_onduleur
@@ -104,25 +104,35 @@ function installByOnduleur($db,$marque){
     WHERE om.id_onduleur_marque=:marque
     LIMIT 100;
 ");
-  $stmt->execute(['marque'=>$marque]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+    $stmt->execute(['marque'=>$marque]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Marque ondulateur
 function marqueOnd($db){
-  $stmt = $db->prepare("SELECT id_onduleur_marque,ondulateur_marque 
+    $stmt = $db->prepare("SELECT id_onduleur_marque,onduleur_marque 
 FROM onduleur_marque om
+ORDER BY RAND()
 LIMIT 20;");
-  $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result;
-
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+function marqueOndFiltre($db,$text){
+    $stmt = $db->prepare("
+        SELECT id_onduleur_marque,onduleur_marque FROM onduleur_marque
+        WHERE LOWER(onduleur_marque) LIKE LOWER(:term) 
+        LIMIT 20;
+    ");
+    $stmt->execute(['term'=>'%'.$text.'%']);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Installation par marque de panneau
 function installByPanneau($db,$marque){
-  $stmt = $db->prepare("
+    $stmt = $db->prepare("
     SELECT id,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon 
     FROM installation i
     JOIN panneau p ON p.id_panneau = i.id_panneau
@@ -130,17 +140,17 @@ function installByPanneau($db,$marque){
     WHERE pm.id_panneau_marque=:marque
     LIMIT 100;
 ");
-  $stmt->execute(['marque'=>$marque]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+    $stmt->execute(['marque'=>$marque]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Marque panneau
 function marquePan($db){
-  $stmt = $db->prepare("SELECT id_panneau_marque,panneau_marque FROM panneaux_marque LIMIT 20;");
-  $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  return $result;
+    $stmt = $db->prepare("SELECT id_panneau_marque,panneau_marque FROM panneaux_marque ORDER BY RAND() LIMIT 20;");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
 //Récupère 20 marques de panneau commençant par $text
 function marquePanFiltre($db,$text){
@@ -157,10 +167,10 @@ function marquePanFiltre($db,$text){
 
 // Departements
 function recupDep($db){
-  $stmt = $db->prepare("Select dep_code,dep_nom from departement LIMIT 20;");
-  $stmt->execute();
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+    $stmt = $db->prepare("Select dep_code,dep_nom from departement order by RAND() LIMIT 20;");
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 //Récupère 20 departement de panneau commençant par $text
 function depFiltre($db,$text){
@@ -169,15 +179,14 @@ function depFiltre($db,$text){
         WHERE LOWER(dep_nom) LIKE LOWER(:term) 
         LIMIT 20;
     ");
-    $stmt->bindParam('term','%'.$text.'%');
-    $stmt->execute();
+    $stmt->execute(['term'=>'%'.$text.'%']);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
 }
 
 // Installation par departement
 function installByDep($db,$dep){
-  $stmt = $db->prepare("
+    $stmt = $db->prepare("
     SELECT id,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon
     FROM installation i
     JOIN Commune c ON i.code_insee = c.code_insee
@@ -185,14 +194,14 @@ function installByDep($db,$dep){
     WHERE d.dep_code=:dep
     LIMIT 100;
 ");
-  $stmt->execute(['dep'=>$dep]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+    $stmt->execute(['dep'=>$dep]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Récupération infos d'une installation précise
 function infosInstall($db,$id){
-  $stmt = $db->prepare("
+    $stmt = $db->prepare("
     SELECT 
     i.*,
     inst.installateur,
@@ -232,9 +241,9 @@ LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
 WHERE i.id_installateur=:id;
 ");
-  $stmt->execute(['id'=>$id]);
-  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results;
+    $stmt->execute(['id'=>$id]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 // Récupération infos de toutes les installations
@@ -439,12 +448,24 @@ WHERE an_installation =:annee AND dep_code =:dep;
 
 }
 
-// Années disponibles (distinct)
-function listeAnnees($db){
-    $stmt = $db->query("
-        SELECT DISTINCT an_installation
-        FROM installation
-        ORDER BY an_installation DESC
-    ");
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+//récupération de toutes les années
+function annee($db){
+    $stmt = $db->prepare("
+   SELECT distinct(an_installation) as annee
+   FROM installation;
+   ");
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+
+//récupération de toutes les régions
+function region($db){
+    $stmt = $db->prepare("
+   SELECT reg_code,reg_nom
+   FROM region;
+   ");
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
