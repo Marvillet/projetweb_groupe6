@@ -9,13 +9,18 @@ function getselect($data){
     select.innerHTML=text;
 }
 function recherche(){
-    document
+    console.log("oui");
+    let panneau;
+    let onduleur;
+    let departement;
+    ajaxRequest('GET', "/projetweb_groupe6/php/request.php/recherche?id_ond="+onduleur+"&id_pan="+panneau+"&id_dep="+departement, tableau_insertion)
+
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("search").addEventListener("submit",(event)=>{
-        event.preventDefault()
-
+        event.preventDefault();
+        recherche();
     })
     $('#panneau').select2({
         placeholder: "Rechercher une marque...",
