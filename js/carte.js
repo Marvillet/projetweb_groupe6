@@ -10,7 +10,7 @@ function showInfo(villeId) {
     console.log("ID de la ville sélectionnée :", villeId);
 
     // Appelle une requête AJAX pour charger les détails si besoin
-    ajaxRequest('GET', `../php/request.php/installation/detail?id=${villeId}`, remplirDetailsVille);
+    ajaxRequest('GET', `../php/request.php/installation/${villeId}`, remplirDetailsVille);
 }
 
 function hideInfo() {
