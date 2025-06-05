@@ -51,8 +51,12 @@ function updateRegionYearStats(region,region_nom,annee) {
 }
 
 function recupAnnee(annnes){
-    let an=document.getElementById('selectRegion')
+    let an=document.getElementById('selectYear')
     annees.forEach(annee=>{an.innerHTML+='<option value='+annee.annee+'>'+annee.annee+'</option>'})
+}
+function recupReg(regions){
+    let reg=document.getElementById('selectRegion')
+    regions.forEach(region=>{reg.innerHTML+='<option value='+region.reg_code+'>'+region.reg_nom+'</option>'})
 }
 
 function main() {
@@ -61,6 +65,7 @@ function main() {
     ajaxRequest('GET','../php/request.php/stat/panneau',nbPanneau)
     ajaxRequest('GET','../php/request.php/stat/onduleur',nbOnduleur)
     ajaxRequest('GET','../php/request.php/date/annee',recupAnnee)
+    ajaxRequest('GET','../php/request.php/lieu/region',recupReg)
 
     let annee = document.getElementById('selectYear').value
     updateYearStats(annee)
