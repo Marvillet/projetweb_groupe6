@@ -29,7 +29,25 @@ function ajoutCoord(data) {
     });
 }
 
+function recupAnnee(annees) {
+    const an = document.getElementById('selectYear');
+    an.innerHTML = '';
+    annees.forEach(annee => {
+        an.innerHTML += `<option value="${annee.annee}">${annee.annee}</option>`;
+    });
+}
+
+function recupDep(departements) {
+    const dep = document.getElementById('selectDepartement');
+    dep.innerHTML = '';
+    departements.forEach(departement => {
+        dep.innerHTML += `<option value="${departement.dep_code}">${departement.dep_nom}</option>`;
+    });
+}
+
 function main() {
+    ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee)
+    ajaxRequest('GET', '../php/request.php/lieu/region', recupDep)
     ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
 }
 window.addEventListener("DOMContentLoaded", main);
