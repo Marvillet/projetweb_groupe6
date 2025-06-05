@@ -158,7 +158,7 @@ function marquePanFiltre($db,$text){
 
 // Departements
 function recupDep($db){
-  $stmt = $db->prepare("Select dep_code,dep_nom from departement LIMIT 20;");
+  $stmt = $db->prepare("Select dep_code,dep_nom from departement order by RAND() LIMIT 20;");
   $stmt->execute();
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $results;
