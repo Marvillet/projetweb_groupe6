@@ -50,7 +50,7 @@ function updateRegionYearStats(region,region_nom,annee) {
     if (titleByRegionYear) titleByRegionYear.textContent = region_nom+' en '+annee
 }
 
-function recupAnnee(annnes){
+function recupAnnee(annees){
     let an=document.getElementById('selectYear')
     annees.forEach(annee=>{an.innerHTML+='<option value='+annee.annee+'>'+annee.annee+'</option>'})
 }
