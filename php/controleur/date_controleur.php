@@ -7,7 +7,7 @@ function GestionDemande($db, $method, $demande, $data)
             switch ($demande) {
                 case 'annee':
                     //si une marque à commencé à être taper
-                    $result = annee($db);
+                    $result = listeAnnees($db);
                     break;
                 default:
                     //http_response_code(405);
