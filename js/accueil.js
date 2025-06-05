@@ -84,6 +84,7 @@
             const annee = an.value
             updateRegionYearStats(selectedRegion, region_nom, annee)
         }
+
     }
 
 // ==== Initialisation principale ====
