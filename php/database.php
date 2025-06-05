@@ -438,3 +438,13 @@ WHERE an_installation =:annee AND dep_code =:dep;
     return $results;
 
 }
+
+// Années disponibles (distinct)
+function listeAnnees($db){
+    $stmt = $db->query("
+        SELECT DISTINCT an_installation
+        FROM installation
+        ORDER BY an_installation DESC
+    ");
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}

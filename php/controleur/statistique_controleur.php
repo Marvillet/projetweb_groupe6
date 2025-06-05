@@ -1,5 +1,4 @@
 <?php
-//on récupère le modèle
 
 function GestionDemande($db,$method, $stat, $data)
 {
