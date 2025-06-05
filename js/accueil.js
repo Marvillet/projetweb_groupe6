@@ -43,11 +43,11 @@ function updateRegionStats(region,region_nom) {
     if (titleByRegion) titleByRegion.textContent = region_nom
 }
 
-function updateRegionYearStats(region,annee) {
+function updateRegionYearStats(region,region_nom,annee) {
     ajaxRequest('GET','../php/request.php/stat/an_reg?id_an='+annee+'&id_reg=' + region, byRegionYear)
     // Mise à jour dynamique des titres
     const titleByRegionYear = document.getElementById('titleByRegionYear')
-    if (titleByRegionYear) titleByRegionYear.textContent = region+' '+annee
+    if (titleByRegionYear) titleByRegionYear.textContent = region_nom+' '+annee
 }
 
 function main() {
