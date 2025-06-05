@@ -59,7 +59,7 @@ function main() {
     let annee = document.getElementById('selectYear').value
     updateYearStats(annee)
     let region = document.getElementById('selectRegion').value
-    let region_nom=document.getElementById('selectRegion').textContent
+    let region_nom=document.getElementById('selectRegion').options[document.getElementById('selectRegion').selectedIndex].text
     updateRegionStats(region,region_nom)
     updateRegionYearStats(region,annee)
     document.getElementById("selectYear").addEventListener("change", function () {
