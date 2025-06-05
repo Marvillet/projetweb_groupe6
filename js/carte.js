@@ -60,6 +60,7 @@ function filtrerCoordonnees() {
 function main() {
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee)
     ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep)
+    ajaxRequest('GET', `../php/request.php/lieu/coord?dep=14&annee=2010`, ajoutCoord);
     document.getElementById('search').addEventListener('click', filtrerCoordonnees);
 }
 window.addEventListener("DOMContentLoaded", main);
