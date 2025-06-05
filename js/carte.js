@@ -95,6 +95,7 @@ function filtrerCoordonnees(event) {
 }
 
 function remplirDetailsVille(data) {
+    console.log('coucou')
     if (!data) return;
 
     // Exemple si data = { lieu: "Marseille", nbPanneaux: 20, surface: 50, puissance: 3.2 }
