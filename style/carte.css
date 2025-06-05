@@ -156,11 +156,11 @@ footer {
 }
 
 .info {
-    display: flex;
+    display: none;
 }
 
 .infos {
-    display: none;
+    display: flex;
     align-items: right;
     justify-content: right;
     gap: 10px;
