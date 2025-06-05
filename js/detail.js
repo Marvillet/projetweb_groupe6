@@ -60,7 +60,7 @@ function remplirDetails(data) {
     list2[10].innerHTML = `<strong>Département :</strong> ${data[0]['departement']}`;
 
     // Mettre à jour la carte Google
-    updateMap(data.lat, data.lon);
+    updateMap(data[0]['lat'], data[0]['lon']);
 }
 
 function updateMap(lat, lon) {
