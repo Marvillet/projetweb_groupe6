@@ -1,90 +1,127 @@
 'use strict'
 
-function nbInstall(data){
-    let install=document.getElementById('nb_install')
-     install.innerHTML=data
+// ==== Fonctions d'affichage ====
+
+function nbInstall(data) {
+    document.getElementById('nb_install').innerHTML = data
 }
-function nbInstallateurs(data){
-    let install=document.getElementById('installateur')
-    install.innerHTML=data
+function nbInstallateurs(data) {
+    document.getElementById('installateur').innerHTML = data
 }
-function nbPanneau(data){
-    let install=document.getElementById('nb_panneau')
-    install.innerHTML=data
+function nbPanneau(data) {
+    document.getElementById('nb_panneau').innerHTML = data
 }
-function nbOnduleur(data){
-    let install=document.getElementById('nb_onduleur')
-    install.innerHTML=data
+function nbOnduleur(data) {
+    document.getElementById('nb_onduleur').innerHTML = data
 }
-function byYear(data){
-    let install=document.getElementById('byYear')
-    install.innerHTML=data
+function byYear(data) {
+    document.getElementById('byYear').innerHTML = data
 }
-function byRegion(data){
-    let install=document.getElementById('byRegion')
-    install.innerHTML=data
+function byRegion(data) {
+    document.getElementById('byRegion').innerHTML = data
+}
+function byRegionYear(data) {
+    document.getElementById('byRegionYear').innerHTML = data
 }
 
-function byRegionYear(data){
-    let install=document.getElementById('byRegionYear')
-    install.innerHTML=data
-}
+// ==== Mises à jour des titres et stats ====
 
 function updateYearStats(annee) {
-    ajaxRequest('GET','../php/request.php/stat/annee?id_an=' + annee, byYear)
-    // Mise à jour dynamique des titres
+    ajaxRequest('GET', '../php/request.php/stat/annee?id_an=' + annee, byYear)
     const titleByYear = document.getElementById('titleByYear')
     if (titleByYear) titleByYear.textContent = annee
 }
-function updateRegionStats(region,region_nom) {
-    ajaxRequest('GET','../php/request.php/stat/region?id_reg=' + region, byRegion)
-    // Mise à jour dynamique des titres
+
+function updateRegionStats(region, region_nom) {
+    ajaxRequest('GET', '../php/request.php/stat/region?id_reg=' + region, byRegion)
     const titleByRegion = document.getElementById('titleByRegion')
     if (titleByRegion) titleByRegion.textContent = region_nom
 }
 
-function updateRegionYearStats(region,region_nom,annee) {
-    ajaxRequest('GET','../php/request.php/stat/an_reg?id_an='+annee+'&id_reg=' + region, byRegionYear)
-    // Mise à jour dynamique des titres
+function updateRegionYearStats(region, region_nom, annee) {
+    ajaxRequest('GET', '../php/request.php/stat/an_reg?id_an=' + annee + '&id_reg=' + region, byRegionYear)
     const titleByRegionYear = document.getElementById('titleByRegionYear')
-    if (titleByRegionYear) titleByRegionYear.textContent = region_nom+' en '+annee
+    if (titleByRegionYear) titleByRegionYear.textContent = region_nom + ' en ' + annee
 }
 
-function recupAnnee(annees){
-    let an=document.getElementById('selectYear')
-    annees.forEach(annee=>{an.innerHTML+='<option value='+annee.annee+'>'+annee.annee+'</option>'})
+// ==== Remplissage dynamique des <select> + stats associées ====
+
+function recupAnnee(annees) {
+    const an = document.getElementById('selectYear')
+    an.innerHTML = ''
+    annees.forEach(annee => {
+        an.innerHTML += `<option value="${annee.annee}">${annee.annee}</option>`
+    })
+
+    // Une fois chargé, on initialise les stats par année
+    const selectedYear = an.value
+    updateYearStats(selectedYear)
+
+    // Si région déjà chargée, on met aussi à jour Region + Année
+    const reg = document.getElementById('selectRegion')
+    if (reg.options.length > 0) {
+        const region = reg.value
+        const region_nom = reg.selectedOptions[0].text
+        updateRegionYearStats(region, region_nom, selectedYear)
+    }
 }
-function recupReg(regions){
-    let reg=document.getElementById('selectRegion')
-    regions.forEach(region=>{reg.innerHTML+='<option value='+region.reg_code+'>'+region.reg_nom+'</option>'})
+
+function recupReg(regions) {
+    const reg = document.getElementById('selectRegion')
+    reg.innerHTML = ''
+    regions.forEach(region => {
+        reg.innerHTML += `<option value="${region.reg_code}">${region.reg_nom}</option>`
+    })
+
+    // Une fois chargé, on initialise les stats par région
+    const selectedRegion = reg.value
+    const region_nom = reg.selectedOptions[0].text
+    updateRegionStats(selectedRegion, region_nom)
+
+    // Si année déjà chargée, on met aussi à jour Region + Année
+    const an = document.getElementById('selectYear')
+    if (an.options.length > 0) {
+        const annee = an.value
+        updateRegionYearStats(selectedRegion, region_nom, annee)
+    }
 }
+
+// ==== Initialisation principale ====
 
 function main() {
-    ajaxRequest('GET','../php/request.php/stat/total',nbInstall)
-    ajaxRequest('GET','../php/request.php/stat/installateur',nbInstallateurs)
-    ajaxRequest('GET','../php/request.php/stat/panneau',nbPanneau)
-    ajaxRequest('GET','../php/request.php/stat/onduleur',nbOnduleur)
-    ajaxRequest('GET','../php/request.php/date/annee',recupAnnee)
-    ajaxRequest('GET','../php/request.php/lieu/region',recupReg)
+    // Statistiques globales
+    ajaxRequest('GET', '../php/request.php/stat/total', nbInstall)
+    ajaxRequest('GET', '../php/request.php/stat/installateur', nbInstallateurs)
+    ajaxRequest('GET', '../php/request.php/stat/panneau', nbPanneau)
+    ajaxRequest('GET', '../php/request.php/stat/onduleur', nbOnduleur)
 
-    let annee = document.getElementById('selectYear').value
-    updateYearStats(annee)
-    let region = document.getElementById('selectRegion').value
-    let region_nom=document.getElementById('selectRegion').options[document.getElementById('selectRegion').selectedIndex].text
-    updateRegionStats(region,region_nom)
-    updateRegionYearStats(region,region_nom,annee)
+    // Récupération dynamique des années et régions
+    ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee)
+    ajaxRequest('GET', '../php/request.php/lieu/region', recupReg)
+
+    // Changement d'année
     document.getElementById("selectYear").addEventListener("change", function () {
-        let annee = this.value
-        let region_nom=document.getElementById('selectRegion').options[document.getElementById('selectRegion').selectedIndex].text
+        const annee = this.value
         updateYearStats(annee)
-        updateRegionYearStats(region,region_nom,annee)
-    });
-    document.getElementById("selectRegion").addEventListener("change", function () {
-        let region = this.value
-        let region_nom=this.options[this.selectedIndex].text
-        updateRegionStats(region,region_nom)
-        updateRegionYearStats(region,region_nom,annee)
-    });
 
+        const reg = document.getElementById('selectRegion')
+        const region = reg.value
+        const region_nom = reg.selectedOptions[0].text
+        updateRegionYearStats(region, region_nom, annee)
+    })
+
+    // Changement de région
+    document.getElementById("selectRegion").addEventListener("change", function () {
+        const region = this.value
+        const region_nom = this.selectedOptions[0].text
+
+        updateRegionStats(region, region_nom)
+
+        const an = document.getElementById('selectYear')
+        const annee = an.value
+        updateRegionYearStats(region, region_nom, annee)
+    })
 }
-window.addEventListener("DOMContentLoaded",main)
+
+// Lancer une fois le DOM prêt
+window.addEventListener("DOMContentLoaded", main)
