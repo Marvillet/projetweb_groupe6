@@ -1,29 +1,13 @@
 <?php
-
-
 function GestionDemande($db, $method, $demande, $data)
 {
     $result = false;
     switch ($method) {
         case 'GET':
             switch ($demande) {
-                case 'departement':
+                case 'annee':
                     //si une marque à commencé à être taper
-                    if (isset($data['dep'])) {
-                        $result = depFiltre($db, $data['dep']);
-                    } else {
-                        //sinon 20 marques hazard
-                        $result = recupDep($db);
-                    }
-                    break;
-
-                case 'coord':
-                    if (isset($data['dep']) && isset($data['annee'])) {
-                        $result = coord($db, $data['dep'], $data['annee']);
-                    }
-                    break;
-                case 'region':
-                    $result=region($db);
+                    $result = annee($db);
                     break;
                 default:
                     //http_response_code(405);

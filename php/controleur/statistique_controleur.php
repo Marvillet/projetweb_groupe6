@@ -11,7 +11,9 @@ function GestionDemande($db,$method, $stat, $data)
                 case 'region':
                     if(isset($data['id_reg'])){
                         $result=installByRegion($db,$data['id_reg']);
+                        echo $data['id_reg'];
                     }
+
                     break;
                 case 'total':
                     $result=countInstal($db);
