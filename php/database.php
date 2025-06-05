@@ -113,6 +113,7 @@ function installByOnduleur($db,$marque){
 function marqueOnd($db){
   $stmt = $db->prepare("SELECT id_onduleur_marque,ondulateur_marque 
 FROM onduleur_marque om
+ORDER BY RAND()
 LIMIT 20;");
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -137,9 +138,9 @@ function installByPanneau($db,$marque){
 
 // Marque panneau
 function marquePan($db){
-  $stmt = $db->prepare("SELECT id_panneau_marque,panneau_marque FROM panneaux_marque LIMIT 20;");
+  $stmt = $db->prepare("SELECT id_panneau_marque,panneau_marque FROM panneaux_marque ORDER BY RAND() LIMIT 20;");
   $stmt->execute();
-  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $result;
 }
 //Récupère 20 marques de panneau commençant par $text
