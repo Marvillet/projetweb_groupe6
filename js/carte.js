@@ -97,13 +97,10 @@ function filtrerCoordonnees(event) {
 
 function remplirDetailsVille(data) {
     if (!data) return;
-
-    // Exemple si data = { lieu: "Marseille", nbPanneaux: 20, surface: 50, puissance: 3.2 }
-
-    document.getElementById('lieu-value').textContent = data.lieu || "N/A";
-    document.getElementById('nbPanneaux-value').textContent = data.nbPanneaux || "N/A";
+    document.getElementById('lieu-value').textContent = data.commune || "N/A";
+    document.getElementById('nbPanneaux-value').textContent = data.nb_panneaux || "N/A";
     document.getElementById('surface-value').textContent = data.surface + " m²" || "N/A";
-    document.getElementById('puissance-value').textContent = data.puissance + " kWc" || "N/A";
+    document.getElementById('puissance-value').textContent = data.puissance_crete + " kWc" || "N/A";
 }
 
 
