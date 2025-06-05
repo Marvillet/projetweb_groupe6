@@ -25,17 +25,30 @@ function byRegion(data){
     install.innerHTML=data
 }
 
+function updateYearStats(annee) {
+    ajaxRequest('GET','../php/request.php/stat/annee?id_an=' + annee, byYear)
 
-function main(){
+    // Mise à jour dynamique des titres
+    const titleByYear = document.getElementById('titleByYear')
+    const titleByRegionYear = document.getElementById('titleByRegionYear')
+
+    if (titleByYear) titleByYear.textContent = annee
+    if (titleByRegionYear) titleByRegionYear.textContent = annee
+}
+
+
+function main() {
     ajaxRequest('GET','../php/request.php/stat/total',nbInstall)
     ajaxRequest('GET','../php/request.php/stat/installateur',nbInstallateurs)
     ajaxRequest('GET','../php/request.php/stat/panneau',nbPanneau)
     ajaxRequest('GET','../php/request.php/stat/onduleur',nbOnduleur)
-    let annee=document.getElementById('selectYear').value
-    ajaxRequest('GET','../php/request.php/stat/annee?id_an='+annee,byYear)
+
+    let annee = document.getElementById('selectYear').value
+    updateYearStats(annee)
+
     document.getElementById("selectYear").addEventListener("change", function () {
-        let annee=document.getElementById('selectYear').value
-        ajaxRequest('GET','../php/request.php/stat/annee?id_an='+annee,byYear)
+        let annee = this.value
+        updateYearStats(annee)
     });
 }
 window.addEventListener("DOMContentLoaded",main)
