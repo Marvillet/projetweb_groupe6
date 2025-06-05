@@ -36,11 +36,11 @@ function updateYearStats(annee) {
     const titleByYear = document.getElementById('titleByYear')
     if (titleByYear) titleByYear.textContent = annee
 }
-function updateRegionStats(region) {
+function updateRegionStats(region,region_nom) {
     ajaxRequest('GET','../php/request.php/stat/region?id_reg=' + region, byRegion)
     // Mise à jour dynamique des titres
     const titleByRegion = document.getElementById('titleByRegion')
-    if (titleByRegion) titleByRegion.textContent = region
+    if (titleByRegion) titleByRegion.textContent = region_nom
 }
 
 function updateRegionYearStats(region,annee) {
@@ -59,7 +59,8 @@ function main() {
     let annee = document.getElementById('selectYear').value
     updateYearStats(annee)
     let region = document.getElementById('selectRegion').value
-    updateRegionStats(region)
+    let region_nom=document.getElementById('selectRegion').innerHTML
+    updateRegionStats(region,region_nom)
     updateRegionYearStats(region,annee)
     document.getElementById("selectYear").addEventListener("change", function () {
         let annee = this.value
