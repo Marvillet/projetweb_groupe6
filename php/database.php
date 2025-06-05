@@ -443,7 +443,7 @@ WHERE an_installation =:annee AND dep_code =:dep;
 //récupération de toutes les années
 function annee($db){
     $stmt = $db->prepare("
-   SELECT distinct(annee) as annee
+   SELECT distinct(an_installation) as annee
    FROM installation;
    ");
     $stmt->execute();
@@ -454,7 +454,7 @@ function annee($db){
 //récupération de toutes les régions
 function region($db){
     $stmt = $db->prepare("
-   SELECT reg_code,reg_name
+   SELECT reg_code,reg_nom
    FROM region;
    ");
     $stmt->execute();
