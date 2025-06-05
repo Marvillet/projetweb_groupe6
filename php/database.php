@@ -52,7 +52,7 @@ function installByRegion($db, $region){
 ");
   $stmt->execute(['region'=>$region]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results[0]['total'];
+  return $results['total'];
 }
 
 // Nombre d'installations par années et région
@@ -67,7 +67,7 @@ function installYearRegion($db, $year, $region){
 ");
   $stmt->execute(['region'=>$region, 'year'=>$year]);
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $results[0]['total'];
+  return $results;
 }
 
 // Nombre d'installateurs
@@ -111,23 +111,13 @@ function installByOnduleur($db,$marque){
 
 // Marque ondulateur
 function marqueOnd($db){
-  $stmt = $db->prepare("SELECT id_onduleur_marque,onduleur_marque 
+  $stmt = $db->prepare("SELECT id_onduleur_marque,ondulateur_marque 
 FROM onduleur_marque om
-ORDER BY RAND()
 LIMIT 20;");
   $stmt->execute();
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
   return $result;
-}
-function marqueOndFiltre($db,$text){
-    $stmt = $db->prepare("
-        SELECT id_onduleur_marque,onduleur_marque FROM onduleur_marque
-        WHERE LOWER(onduleur_marque) LIKE LOWER(:term) 
-        LIMIT 20;
-    ");
-    $stmt->execute(['term'=>'%'.$text.'%']);
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
+
 }
 
 // Installation par marque de panneau
@@ -147,9 +137,9 @@ function installByPanneau($db,$marque){
 
 // Marque panneau
 function marquePan($db){
-  $stmt = $db->prepare("SELECT id_panneau_marque,panneau_marque FROM panneaux_marque ORDER BY RAND() LIMIT 20;");
+  $stmt = $db->prepare("SELECT id_panneau_marque,panneau_marque FROM panneaux_marque LIMIT 20;");
   $stmt->execute();
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
   return $result;
 }
 //Récupère 20 marques de panneau commençant par $text
@@ -167,7 +157,7 @@ function marquePanFiltre($db,$text){
 
 // Departements
 function recupDep($db){
-  $stmt = $db->prepare("Select dep_code,dep_nom from departement order by RAND() LIMIT 20;");
+  $stmt = $db->prepare("Select dep_code,dep_nom from departement LIMIT 20;");
   $stmt->execute();
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
   return $results;
@@ -449,24 +439,12 @@ WHERE an_installation =:annee AND dep_code =:dep;
 
 }
 
-//récupération de toutes les années
-function annee($db){
-    $stmt = $db->prepare("
-   SELECT distinct(an_installation) as annee
-   FROM installation;
-   ");
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
-}
-
-//récupération de toutes les régions
-function region($db){
-    $stmt = $db->prepare("
-   SELECT reg_code,reg_nom
-   FROM region;
-   ");
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
+// Années disponibles (distinct)
+function listeAnnees($db){
+    $stmt = $db->query("
+        SELECT DISTINCT an_installation
+        FROM installation
+        ORDER BY an_installation DESC
+    ");
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
 }

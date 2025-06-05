@@ -1,5 +1,4 @@
 <?php
-//on récupère le modèle
 
 function GestionDemande($db,$method, $stat, $data)
 {
@@ -12,7 +11,6 @@ function GestionDemande($db,$method, $stat, $data)
                     if(isset($data['id_reg'])){
                         $result=installByRegion($db,$data['id_reg']);
                     }
-
                     break;
                 case 'total':
                     $result=countInstal($db);
@@ -38,7 +36,6 @@ function GestionDemande($db,$method, $stat, $data)
                     break;
                 default:
                     $result="stat demande n'esxiste pas ou pas de stat demandee";
-                     break;
             }
             break;
         //seule la methode Get est autorisé pour les statistiques

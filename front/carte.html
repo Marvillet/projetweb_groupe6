@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Carte</title>
-
+    <script src="../js/carte.js"></script>
     <!-- Icône et auteurs -->
     <meta name="author" content="Mathis B / Mathis L / Louis M">
     <link rel="icon" type="image/vnd.icon" href="../images/logo.png">
@@ -17,88 +17,119 @@
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
 </head>
 
 <body>
 
-<!-- Navigation -->
-<nav id="navbar">
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div>
+            <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
+            <span>ML Photovoltaic</span>
+        </div>
+        <ul>
+            <li>
+                <a href="accueil.html" class="windows">Accueil</a>
+            </li>
+            <li>
+                <a href="recherche.html" class="windows">Recherche</a>
+            </li>
+            <li>
+                <a href="carte.html" id="mainWindow">Carte</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
     <div>
-        <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
-        <span>ML Photovoltaic</span>
+        <form method="GET" action="" class="container mt-4 p-4 border rounded bg-light shadow-sm">
+            <div class="mb-3">
+                <label for="annee" class="form-label">Année d'installation :</label>
+                <select class="form-select" name="annee" id="annee" required>
+                    <option value="">-- Sélectionner --</option>
+                    <!-- options dynamiques -->
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="departement" class="form-label">Département :</label>
+                <select class="form-select" name="departement" id="departement" required>
+                    <option value="">-- Sélectionner --</option>
+                    <!-- options dynamiques -->
+                </select>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" id="search" class="btn btn-primary px-4">Lancer la recherche</button>
+            </div>
+
+        </form>
+        <br><br>
+
     </div>
-    <ul>
-        <li><a href="accueil.html" class="windows">Accueil</a></li>
-        <li><a href="recherche.html" class="windows">Recherche</a></li>
-        <li><a href="carte.html" id="mainWindow">Carte</a></li>
-    </ul>
-</nav>
-<br>
-
-<div>
-    <form method="GET" action="" class="container mt-4 p-4 border rounded bg-light shadow-sm">
-        <div class="mb-3">
-            <label for="annee" class="form-label">Année d'installation :</label>
-            <select class="form-select" name="annee" id="annee" required>
-                <option value="">-- Sélectionner --</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="departement" class="form-label">Département :</label>
-            <select class="form-select" name="departement" id="departement" required>
-                <option value="">-- Sélectionner --</option>
-            </select>
-        </div>
-
-        <div class="text-center">
-            <button type="submit" id="search" class="btn btn-primary px-4">Lancer la recherche</button>
-        </div>
-    </form>
-    <br><br>
-</div>
-
-<div class="container text-center">
-    <div class="row">
-        <div class="col" id="map"></div>
-        <div class="col-6" id="info" style="display: none;">
-            <h2>Informations sur l'installation sélectionnée :</h2>
-            <div id="lieu" class="info">
-                <div class="infos">Lieu :</div>
-                <div id="lieu-value" class="value">test</div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col" id="map">
             </div>
-            <div id="nbPanneaux" class="info">
-                <div class="infos">Nombre de panneaux :</div>
-                <div id="nbPanneaux-value" class="value">test</div>
+            <div class="col-6" id="info">
+                <h2>Informations sur l'installation sélectionnée :</h2>
+                <div id="lieu" class="info">
+                    <div class="infos">Lieu :</div>
+                    <div id="lieu-value" class="value">test</div>
+                </div>
+                <div id="nbPanneaux" class="info">
+                    <div class="infos">Nombre de panneaux :</div>
+                    <div id="nbPanneaux-value" class="value">test</div>
+                </div>
+                <div id="surface" class="info">
+                    <div class="infos">Surface :</div>
+                    <div id="surface-value" class="value">test</div>
+                </div>
+                <div id="puissance" class="info">
+                    <div class="infos">Puissance :</div>
+                    <div id="puissance-value" class="value">test</div>
+                </div>
+                <button class="button" onclick="hideInfo()">
+                    <span class="X"></span>
+                    <span class="Y"></span>
+                    <div class="close">Close</div>
+                </button>
             </div>
-            <div id="surface" class="info">
-                <div class="infos">Surface :</div>
-                <div id="surface-value" class="value">test</div>
-            </div>
-            <div id="puissance" class="info">
-                <div class="infos">Puissance :</div>
-                <div id="puissance-value" class="value">test</div>
-            </div>
-            <button class="button" onclick="hideInfo()">
-                <span class="X"></span>
-                <span class="Y"></span>
-                <div class="close">Close</div>
-            </button>
         </div>
     </div>
-</div>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="../js/ajax.js"></script>
-<script src="../js/carte.js"></script>
-<br>
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <p class="mb-0">© 2025 ML Photovoltaic. Tous droits réservés</p>
-        <p>Louis Marvillet / Mathis Brosseau / Mathis Letellier — CIR2</p>
-    </div>
-</footer>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Initialisation de la carte centrée sur la France
+        const map = L.map('map').setView([46.603354, 1.888334], 6);
+
+        // Couche OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // Marqueur de test
+        L.marker([43.296482, 5.369780])
+            .addTo(map)
+            .bindPopup('<b>Installation photovoltaïque</b><br>Marseille<br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
+        L.marker([48.443854, 1.489012])
+            .addTo(map)
+            .bindPopup('<b>Installation photovoltaïque</b><br>Chartres<br><button class="showInfo" onclick="showInfo()">Voir détail</button>');
+    </script>
+    <br>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">© 2025 ML Photovoltaic. Tous droits réservés</p>
+            <p>Louis Marvillet / Mathis Brosseau / Mathis Letellier — CIR2</p>
+        </div>
+    </footer>
+
 </body>
+
 </html>
