@@ -26,26 +26,6 @@ function ajoutCoord(data) {
     });
 }
 
-// ==== Mises à jour des titres et stats ====
-
-function updateYearStats(annee) {
-    ajaxRequest('GET', '../php/request.php/stat/annee?id_an=' + annee, byYear);
-    const titleByYear = document.getElementById('titleByYear');
-    if (titleByYear) titleByYear.textContent = annee;
-}
-
-function updateDepartementStats(departement, departement_nom) {
-    ajaxRequest('GET', '../php/request.php/stat/departement?id_dep=' + departement, byDepartement);
-    const titleByDepartement = document.getElementById('titleByDepartement');
-    if (titleByDepartement) titleByDepartement.textContent = departement_nom;
-}
-
-function updateDepartementYearStats(departement, departement_nom, annee) {
-    ajaxRequest('GET', '../php/request.php/stat/an_dep?id_an=' + annee + '&id_dep=' + departement, byDepartementYear);
-    const titleByDepartementYear = document.getElementById('titleByDepartementYear');
-    if (titleByDepartementYear) titleByDepartementYear.textContent = departement_nom + ' en ' + annee;
-}
-
 // ==== Remplissage dynamique des <select> + stats associées ====
 
 function recupAnnee(annees) {
