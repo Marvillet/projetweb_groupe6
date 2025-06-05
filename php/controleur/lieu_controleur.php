@@ -22,6 +22,9 @@ function GestionDemande($db, $method, $demande, $data)
                         $result = coord($db, $data['dep'], $data['annee']);
                     }
                     break;
+                case 'region':
+                    $result=region($db);
+                    break;
                 default:
                     //http_response_code(405);
                     echo json_encode(["error" => "Méthode non autorisee"]);

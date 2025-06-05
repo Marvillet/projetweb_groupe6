@@ -69,7 +69,7 @@
       require_once "controleur/date_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
-      
+
     case 'test':
       echo "oui";
       break;
