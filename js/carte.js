@@ -5,7 +5,7 @@ let markersLayer; // Pour regrouper tous les marqueurs
 
 function showInfo() {
     const info = document.getElementById('info');
-    info.style.display = (info.style.display === 'none' || info.style.display === '') ? 'block' : 'none';
+    info.style.display = 'block';
 }
 
 function hideInfo() {
