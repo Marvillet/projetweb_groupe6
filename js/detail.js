@@ -34,7 +34,7 @@ function remplirDetails(data) {
     const list2 = document.querySelectorAll(".list-group")[1].children;
 
     // Colonne 1
-    list1[0].innerHTML = `<strong>Mois d'installation :</strong> ${mois[data[0]['mois_installation']]}`;
+    list1[0].innerHTML = `<strong>Mois d'installation :</strong> ${mois[data[0]['mois_installation']-1]}`;
     list1[1].innerHTML = `<strong>Année d'installation :</strong> ${data[0]['an_installation']}`;
     list1[2].innerHTML = `<strong>Nombre de panneaux :</strong> ${data[0]['nb_panneaux']}`;
     list1[3].innerHTML = `<strong>Marque des panneaux :</strong> ${data[0]['panneau_marque']}`;
