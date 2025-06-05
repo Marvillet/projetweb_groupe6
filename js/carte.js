@@ -7,6 +7,10 @@ function hideInfo() {
     const info = document.getElementById('info');
     info.style.display = 'none';
 }
+const fakeData = [
+    { lat: 43.2965, lon: 5.3698 }, // Marseille
+    { lat: 48.8566, lon: 2.3522 }  // Paris
+];
 
 function ajoutCoord(data) {
     const map = L.map('map').setView([46.603354, 1.888334], 6);
@@ -24,7 +28,8 @@ function ajoutCoord(data) {
 }
 
 function main() {
-    ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
+    ajoutCoord(fakeData)
+    //ajaxRequest('GET','../php/request.php/lieu/coord?dep=14&annee=2010',ajoutCoord)
 }
 
 window.addEventListener("DOMContentLoaded", main);
