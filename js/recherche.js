@@ -8,9 +8,15 @@ function getselect($data){
     })
     select.innerHTML=text;
 }
+function recherche(){
+    document
+}
 
 window.addEventListener("DOMContentLoaded",()=>{
-    document.getElementById()
+    document.getElementById("search").addEventListener("submit",(event)=>{
+        event.preventDefault()
+
+    })
     $('#panneau').select2({
         placeholder: "Rechercher une marque...",
         ajax: {
