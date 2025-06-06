@@ -451,7 +451,9 @@ WHERE an_installation =:annee AND dep_code =:dep;
 function annee($db){
     $stmt = $db->prepare("
    SELECT distinct(an_installation) as annee
-   FROM installation;
+   FROM installation
+    ORDER BY Rand()
+    LIMIT 20;
    ");
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -462,7 +464,9 @@ function annee($db){
 function region($db){
     $stmt = $db->prepare("
    SELECT reg_code,reg_nom
-   FROM region;
+   FROM region
+   ORDER BY Rand()
+   LIMIT 20;
    ");
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

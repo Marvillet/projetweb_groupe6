@@ -96,7 +96,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="install-name" class="form-label">Installateur*</label>
-                                <input type="text" class="form-control" id="install-name" required />
+                                <input type="text" class="form-control" id="installateur-name" required />
                             </div>
                             <div class="col-md-6">
                                 <label for="install-power" class="form-label">Puissance (kWc)*</label>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="col-md-8">
                                 <label for="install-commune" class="form-label">Mois*</label>
-                                <input type="text" class="form-control" id="install-commune" required />
+                                <input type="text" class="form-control" id="install-mois" required />
                             </div>
                             <div class="col-md-8">
                                 <label for="install-commune" class="form-label">Commune*</label>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="install-lng" class="form-label">Longitude</label>
-                                <input type="number" step="0.000001" class="form-control" id="install-lng" />
+                                <input type="number" step="0.000001" class="form-control" id="install-lon" />
                             </div>
                             <div class="col-md-8">
                                 <label for="install-nbPanneaux" class="form-label">Nombre de panneaux*</label>
@@ -134,11 +134,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="install-marquePanneaux" class="form-label">Marque de panneaux</label>
-                                <input type="text" class="form-control" id="install-marquePanneaux" />
+                                <input type="text" class="form-control" id="marquePanneaux" />
                             </div>
                             <div class="col-md-6">
                                 <label for="install-modelePanneaux" class="form-label">Modèle des panneaux</label>
-                                <input type="text" class="form-control" id="install-modelePanneaux" />
+                                <input type="text" class="form-control" id="modelePanneaux" />
                             </div>
                         </div>
                     </div>
