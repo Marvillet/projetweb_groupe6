@@ -32,7 +32,29 @@ function ajaxRequest(method, url, callback) {
   xhr.send();
 }
 
+//fonction ajax qui renvoie le code erreur
+function ajaxRequest2(type, url, callback, data = null)
+{
+  let xhr;
 
+  // Create XML HTTP request.
+  xhr = new XMLHttpRequest();
+  if (type == 'GET' && data != null)
+    url += '?' + data;
+  xhr.open(type, url);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+  // Add the onload function.
+  xhr.onload = () =>
+  {
+        console.log(xhr.responseText);
+        callback(JSON.parse(xhr.responseText),xhr.status);
+
+  };
+
+  // Send XML HTTP request.
+  xhr.send(data);
+}
 //------------------------------------------------------------------------------
 //--- httpErrors ---------------------------------------------------------------
 //------------------------------------------------------------------------------

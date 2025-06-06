@@ -136,8 +136,8 @@ function installByPanneau($db,$marque){
     SELECT id,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon 
     FROM installation i
     JOIN panneau p ON p.id_panneau = i.id_panneau
-    JOIN panneau_marque pm ON o.id_panneau_marque = pm.id_panneau_marque
-    WHERE pm.id_panneau_marque=:marque
+    JOIN panneaux_marque pm ON p.id_panneau_marque = pm.id_panneau_marque
+    WHERE pm.id_panneau_marque=CAST(:marque as INT)
     LIMIT 100;
 ");
     $stmt->execute(['marque'=>$marque]);
@@ -189,14 +189,14 @@ function installByDep($db,$dep){
     $stmt = $db->prepare("
     SELECT id,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon
     FROM installation i
-    JOIN Commune c ON i.code_insee = c.code_insee
+    JOIN commune c ON i.code_insee = c.code_insee
     JOIN departement d ON c.dep_code = d.dep_code
-    WHERE d.dep_code=:dep
+    WHERE d.dep_code=CAST(:dep AS INT)
     LIMIT 100;
 ");
-    $stmt->execute(['dep'=>$dep]);
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
+
+  $stmt->execute(['dep'=>$dep]);
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Récupération infos d'une installation précise
@@ -331,10 +331,9 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE pmq.id_panneau_marque =:panneau  AND omq.id_onduleur_marque =: onduleur
+WHERE pmq.id_panneau_marque =:panneau  AND omq.id_onduleur_marque =:onduleur
 
 LIMIT 100;
-
 ");
     $stmt->execute(['panneau'=>$panneau,'onduleur'=>$onduleur]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -362,7 +361,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE d.dep_code =:dep  AND omq.id_onduleur_marque =: onduleur
+WHERE d.dep_code =:dep  AND omq.id_onduleur_marque =:onduleur
 
 LIMIT 100;
 
@@ -393,7 +392,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =: panneau
+WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =:panneau
 
 LIMIT 100;
 
@@ -424,7 +423,7 @@ LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
 LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
 LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
 
-WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =: panneau AND omq.id_onduleur_marque =: onduleur
+WHERE d.dep_code =:dep  AND pmq.id_panneau_marque =:panneau AND omq.id_onduleur_marque =:onduleur
 
 LIMIT 100;
 
