@@ -1,6 +1,6 @@
 <?php
 //on récupère le modèle
-
+require_once "modele/installation_modele.php";
 function GestionDemande($db,$method, $id, $data)
 {
     $result=false;
@@ -8,10 +8,10 @@ function GestionDemande($db,$method, $id, $data)
         case 'GET':
             if ($id !=NULL) {
                 //on renvoie les result d'une installation précise
-                $result = infosInstall($db,$id);
+                $result = installation::infosInstall($db,$id);
             }
             else{
-                $result=infosInstalls($db);
+                $result=installation::infosInstalls($db);
             }
             break;
         case 'POST':
@@ -20,16 +20,16 @@ function GestionDemande($db,$method, $id, $data)
                 $result = 'on ajoute la result';
             }
             */
-            insert($db,$data);
+            installation::insert($db,$data);
             break;
         case 'DELETE':
             if ($id != NULL) {
-                delete($db,$id);
+                installation::delete($db,$id);
             }
             break;
         case 'PUT':
             if($id != NULL && isset($data['nb']) && isset($data['surface']) && isset($data['crete'])) {
-                 update($db,$data,$id);
+                installation::update($db,$data,$id);
             }
             /*
             if (isset($_PUT['comment']) && $id != NULL) {

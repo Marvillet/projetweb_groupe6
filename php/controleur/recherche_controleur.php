@@ -1,6 +1,9 @@
 <?php
 
 //on récupère le modèle
+require_once '/modele/recherche_modele.php';
+require_once '/modele/installation_modele.php';
+
 function noDataFound()
 {
     header('HTTP/1.1 444 Bad Request');
@@ -14,50 +17,50 @@ function GestionDemande($db, $method, $gestion, $data)
         case 'GET':
             if($data['id_ond']!='null' && $data['id_pan']!='null' && $data['id_dep']!='null'){
 
-                $result=infosTrois($db,$data['id_dep'],$data['id_pan'],$data['id_ond']);
+                $result=recherche::infosTrois($db,$data['id_dep'],$data['id_pan'],$data['id_ond']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             elseif($data['id_pan']!='null' && $data['id_dep']!='null'){
-                $result=infosDepPann($db,$data['id_dep'],$data['id_pan']);
+                $result=recherche::infosDepPann($db,$data['id_dep'],$data['id_pan']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             elseif($data['id_ond']!='null' && $data['id_dep']!='null'){
-                $result=infosDepOndul($db,$data['id_dep'],$data['id_ond']);
+                $result=recherche::infosDepOndul($db,$data['id_dep'],$data['id_ond']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             elseif($data['id_ond']!='null' && $data['id_pan']!='null'){
-                $result=infosDeuxMarque($db,$data['id_pan'],$data['id_ond']);
+                $result=recherche::infosDeuxMarque($db,$data['id_pan'],$data['id_ond']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             elseif($data['id_pan']!='null'){
-                $result=installByPanneau($db,$data['id_pan']);
+                $result=recherche::installByPanneau($db,$data['id_pan']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             elseif($data['id_dep']!='null'){
-                $result=installByDep($db,$data['id_dep']);
+                $result=recherche::installByDep($db,$data['id_dep']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             elseif($data['id_ond']!='null'){
                 //affiche les 100 premières instalations de la marque d'onduleur
-                $result=installByOnduleur($db,$data['id_ond']);
+                $result=recherche::installByOnduleur($db,$data['id_ond']);
                 if(empty($result)){
                     return noDataFound();
                 }
             }
             else{
-                $result=infosInstalls($db);
+                $result=installation::infosInstalls($db);
             }
             break;
         //seule la methode Get est autorisé pour les statistiques

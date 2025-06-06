@@ -1,6 +1,6 @@
 <?php
 
-
+require_once '/modele/Lieu_model.php';
 function GestionDemande($db, $method, $demande, $data)
 {
     $result = false;
@@ -10,18 +10,18 @@ function GestionDemande($db, $method, $demande, $data)
                 case 'departement':
                     //si une marque à commencé à être taper
                     if (isset($data['dep'])) {
-                        $result = depFiltre($db, $data['dep']);
+                        $result = lieu::depFiltre($db, $data['dep']);
                     } else {
                         //sinon 20 marques hazard
-                        $result = recupDep($db);
+                        $result = lieu::recupDep($db);
                     }
                     break;
                 case 'region':
-                    $result = region($db);     // pas de paramètre nécessaire
+                    $result = lieu::region($db);     // pas de paramètre nécessaire
                     break;
                 case 'coord':
                     if (isset($data['dep']) && isset($data['annee'])) {
-                        $result = coord($db, $data['dep'], $data['annee']);
+                        $result = lieu::coord($db, $data['dep'], $data['annee']);
                     }
                     break;
                 default:

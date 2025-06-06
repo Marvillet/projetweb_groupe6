@@ -1,4 +1,5 @@
 <?php
+require_once "modele/panneau_modele.php";
 function GestionDemande($db,$method, $demande, $data)
 {
     $result=false;
@@ -8,11 +9,11 @@ function GestionDemande($db,$method, $demande, $data)
                 case 'marque':
                     //si une marque à commencé à être taper
                     if(isset($data['marque'])){
-                        $result=marquePanFiltre($db,$data['marque']);
+                        $result=panneau::marquePanFiltre($db,$data['marque']);
                     }
                     else{
                         //sinon 20 marques hazard
-                        $result=marquePan($db);
+                        $result=panneau::marquePan($db);
                     }
                     break;
 
