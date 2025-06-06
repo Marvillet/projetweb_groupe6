@@ -101,12 +101,12 @@ class installation
     }
 
 // Modification installation
-    static function update($db,$data,$id){
+    static function update($db,$data){
         $stmt = $db->prepare("
             UPDATE installation
-            SET nb_panneaux =:nb , surface =: surface, puissance_crete =: crete
+            SET nb_panneaux =:nb, puissance_crete=:crete,
             WHERE id =: id;");
-        $stmt->execute(['id'=>$id,'nb'=>$data['nb'],'surface'=>$data['surface'],'crete'=>$data['crete']]);
+        $stmt->execute(['id'=>$data['id'],'nb'=>$data['nb_panneaux'],'crete'=>$data['puissance_crete']]);
     }
 
 
