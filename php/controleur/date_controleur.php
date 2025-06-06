@@ -1,4 +1,5 @@
 <?php
+require_once "modele/date_modele.php";
 function GestionDemande($db, $method, $demande, $data)
 {
     $result = false;
@@ -7,7 +8,7 @@ function GestionDemande($db, $method, $demande, $data)
             switch ($demande) {
                 case 'annee':
                     //si une marque à commencé à être taper
-                    $result = annee($db);
+                    $result = date::annee($db);
                     break;
                 default:
                     //http_response_code(405);

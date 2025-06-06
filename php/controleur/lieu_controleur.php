@@ -1,6 +1,6 @@
 <?php
 
-require_once '/modele/Lieu_model.php';
+require_once 'modele/lieu_modele.php';
 function GestionDemande($db, $method, $demande, $data)
 {
     $result = false;

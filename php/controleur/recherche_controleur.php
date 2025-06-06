@@ -1,8 +1,8 @@
 <?php
 
 //on récupère le modèle
-require_once '/modele/recherche_modele.php';
-require_once '/modele/installation_modele.php';
+require_once 'modele/recherche_modele.php';
+require_once 'modele/installation_modele.php';
 
 function noDataFound()
 {
