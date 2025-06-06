@@ -105,7 +105,7 @@ class installation
     static function update($db,$data){
         $stmt = $db->prepare("
             UPDATE installation
-            SET nb_panneaux =:nb, puissance_crete=:crete,
+            SET nb_panneaux =:nb, puissance_crete=:crete
             WHERE id =: id;");
         $stmt->execute(['id'=>$data['id'],'nb'=>$data['nb_panneaux'],'crete'=>$data['puissance_crete']]);
     }
