@@ -18,7 +18,46 @@ function main(){
         modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
         modal.show();
     });
-    ajaxRequest('GET',url,addlignes);//on affiche 100 lignes au hazart
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const data = {
+            id: document.getElementById("install-id").value,
+            installateur: document.getElementById("installateur-name").value,
+            puissance: parseFloat(document.getElementById("install-power").value),
+            annee: parseInt(document.getElementById("install-year").value),
+            mois: document.getElementById("install-mois").value,
+            commune: document.getElementById("install-commune").value,
+            codePostal: document.getElementById("codePostal").value,
+            lat: parseFloat(document.getElementById("install-lat").value),
+            lon: parseFloat(document.getElementById("install-lon").value),
+            nbPanneaux: parseInt(document.getElementById("nbPanneaux").value),
+            marquePanneaux: document.getElementById("install-marquePanneaux").value,
+            modelePanneaux: document.getElementById("install-modelePanneaux").value,
+            nbOnduleur: parseInt(document.getElementById("nbOnduleur").value),
+            marqueOnduleur: document.getElementById("install-marqueOnduleur").value,
+            modeleOnduleur: document.getElementById("install-modeleOnduleur").value,
+            surface: parseFloat(document.getElementById("install-surface").value),
+            pente: document.getElementById("install-Pente").value,
+            orientation: document.getElementById("install-orientation").value,
+            orientationOpt: document.getElementById("install-orientationOpt").value,
+            pvgis: parseInt(document.getElementById("install-pvgis").value)
+        };
+
+        // Appel AJAX personnalisé
+        ajaxRequest("POST", "../php/request.php/installation", data, (response) => {
+
+            // afficher toast succès
+            affichetoast("Installation ajoutée avec succès");
+
+            // Réinitialiser et fermer le modal
+            form.reset();
+            const modal = bootstrap.Modal.getInstance(document.getElementById("installationModal"));
+            modal.hide();
+        });
+    });
+    ajaxRequest('GET',url,addlignes);//on affiche 100 lignes au hazar
 }
 
 function addlignes(rows){
