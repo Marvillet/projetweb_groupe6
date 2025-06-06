@@ -1,3 +1,4 @@
+<?php include("auth.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -25,7 +26,7 @@
             <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
             <span>ML Photovoltaic</span>
         </div>
-        <ul>
+        <ul class="d-flex align-items-center gap-3 list-unstyled m-0">
             <li>
                 <a href="../front/accueil.html" class="windows">Accueil</a>
             </li>
@@ -35,12 +36,18 @@
             <li>
                 <a href="../front/carte.html" class="windows">Carte</a>
             </li>
-            <li class="ms-md-3">
+            <li>
                 <a href="installation_gestion.html" id="mainWindow" title="Espace admin">
                     <i class="bi bi-person-gear fs-5.5"></i>
                 </a>
             </li>
+            <li>
+                <a href="logout.php" class="btn btn-danger btn-sm d-inline-flex align-items-center px-3 py-2 rounded-pill">
+                    <i class="bi bi-box-arrow-right me-2"></i> Déconnexion
+                </a>
+            </li>
         </ul>
+
     </nav>
     <br><br>
     <main class="container">
