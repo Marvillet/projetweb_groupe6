@@ -9,21 +9,20 @@ function GestionDemande($db, $method, $demande, $data)
                 case 'marque':
                     //si une marque à commencé à être taper
                     if (isset($data['marque'])) {
-                        $result = "bientot les marques commençant par" . $data['marque'];
+                        $result = marqueOndFiltre($db, $data['marque']);
                     } else {
                         //sinon 20 marques hazard
                         $result = marqueOnd($db);
                     }
                     break;
-                default:
-                    //http_response_code(405);
-                    echo json_encode(["error" => "Méthode non autorisee"]);
-                    break;
             }
+            break;
         //seule la methode Get est autorisé pour les statistiques
         default:
-            //http_response_code(405);
+            header('HTTP/1.1 405 Method Not Allowed');
             echo json_encode(["error" => "Méthode non autorisee"]);
+            return;
+            break;
     }
     if ($result != false) {
         // Envoie des données au client
@@ -34,6 +33,7 @@ function GestionDemande($db, $method, $demande, $data)
         echo json_encode($result);
     } else {
         header('HTTP/1.1 400 Bad Request');
-        echo json_encode(["error" => "Statistique demandee non valide"]);
+        echo json_encode(["error" => "Demande invalide"]);
     }
+    return;
 }
