@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="bg-light">
 <div class="back">
-    <a href="../front/accueil.html" target="">
+    <a href="../front/accueil.html" target="" class="btn btn-info">
         <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
              viewBox="0 0 1024 1024">
             <path
