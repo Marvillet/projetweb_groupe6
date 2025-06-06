@@ -66,7 +66,7 @@
             <thead class="table-light">
             <tr>
                 <th>ID</th>
-                <th>Nom</th>
+                <th>Nb Panneau</th>
                 <th>Puissance (kWc)</th>
                 <th>Commune</th>
                 <th>Date</th>
@@ -206,6 +206,7 @@
 <!-- Script principal -->
 <script src="../js/ajax.js"></script>
 <script src="../js/admin.js"></script>
+<script src="../js/delUpt.js"></script>
 </body>
 
 </html>
