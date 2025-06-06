@@ -98,6 +98,7 @@ class installation
         $stmt = $db->prepare("
             DELETE FROM installation WHERE id =:id;");
         $stmt->execute(['id'=>$id]);
+        return installation::infosInstalls($db);
     }
 
 // Modification installation
