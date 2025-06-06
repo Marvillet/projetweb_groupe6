@@ -18,27 +18,24 @@
 </head>
 <body>
 <!-- Navigation -->
-<nav id="navbar">
-    <div>
-        <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="../images/logo.png" alt="Logo" id="logo" style="height: 40px;" class="me-2">
         <span>ML Photovoltaic</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto gap-2 align-items-center">
+            <li class="nav-item"><a class="nav-link" href="">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link" href="recherche.html">Recherche</a></li>
+            <li class="nav-item"><a class="nav-link" href="carte.html">Carte</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="../back/admin.php" title="Espace admin"><i class="bi bi-person-gear fs-5"></i></a>
+            </li>
+        </ul>
     </div>
-    <ul>
-        <li>
-            <a href="accueil.html" id="mainWindow">Accueil</a>
-        </li>
-        <li>
-            <a href="recherche.html" class="windows">Recherche</a>
-        </li>
-        <li>
-            <a href="carte.html" class="windows">Carte</a>
-        </li>
-        <li class="ms-md-3">
-        <a href="../back/admin.php" class="windows" title="Espace admin">
-          <i class="bi bi-person-gear fs-5.5"></i>
-        </a>
-      </li>
-    </ul>
 </nav>
 <div id="errors"></div>
 <!-- Hero Section -->
