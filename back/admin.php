@@ -81,7 +81,7 @@
     </main>
 
     <!-- Modale Bootstrap pour Ajouter / Modifier -->
-    <div class="modal fade modal-lg modal-dialog-scrollable" id="installationModal" tabindex="-1" aria-labelledby="installationModalLabel"
+    <div class="modal fade modal-lg" id="installationModal" tabindex="-1" aria-labelledby="installationModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content shadow-lg">
