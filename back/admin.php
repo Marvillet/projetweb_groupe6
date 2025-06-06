@@ -1,3 +1,4 @@
+<?php include("auth.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -39,6 +40,9 @@
                 <a href="installation_gestion.html" id="mainWindow" title="Espace admin">
                     <i class="bi bi-person-gear fs-5.5"></i>
                 </a>
+            </li>
+            <li>
+                <a href="logout.php" class="btn btn-outline-danger btn-sm ms-2">Déconnexion</a>
             </li>
         </ul>
     </nav>
