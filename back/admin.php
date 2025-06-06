@@ -95,28 +95,28 @@
                         <input type="hidden" id="install-id" />
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="install-name" class="form-label">Installateur*</label>
+                                <label for="install-name" class="form-label">Installateur</label>
                                 <input type="text" class="form-control" id="installateur-name" required />
                             </div>
                             <div class="col-md-6">
-                                <label for="install-power" class="form-label">Puissance (kWc)*</label>
+                                <label for="install-power" class="form-label">Puissance (kWc)</label>
                                 <input type="number" step="0.01" class="form-control" id="install-power" required />
                             </div>
                             <div class="col-md-4">
-                                <label for="install-year" class="form-label">Année*</label>
+                                <label for="install-year" class="form-label">Année</label>
                                 <input type="number" class="form-control" id="install-year" min="1990" max="2099"
                                     required />
                             </div>
                             <div class="col-md-8">
-                                <label for="install-commune" class="form-label">Mois*</label>
+                                <label for="install-commune" class="form-label">Mois</label>
                                 <input type="text" class="form-control" id="install-mois" required />
                             </div>
                             <div class="col-md-8">
-                                <label for="install-commune" class="form-label">Commune*</label>
+                                <label for="install-commune" class="form-label">Commune</label>
                                 <input type="text" class="form-control" id="install-commune" required />
                             </div>
                             <div class="col-md-8">
-                                <label for="install-postalCode" class="form-label">Code postal*</label>
+                                <label for="install-postalCode" class="form-label">Code postal</label>
                                 <input type="text" class="form-control" id="codePostal" required />
                             </div>
                             
@@ -129,7 +129,7 @@
                                 <input type="number" step="0.000001" class="form-control" id="install-lon" />
                             </div>
                             <div class="col-md-8">
-                                <label for="install-nbPanneaux" class="form-label">Nombre de panneaux*</label>
+                                <label for="install-nbPanneaux" class="form-label">Nombre de panneaux</label>
                                 <input type="text" class="form-control" id="nbPanneaux" required />
                             </div>
                             <div class="col-md-6">
