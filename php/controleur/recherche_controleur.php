@@ -39,7 +39,6 @@ function GestionDemande($db, $method, $gestion, $data)
             }
             elseif($data['id_pan']!='null'){
                 $result=installByPanneau($db,$data['id_pan']);
-                echo($data['id_pan']);
                 if(empty($result)){
                     return noDataFound();
                 }
