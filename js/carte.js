@@ -96,7 +96,7 @@ function filtrerCoordonnees(event) {
 }
 
 function remplirDetailsVille(data) {
-    console.log(data[0]['id'])
+    console.log(data['id'])
     if (!data) return;
     document.getElementById('lieu-value').textContent = data[0]['commune'] || "N/A";
     document.getElementById('nbPanneaux-value').textContent = data[0]['nb_panneaux'] || "N/A";
