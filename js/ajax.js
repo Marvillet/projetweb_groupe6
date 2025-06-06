@@ -47,7 +47,7 @@ function ajaxRequest2(type, url, callback, data = null)
   // Add the onload function.
   xhr.onload = () =>
   {
-        console.log(xhr.responseText);
+        //console.log(xhr.responseText);
         callback(JSON.parse(xhr.responseText),xhr.status);
 
   };

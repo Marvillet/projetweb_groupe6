@@ -56,6 +56,9 @@ function GestionDemande($db, $method, $gestion, $data)
                     return noDataFound();
                 }
             }
+            else{
+                $result=infosInstalls($db);
+            }
             break;
         //seule la methode Get est autorisé pour les statistiques
         default:

@@ -1,14 +1,6 @@
 
 'use strict'
 
-function getselect(data){
-    let select=document.getElementById("panneau");
-    let text="<option value=\"\">-- Toutes les marques --</option>";
-    data.forEach((value)=>{
-        text+="<option id='"+value["id_panneau_marque"]+"'>"+value["panneau_marque"]+"</option>";
-    })
-    select.innerHTML=text;
-}
 function tableau_insertion(data,code){
     if(code===200 || code===201){
         $('#errors').hide();
@@ -27,7 +19,13 @@ function tableau_insertion(data,code){
                 "        </tr>";
 
         })
-        tableau.innerHTML=text;}
+        tableau.innerHTML=text;
+        if (typeof window.displayPage === 'function') {
+            window.displayPage(1);
+        } else {
+            console.error("⚠️ window.displayPage n’est pas défini !");
+        }
+    }
     else if(code===444){
         $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>Aucune installation avec ces filtres</strong>');
         $('#errors').show();
@@ -63,10 +61,10 @@ function recherche() {
     console.log(departement);
     let url="../php/request.php/recherche?id_ond="+onduleur+"&id_pan="+panneau+"&id_dep="+departement;
     ajaxRequest2('GET', url, tableau_insertion)
-
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
+    recherche();
     document.getElementById("formulaire").addEventListener("submit",(event)=>{
         event.preventDefault();
         recherche();
