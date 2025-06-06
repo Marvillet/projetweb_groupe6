@@ -96,13 +96,12 @@ function filtrerCoordonnees(event) {
 }
 
 function remplirDetailsVille(data) {
-    console.log(data)
+    console.log(data[0]['id'])
     if (!data) return;
     document.getElementById('lieu-value').textContent = data[0]['commune'] || "N/A";
     document.getElementById('nbPanneaux-value').textContent = data[0]['nb_panneaux'] || "N/A";
     document.getElementById('surface-value').textContent = data[0]['surface'] + " m²" || "N/A";
     document.getElementById('puissance-value').textContent = data[0]['puissance_crete'] + " kWc" || "N/A";
-
     //  Mise à jour du bouton "Fiche détails"
     const detailBtn = document.getElementById('detail-btn');
     detailBtn.href = `detail.html?id=${data[0]['id']}`;
