@@ -41,8 +41,10 @@
                     <i class="bi bi-person-gear fs-5.5"></i>
                 </a>
             </li>
-            <li>
-                <a href="logout.php" class="btn btn-outline-danger btn-sm ms-2">Déconnexion</a>
+            <li class="ms-md-3">
+                <a href="logout.php" class="btn btn-danger px-3 py-2 rounded-pill">
+                    <i class="bi bi-box-arrow-right me-1"></i> Déconnexion
+                </a>
             </li>
         </ul>
     </nav>
