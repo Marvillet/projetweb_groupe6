@@ -9,7 +9,7 @@
     <title>Gestion des installations PV</title>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-FQybjgWLrvvRgtW6Z199MOMoqwWcCdgbiW7ClFH9vvfZz6jj0WtBvC0YyHn13c7Y" crossorigin="anonymous" />
+          integrity="sha384-FQybjgWLrvvRgtW6Z199MOMoqwWcCdgbiW7ClFH9vvfZz6jj0WtBvC0YyHn13c7Y" crossorigin="anonymous" />
     <link rel="stylesheet" href="../style/admin.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Bootstrap (conserve-le) -->
@@ -21,289 +21,189 @@
 </head>
 
 <body class="bg-light">
-    <nav id="navbar">
-        <div>
-            <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
-            <span>ML Photovoltaic</span>
-        </div>
-        <ul class="d-flex align-items-center gap-3 list-unstyled m-0">
-            <li>
-                <a href="../front/accueil.html" class="windows">Accueil</a>
-            </li>
-            <li>
-                <a href="../front/recherche.html" class="windows">Recherche</a>
-            </li>
-            <li>
-                <a href="../front/carte.html" class="windows">Carte</a>
-            </li>
-            <li>
-                <a href="" id="mainWindow" title="Espace admin">
-                    <i class="bi bi-person-gear fs-5.5"></i>
-                </a>
-            </li>
-            <li>
-                <a href="logout.php" class="btn btn-danger btn-sm d-inline-flex align-items-center px-3 py-2 rounded-pill">
-                    <i class="bi bi-box-arrow-right me-2"></i> Déconnexion
-                </a>
-            </li>
-        </ul>
+<nav id="navbar">
+    <div>
+        <img src="../images/logo.png" id="logo" alt="ML Photovoltaic Logo">
+        <span>ML Photovoltaic</span>
+    </div>
+    <ul class="d-flex align-items-center gap-3 list-unstyled m-0">
+        <li>
+            <a href="../front/accueil.html" class="windows">Accueil</a>
+        </li>
+        <li>
+            <a href="../front/recherche.html" class="windows">Recherche</a>
+        </li>
+        <li>
+            <a href="../front/carte.html" class="windows">Carte</a>
+        </li>
+        <li>
+            <a href="" id="mainWindow" title="Espace admin">
+                <i class="bi bi-person-gear fs-5.5"></i>
+            </a>
+        </li>
+        <li>
+            <a href="logout.php" class="btn btn-danger btn-sm d-inline-flex align-items-center px-3 py-2 rounded-pill">
+                <i class="bi bi-box-arrow-right me-2"></i> Déconnexion
+            </a>
+        </li>
+    </ul>
 
-    </nav>
-    <br><br>
-    <main class="container">
-        <!-- Bouton pour déclencher la modale d'ajout -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="h5 mb-0">Liste des installations</h2>
-            <!-- Le bouton -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
-                Ajouter une installation
-            </button>
-        </div>
+</nav>
+<br><br>
+<main class="container">
+    <!-- Bouton pour déclencher la modale d'ajout -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0">Liste des installations</h2>
+        <!-- Le bouton -->
+        <button id="btn-add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
+            Ajouter une installation
+        </button>
+    </div>
 
-        <!-- Tableau des installations -->
-        <div class="table-responsive shadow-sm rounded bg-white">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Puissance (kWc)</th>
-                        <th>Commune</th>
-                        <th>Année</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="installations-body">
-                    <!-- Les lignes sont injectées par JS -->
-                </tbody>
-            </table>
-        </div>
-    </main>
+    <!-- Tableau des installations -->
+    <div class="table-responsive shadow-sm rounded bg-white">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Puissance (kWc)</th>
+                <th>Commune</th>
+                <th>Année</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody id="installations-body">
+            <!-- Les lignes sont injectées par JS -->
+            </tbody>
+        </table>
+    </div>
+</main>
 
-    <!-- Modale Bootstrap pour Ajouter / Modifier -->
-    <div class="modal fade modal-lg modal-dialog-scrollable" id="installationModal" tabindex="-1" aria-labelledby="installationModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content shadow-lg">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="installationModalLabel"></h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+<!-- Modale Bootstrap pour Ajouter / Modifier -->
+<div class="modal fade modal-lg" id="installationModal" tabindex="-1" aria-labelledby="installationModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="installationModalLabel"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
-                </div>
-                <form id="installation-form" class="needs-validation" novalidate>
-                    <div class="modal-body">
-                        <input type="hidden" id="install-id" />
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="install-name" class="form-label">Installateur*</label>
-                                <input type="text" class="form-control" id="installateur-name" required />
-                            </div>
-                            <div class="col-md-6">
-                                <label for="install-power" class="form-label">Puissance (kWc)*</label>
-                                <input type="number" step="0.01" class="form-control" id="install-power" required />
-                            </div>
-                            <div class="col-md-4">
-                                <label for="install-year" class="form-label">Année*</label>
-                                <input type="number" class="form-control" id="install-year" min="1990" max="2099"
-                                    required />
-                            </div>
-                            <div class="col-md-8">
-                                <label for="install-commune" class="form-label">Mois*</label>
-                                <input type="text" class="form-control" id="install-mois" required />
-                            </div>
-                            <div class="col-md-8">
-                                <label for="install-commune" class="form-label">Commune*</label>
-                                <input type="text" class="form-control" id="install-commune" required />
-                            </div>
-                            <div class="col-md-8">
-                                <label for="install-postalCode" class="form-label">Code postal*</label>
-                                <input type="text" class="form-control" id="codePostal" required />
-                            </div>
-                            
-                            <div class="col-md-6">
-                                <label for="install-lat" class="form-label">Latitude</label>
-                                <input type="number" step="0.000001" class="form-control" id="install-lat" />
-                            </div>
-                            <div class="col-md-6">
-                                <label for="install-lng" class="form-label">Longitude</label>
-                                <input type="number" step="0.000001" class="form-control" id="install-lon" />
-                            </div>
-                            <div class="col-md-8">
-                                <label for="install-nbPanneaux" class="form-label">Nombre de panneaux*</label>
-                                <input type="text" class="form-control" id="nbPanneaux" required />
-                            </div>
-                            <div class="col-md-6">
-                                <label for="install-marquePanneaux" class="form-label">Marque de panneaux</label>
-                                <input type="text" class="form-control" id="marquePanneaux" />
-                            </div>
-                            <div class="col-md-6">
-                                <label for="install-modelePanneaux" class="form-label">Modèle des panneaux</label>
-                                <input type="text" class="form-control" id="modelePanneaux" />
-                            </div>
+            </div>
+            <form id="installation-form" class="needs-validation" novalidate>
+                <div class="modal-body">
+                    <input type="hidden" id="install-id" />
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="install-name" class="form-label">Installateur</label>
+                            <input type="text" class="form-control" id="installateur-name" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-power" class="form-label">Puissance crete</label>
+                            <input type="number" step="0.01" class="form-control" id="install-power" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label for="install-year" class="form-label">Annee</label>
+                            <input type="number" class="form-control" id="install-year" min="1990" max="2099"
+                                   required />
+                        </div>
+                        <div class="col-md-8">
+                            <label for="install-commune" class="form-label">Mois</label>
+                            <input type="text" class="form-control" id="install-mois" required />
+                        </div>
+                        <div class="col-md-8">
+                            <label for="install-commune" class="form-label">Commune</label>
+                            <input type="text" class="form-control" id="install-commune" required />
+                        </div>
+                        <div class="col-md-8">
+                            <label for="install-postalCode" class="form-label">Code postal</label>
+                            <input type="text" class="form-control" id="codePostal" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-lat" class="form-label">Latitude</label>
+                            <input type="number" step="0.000001" class="form-control" id="install-lat" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-lng" class="form-label">Longitude</label>
+                            <input type="number" step="0.000001" class="form-control" id="install-lon" />
+                        </div>
+                        <div class="col-md-8">
+                            <label for="install-nbPanneaux" class="form-label">Nombre de panneaux</label>
+                            <input type="number" step="1" class="form-control" id="nbPanneaux" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-marquePanneaux" class="form-label">Marque de panneaux</label>
+                            <input type="text" class="form-control" id="install-marquePanneaux" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-modelePanneaux" class="form-label">Modèle des panneaux</label>
+                            <input type="text" class="form-control" id="install-modelePanneaux" required/>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="install-nbOnduleur" class="form-label">Nombre d'Onduleur</label>
+                            <input type="number" step="1" class="form-control" id="nbOnduleur" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-marqueOnduleur" class="form-label">Marque d'Onduleur</label>
+                            <input type="text" class="form-control" id="install-marqueOnduleur" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-modeleOnduleur" class="form-label">Modèle d'onduleur</label>
+                            <input type="text" class="form-control" id="install-modeleOnduleur" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-surface" class="form-label">Surface</label>
+                            <input type="number" class="form-control" id="install-surface" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-Pente" class="form-label">Pente</label>
+                            <input type="text" class="form-control" id="install-Pente" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-orientation" class="form-label">Orientation</label>
+                            <input type="text" class="form-control" id="install-orientation" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="install-orientationOpt" class="form-label">Orientation optimal</label>
+                            <input type="text" class="form-control" id="install-orientationOpt" required/>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="install-pvgis" class="form-label">Production PVGIS</label>
+                            <input type="number" step="1" class="form-control" id="install-pvgis" required/>
+                            <input type="text" class="form-control" id="marquePanneaux" />
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            Annuler
-                        </button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Toast de notification -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div id="toast-msg" class="toast align-items-center text-white bg-success border-0" role="alert"
-            aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body"></div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+<!-- Toast de notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toast-msg" class="toast align-items-center text-white bg-success border-0" role="alert"
+         aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                     aria-label="Close"></button>
-            </div>
         </div>
     </div>
+</div>
 
-    <!-- Bootstrap JS + Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+<!-- Bootstrap JS + Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-RCXS5k4Zt9zc3Mn60dqTevWEL25fmfGjkLC5kSBD7Fg8MKRpjlp2O6ejdvo1fwkJ"
         crossorigin="anonymous"></script>
 
-    <!-- Script principal -->
-    <script>
-        (() => {
-            const API_URL = "../php/installation_controleur.php";
-
-            // DOM elements
-            const tbody = document.getElementById("installations-body");
-            const modalEl = document.getElementById("installationModal");
-            const modal = new bootstrap.Modal(modalEl);
-            const form = document.getElementById("installation-form");
-            const toastEl = document.getElementById("toast-msg");
-            const toast = new bootstrap.Toast(toastEl);
-
-            // Populate list
-            const fetchInstallations = async () => {
-                try {
-                    const res = await fetch(API_URL);
-                    if (!res.ok) throw new Error("Erreur lors du chargement");
-                    const data = await res.json();
-                    renderRows(data);
-                } catch (err) {
-                    showToast(err.message, true);
-                }
-            };
-
-            const renderRows = (rows) => {
-                tbody.innerHTML = "";
-                rows.forEach((row) => {
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-              <td>${row.id}</td>
-              <td>${row.nom}</td>
-              <td>${row.puissance}</td>
-              <td>${row.commune}</td>
-              <td>${row.annee}</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary me-2" data-action="edit" data-id="${row.id}"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${row.id}"><i class="bi bi-trash"></i></button>
-              </td>
-            `;
-                    tbody.appendChild(tr);
-                });
-            };
-
-            // Toast helper
-            const showToast = (message, error = false) => {
-                toastEl.classList.remove("bg-success", "bg-danger");
-                toastEl.classList.add(error ? "bg-danger" : "bg-success");
-                toastEl.querySelector(".toast-body").textContent = message;
-                toast.show();
-            };
-
-            // Open modal for create
-            document.getElementById("btn-add").addEventListener("click", () => {
-                form.reset();
-                document.getElementById("install-id").value = "";
-                modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
-                modal.show();
-            });
-
-            // Delegate edit/delete buttons
-            tbody.addEventListener("click", async (e) => {
-                const btn = e.target.closest("button");
-                if (!btn) return;
-                const id = btn.dataset.id;
-                if (btn.dataset.action === "edit") {
-                    // Fetch single installation then open modal
-                    try {
-                        const res = await fetch(`${API_URL}?id=${id}`);
-                        if (!res.ok) throw new Error("Impossible de charger la fiche");
-                        const inst = await res.json();
-                        // Populate form
-                        document.getElementById("install-id").value = inst.id;
-                        document.getElementById("install-name").value = inst.nom;
-                        document.getElementById("install-power").value = inst.puissance;
-                        document.getElementById("install-year").value = inst.annee;
-                        document.getElementById("install-commune").value = inst.commune;
-                        document.getElementById("install-lat").value = inst.lat || "";
-                        document.getElementById("install-lng").value = inst.lng || "";
-                        modalEl.querySelector(".modal-title").textContent = "Modifier l'installation";
-                        modal.show();
-                    } catch (err) {
-                        showToast(err.message, true);
-                    }
-                } else if (btn.dataset.action === "delete") {
-                    if (confirm("Supprimer définitivement cette installation ?")) {
-                        try {
-                            const res = await fetch(`${API_URL}?id=${id}`, { method: "DELETE" });
-                            if (!res.ok) throw new Error("Échec de la suppression");
-                            showToast("Installation supprimée");
-                            fetchInstallations();
-                        } catch (err) {
-                            showToast(err.message, true);
-                        }
-                    }
-                }
-            });
-
-            // Form submit (create/update)
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (!form.checkValidity()) {
-                    form.classList.add("was-validated");
-                    return;
-                }
-                const id = document.getElementById("install-id").value;
-                const payload = {
-                    nom: document.getElementById("install-name").value.trim(),
-                    puissance: parseFloat(document.getElementById("install-power").value),
-                    annee: parseInt(document.getElementById("install-year").value, 10),
-                    commune: document.getElementById("install-commune").value.trim(),
-                    lat: document.getElementById("install-lat").value || null,
-                    lng: document.getElementById("install-lng").value || null,
-                };
-                try {
-                    const res = await fetch(id ? `${API_URL}?id=${id}` : API_URL, {
-                        method: id ? "PUT" : "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload),
-                    });
-                    if (!res.ok) throw new Error("Erreur lors de l'enregistrement");
-                    modal.hide();
-                    showToast(id ? "Installation mise à jour" : "Installation ajoutée");
-                    fetchInstallations();
-                } catch (err) {
-                    showToast(err.message, true);
-                }
-            });
-
-            // Initial load
-            fetchInstallations();
-        })();
-    </script>
+<!-- Script principal -->
+<script src="../js/admin.js"></script>
 </body>
 
 </html>
