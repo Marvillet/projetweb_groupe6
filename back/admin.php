@@ -53,7 +53,7 @@
 <main class="container">
     <!-- Bouton pour déclencher la modale d'ajout -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="h5 mb-0">Liste des installations</h2>
+        <h2 class="h5 mb-0">Liste des installations ajoutées</h2>
         <!-- Le bouton -->
         <button id="btn-add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
             Ajouter une installation
@@ -170,7 +170,6 @@
                         <div class="col-md-8">
                             <label for="install-pvgis" class="form-label">Production PVGIS</label>
                             <input type="number" step="1" class="form-control" id="install-pvgis" required/>
-                            <input type="text" class="form-control" id="marquePanneaux" />
                         </div>
                     </div>
                 </div>

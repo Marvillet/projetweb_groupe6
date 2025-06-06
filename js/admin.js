@@ -1,7 +1,6 @@
 (() => {
-    const API_URL = "../php/installation_controleur.php";
+    const API_URL = "../php/request.php/installation/";
 
-    // DOM elements
     const tbody = document.getElementById("installations-body");
     const modalEl = document.getElementById("installationModal");
     const modal = new bootstrap.Modal(modalEl);
@@ -9,7 +8,6 @@
     const toastEl = document.getElementById("toast-msg");
     const toast = new bootstrap.Toast(toastEl);
 
-    // Populate list
     const fetchInstallations = async () => {
         try {
             const res = await fetch(API_URL);
@@ -40,7 +38,6 @@
         });
     };
 
-    // Toast helper
     const showToast = (message, error = false) => {
         toastEl.classList.remove("bg-success", "bg-danger");
         toastEl.classList.add(error ? "bg-danger" : "bg-success");
@@ -48,7 +45,6 @@
         toast.show();
     };
 
-    // Open modal for create
     document.getElementById("btn-add").addEventListener("click", () => {
         form.reset();
         document.getElementById("install-id").value = "";
@@ -56,18 +52,15 @@
         modal.show();
     });
 
-    // Delegate edit/delete buttons
     tbody.addEventListener("click", async (e) => {
         const btn = e.target.closest("button");
         if (!btn) return;
         const id = btn.dataset.id;
         if (btn.dataset.action === "edit") {
-            // Fetch single installation then open modal
             try {
                 const res = await fetch(`${API_URL}?id=${id}`);
                 if (!res.ok) throw new Error("Impossible de charger la fiche");
                 const inst = await res.json();
-                // Populate form
                 document.getElementById("install-id").value = inst.id;
                 document.getElementById("install-name").value = inst.nom;
                 document.getElementById("install-power").value = inst.puissance;
@@ -94,14 +87,16 @@
         }
     });
 
-    // Form submit (create/update)
+    // Insertion/Mise à jour via l’API
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         e.stopPropagation();
+
         if (!form.checkValidity()) {
             form.classList.add("was-validated");
             return;
         }
+
         const id = document.getElementById("install-id").value;
         const payload = {
             nom: document.getElementById("install-name").value.trim(),
@@ -111,13 +106,18 @@
             lat: document.getElementById("install-lat").value || null,
             lng: document.getElementById("install-lng").value || null,
         };
+
         try {
             const res = await fetch(id ? `${API_URL}?id=${id}` : API_URL, {
                 method: id ? "PUT" : "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(payload),
             });
+
             if (!res.ok) throw new Error("Erreur lors de l'enregistrement");
+
             modal.hide();
             showToast(id ? "Installation mise à jour" : "Installation ajoutée");
             fetchInstallations();
@@ -126,6 +126,6 @@
         }
     });
 
-    // Initial load
+    // Initial fetch
     fetchInstallations();
 })();
