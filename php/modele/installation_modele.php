@@ -94,11 +94,11 @@ class installation
     }
 
 // Suppression installation
-    function delete($db,$id){
+    static function delete($db,$id){
         $stmt = $db->prepare("
             DELETE FROM installation WHERE id =:id;");
         $stmt->execute(['id'=>$id]);
-        return installation::infosInstalls($db);
+        return true;
     }
 
 // Modification installation
