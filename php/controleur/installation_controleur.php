@@ -24,7 +24,9 @@ function GestionDemande($db,$method, $id, $data)
             break;
         case 'DELETE':
             if ($id != NULL) {
-                installation::delete($db,$id);
+                if(installation::delete($db,$id)){
+                    $result=installation::infosInstalls($db);
+                }
             }
             break;
         case 'PUT':
