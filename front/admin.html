@@ -47,9 +47,38 @@
         <!-- Bouton pour déclencher la modale d'ajout -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2 class="h5 mb-0">Liste des installations</h2>
-            <button id="btn-add" class="btn btn-primary">
-                + Ajouter une installation
-            </button>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modification prix</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="">
+                            <div class="modal-body">
+                                <div class="container">
+                                    Dénomination :
+                                    <select id="menu" name="menu" onchange="toggleInput()">
+                                        <option value="option1" selected>Autre (Saisissez du texte)</option>
+                                        <?php
+                                            for ($i = 0; $i < $nbNoConso; $i++){
+                                                echo "<option value='".$noConso[$i]["id_conso"]."'>".$noConso[$i]["denomination"]."</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                    <input type="text" id="new_conso" name="new_conso" placeholder="Saisissez du texte...">
+                                </div>
+                                <br><br>
+                                Prix : <input type="number" step="0.5" name="new_price">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" id="btn-save" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Tableau des installations -->
