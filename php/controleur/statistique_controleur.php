@@ -1,5 +1,5 @@
 <?php
-
+require_once "modele/statistique_modele.php";
 function GestionDemande($db,$method, $stat, $data)
 {
     $result=false;
@@ -9,30 +9,30 @@ function GestionDemande($db,$method, $stat, $data)
             switch ($stat) {
                 case 'region':
                     if(isset($data['id_reg'])){
-                        $result=installByRegion($db,$data['id_reg']);
+                        $result=statistique::installByRegion($db,$data['id_reg']);
                     }
                     break;
                 case 'total':
-                    $result=countInstal($db);
+                    $result=statistique::countInstal($db);
                     break;
                 case 'annee':
                     if(isset($data['id_an'])){
-                        $result=installByYear($db,$data['id_an']);
+                        $result=statistique::installByYear($db,$data['id_an']);
                     }
                     break;
                 case 'an_reg':
                     if(isset($data['id_reg']) && isset($data['id_an'])){
-                        $result=installYearRegion($db, $data['id_an'], $data['id_reg']);
+                        $result=statistique::installYearRegion($db, $data['id_an'], $data['id_reg']);
                     }
                     break;
                 case 'installateur':
-                    $result=nbInstallateurs($db);
+                    $result=statistique::nbInstallateurs($db);
                     break;
                 case 'onduleur':
-                    $result=nbMarqueOnd($db);
+                    $result=statistique::nbMarqueOnd($db);
                     break;
                 case 'panneau':
-                    $result=nbMarquePan($db);
+                    $result=statistique::nbMarquePan($db);
                     break;
                 default:
                     $result="stat demande n'esxiste pas ou pas de stat demandee";
