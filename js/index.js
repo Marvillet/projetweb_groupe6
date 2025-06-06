@@ -1,4 +1,4 @@
-const rowsPerPage = 7;
+const rowsPerPage = 10;
 const table = document.getElementById("data-table");
 const tbody = table.querySelector("tbody");
 const pagination = document.getElementById("pagination");
@@ -6,7 +6,7 @@ const rows = Array.from(tbody.querySelectorAll("tr"));
 
 let currentPage = 1;
 
-function displayPage(page) {
+window.displayPage = function(page){
     const totalPages = Math.ceil(rows.length / rowsPerPage);
 
     // Bloque les débordements
