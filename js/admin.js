@@ -18,7 +18,7 @@ function main(){
         modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
         modal.show();
     });
-    ajaxRequest('GET',url,addlignes);
+    ajaxRequest('GET',url,addlignes);//on affiche 100 lignes au hazart
 }
 
 function addlignes(rows){
@@ -40,7 +40,7 @@ function addlignes(rows){
         tbody.appendChild(tr);
     });
 };
-function affichetoast(message, error = false){
+function affichetoast(toastEl,message, error = false){
     toastEl.classList.remove("bg-success", "bg-danger");
     toastEl.classList.add(error ? "bg-danger" : "bg-success");
     toastEl.querySelector(".toast-body").textContent = message;
