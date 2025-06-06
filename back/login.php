@@ -49,5 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
 </div>
+<div class="container mt-5">
+    <h3>Retour page d'accueil</h3>
+    <a href="../front/accueil.html" class="btn btn-info" target="">Retour</a>
+</div>
 </body>
 </html>
