@@ -102,6 +102,10 @@ function remplirDetailsVille(data) {
     document.getElementById('nbPanneaux-value').textContent = data[0]['nb_panneaux'] || "N/A";
     document.getElementById('surface-value').textContent = data[0]['surface'] + " m²" || "N/A";
     document.getElementById('puissance-value').textContent = data[0]['puissance_crete'] + " kWc" || "N/A";
+
+    // 🔗 Mise à jour du bouton "Voir plus de détails"
+    const detailBtn = document.getElementById('detail-btn');
+    detailBtn.href = `detail.html?id=${data[0]['id']}`;
 }
 
 
