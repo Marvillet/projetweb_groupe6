@@ -22,7 +22,7 @@ function main(){
 }
 
 function addlignes(rows){
-    tbody=document.getElementById("installations-body");
+    tbody=document.getElementById("resultat");
     tbody.innerHTML = "";
     rows.forEach((row) => {
         const tr = document.createElement("tr");
@@ -41,6 +41,7 @@ function addlignes(rows){
         tr.getElementsByClassName('btn-outline-danger')[0].addEventListener("click",installdelete)
         tbody.appendChild(tr);
     });
+    window.displayPage(1)
 };
 function affichetoast(toastEl,message, error = false){
     toastEl.classList.remove("bg-success", "bg-danger");

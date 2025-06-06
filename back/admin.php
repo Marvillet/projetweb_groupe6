@@ -66,7 +66,7 @@
                 <th class="text-center">Actions</th>
             </tr>
             </thead>
-            <tbody id="installations-body">
+            <tbody id="resultat">
             <!-- Contenu injecté par JS -->
             </tbody>
         </table>
