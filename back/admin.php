@@ -37,7 +37,7 @@
                 <a href="../front/carte.html" class="windows">Carte</a>
             </li>
             <li>
-                <a href="installation_gestion.html" id="mainWindow" title="Espace admin">
+                <a href="" id="mainWindow" title="Espace admin">
                     <i class="bi bi-person-gear fs-5.5"></i>
                 </a>
             </li>
