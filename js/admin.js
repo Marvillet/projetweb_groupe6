@@ -37,6 +37,8 @@ function addlignes(rows){
                 <button class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${row.id}"><i class="bi bi-trash"></i></button>
               </td>
             `;
+        tr.getElementsByClassName('btn-outline-primary')[0].addEventListener("click",installupdate);
+        tr.getElementsByClassName('btn-outline-danger')[0].addEventListener("click",installdelete)
         tbody.appendChild(tr);
     });
 };
