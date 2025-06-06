@@ -8,8 +8,8 @@ function getselect(data){
     })
     select.innerHTML=text;
 }
-function tableau_insertion(data){
-    if(data.indexOf("error")===-1){
+function tableau_insertion(data,code){
+    if(code===200 || code===201){
         $('#errors').hide();
         let mois=["Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"]
         let tableau=document.getElementById("resultat");
@@ -27,11 +27,29 @@ function tableau_insertion(data){
 
         })
         tableau.innerHTML=text;}
-    else{
+    else if(code===444){
         $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>Aucune installation avec ces filtres</strong>');
         $('#errors').show();
     }
+    else{
+        let messages =
+            {
+                400: 'Requête incorrecte',
+                401: 'Authentifiez vous',
+                403: 'Accès refusé',
+                404: 'Page non trouvée',
+                500: 'Erreur interne du serveur',
+                503: 'Service indisponible'
+            };
 
+//Affiche l'erreur.
+        if (code in messages)
+        {
+            $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>' +
+                messages[code] + '</strong>');
+            $('#errors').show();
+        }
+    }
 }
 
 function recherche() {
@@ -42,8 +60,8 @@ function recherche() {
     console.log(panneau);
     console.log(onduleur);
     console.log(departement);
-    //+onduleur+"&id_pan="+panneau+"&id_dep="+departement
-    ajaxRequest('GET', "../php/request.php/recherche?id_ond=1", tableau_insertion)
+    let url="../php/request.php/recherche?id_ond="+onduleur+"&id_pan="+panneau+"&id_dep="+departement;
+    ajaxRequest2('GET', url, tableau_insertion)
 
 }
 

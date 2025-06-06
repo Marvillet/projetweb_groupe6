@@ -40,6 +40,29 @@ function ajaxRequest(type, url, callback, data = null)
   xhr.send(data);
 }
 
+//fonction ajax qui renvoie le code erreur
+function ajaxRequest2(type, url, callback, data = null)
+{
+  let xhr;
+
+  // Create XML HTTP request.
+  xhr = new XMLHttpRequest();
+  if (type == 'GET' && data != null)
+    url += '?' + data;
+  xhr.open(type, url);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+  // Add the onload function.
+  xhr.onload = () =>
+  {
+        console.log(xhr.responseText);
+        callback(JSON.parse(xhr.responseText),xhr.status);
+
+  };
+
+  // Send XML HTTP request.
+  xhr.send(data);
+}
 //------------------------------------------------------------------------------
 //--- httpErrors ---------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -58,12 +81,12 @@ function httpErrors(errorCode)
     503: 'Service indisponible'
   };
 
-/*Affiche l'erreur.
+//Affiche l'erreur.
   if (errorCode in messages)
   {
     $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>' +
         messages[errorCode] + '</strong>');
     $('#errors').show();
-  }*/
+  }
 
 }
