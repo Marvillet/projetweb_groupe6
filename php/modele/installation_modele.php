@@ -10,7 +10,7 @@ class installation
                 inst.installateur,
                 c.nom_standard AS commune,
                 c.code_postal,
-                c.commune,
+                c.nom_standard,
                 c.population,
                 d.dep_nom AS departement,
                 r.reg_nom AS region,
@@ -52,7 +52,7 @@ class installation
 // Récupération infos de toutes les installations
     static function infosInstalls($db){
         $stmt = $db->prepare("
-            SELECT id,commune,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon
+            SELECT id,c.nom_standard,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon
             
             FROM installation i
             
