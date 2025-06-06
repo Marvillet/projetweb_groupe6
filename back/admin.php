@@ -69,7 +69,7 @@
                 <th>Nom</th>
                 <th>Puissance (kWc)</th>
                 <th>Commune</th>
-                <th>Année</th>
+                <th>Date</th>
                 <th class="text-center">Actions</th>
             </tr>
             </thead>

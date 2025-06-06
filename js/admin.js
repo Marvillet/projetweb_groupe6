@@ -18,13 +18,10 @@ function main(){
         modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
         modal.show();
     });
-
-    
-
-
+    ajaxRequest('GET',url,addlignes);
 }
 
-function lignes(rows){
+function addlignes(rows){
     tbody=document.getElementById("installations-body");
     tbody.innerHTML = "";
     rows.forEach((row) => {
@@ -33,7 +30,7 @@ function lignes(rows){
               <td>${row['id']}</td>
               <td>${row['nb_panneaux']}</td>
               <td>${row['puissance_crete']}</td>
-              <td>${row['lat']}</td>
+              <td>${row['nom_standard']}</td>
               <td>${row['mois_installation']} / ${row['an_installation']}</td>
               <td class="text-center">
                 <button class="btn btn-sm btn-outline-primary me-2" data-action="edit" data-id="${row.id}"><i class="bi bi-pencil"></i></button>
