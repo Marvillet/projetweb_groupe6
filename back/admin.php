@@ -204,6 +204,7 @@
 
 
 <!-- Script principal -->
+<script src="../js/ajax.js"></script>
 <script src="../js/admin.js"></script>
 </body>
 
