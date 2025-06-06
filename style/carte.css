@@ -116,6 +116,7 @@ footer {
     background: #001f3f;
     color: white;
     flex: 0 0 400px;
+    display: none;
 }
 
 #info::before {
@@ -340,3 +341,4 @@ footer {
         opacity: 1;
     }
 }
+

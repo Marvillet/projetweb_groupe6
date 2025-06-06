@@ -16,14 +16,13 @@ function GestionDemande($db, $method, $demande, $data)
                         $result = recupDep($db);
                     }
                     break;
-
+                case 'region':
+                    $result = region($db);     // pas de paramètre nécessaire
+                    break;
                 case 'coord':
                     if (isset($data['dep']) && isset($data['annee'])) {
                         $result = coord($db, $data['dep'], $data['annee']);
                     }
-                    break;
-                case 'region':
-                    $result=region($db);
                     break;
                 default:
                     //http_response_code(405);
@@ -49,3 +48,4 @@ function GestionDemande($db, $method, $demande, $data)
         echo json_encode(["error" => "Aucune data valide à renvoyer"]);
     }
 }
+?>

@@ -57,6 +57,10 @@
       require_once "controleur/onduleur_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
+    case "date":
+      require_once "controleur/date_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
     case "recherche":
       require_once "controleur/recherche_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
@@ -65,17 +69,11 @@
       require_once "controleur/lieu_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
-    case "date":
-      require_once "controleur/date_controleur.php";
-      GestionDemande($db,$requestMethod,$id,$data);
-      break;
-
     case 'test':
       echo "oui";
       break;
     default:
       echo json_encode(["error" => "Ressource inexistante"]);
-      break;
 
   }
   exit;

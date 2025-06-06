@@ -1,0 +1,196 @@
+/* --------------------------------------------------------------
+   installation_gestion.css – v2
+   Tout est en CSS pur ; plus besoin de Tailwind.
+   -------------------------------------------------------------- */
+
+/* ------------  Variables de couleur & rayon commun  ----------- */
+:root {
+  --pv-primary: #0d6efd;          /* Bleu Bootstrap */
+  --pv-primary-light: #e7f0ff;    /* Fond de page clair */
+  --pv-success: #198754;          /* Vert d'acceptation */
+  --pv-danger: #dc3545;           /* Rouge d’erreur */
+  --pv-dark: #212529;             /* Gris très foncé */
+  --pv-border-radius: 0.75rem;    /* ≈ 12 px */
+}
+
+/* ---------------------------  Base  --------------------------- */
+
+
+/* --------------------------------------------------------------
+   ⚙️  Utilitaires – équivalents Tailwind réduits
+   (seulement ceux utiles à cette page)
+   -------------------------------------------------------------- */
+.rounded-2xl      { border-radius: 1rem !important; }
+.shadow-md        { box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15) !important; }
+.shadow-lg        { box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; }
+.p-2              { padding: 0.5rem !important; }
+.p-4              { padding: 1rem !important; }
+.m-2              { margin: 0.5rem !important; }
+.gap-4            { gap: 1rem !important; }
+.flex             { display: flex !important; }
+.items-center     { align-items: center !important; }
+.justify-between  { justify-content: space-between !important; }
+.text-center      { text-align: center !important; }
+.text-white       { color: #fff !important; }
+.bg-white         { background-color: #fff !important; }
+.bg-gray-100      { background-color: #f8f9fa !important; }
+.bg-gray-200      { background-color: #e9ecef !important; }
+
+/* ------------------------  Tableau  --------------------------- */
+.table-responsive {
+  border-radius: var(--pv-border-radius);
+  overflow: hidden;
+}
+
+.table thead th {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* -------------------  Boutons d’action  ---------------------- */
+.btn-outline-primary,
+.btn-outline-danger {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--pv-primary);
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--pv-danger);
+  color: #fff;
+}
+
+/* -------------------------  Modale  --------------------------- */
+.modal-content {
+  border-radius: var(--pv-border-radius);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+}
+
+.modal-header { border-bottom: none; }
+.modal-title  { font-weight: 600; }
+
+/* --------------------  Formulaire  --------------------------- */
+.needs-validation .form-control:invalid { border-color: var(--pv-danger); }
+.needs-validation .form-control:valid   { border-color: var(--pv-success); }
+
+/* --------------------  Bouton +  ----------------------------- */
+#btn-add {
+  font-weight: 500;
+  box-shadow: 0 0.1rem 0.4rem rgba(13, 110, 253, 0.3);
+}
+
+#btn-add:hover {
+  box-shadow: 0 0.2rem 0.6rem rgba(13, 110, 253, 0.4);
+}
+
+/* -------------------  Toast / Alertes  ----------------------- */
+.toast {
+  border-radius: var(--pv-border-radius);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+}
+
+.toast .toast-body { font-weight: 500; }
+
+/* ----------------------  Responsive  ------------------------- */
+@media (max-width: 576px) {
+  header .h4 { font-size: 1.1rem; }
+  #btn-add   { padding: 0.4rem 0.75rem; font-size: 0.9rem; }
+
+  .table thead { display: none; }
+
+  .table tbody tr {
+    display: block;
+    margin-bottom: 0.75rem;
+    border: 1px solid #e9ecef;
+    border-radius: var(--pv-border-radius);
+    overflow: hidden;
+  }
+
+  .table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    text-transform: capitalize;
+    color: var(--pv-dark);
+  }
+
+  .table tbody td:last-child {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    border-top: 1px solid #e9ecef;
+  }
+}
+
+#logo {
+    height: 40px;
+    margin-right: 15px;
+}
+
+#navbar {
+    background-color: #001f3f;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#navbar div {
+    display: flex;
+    align-items: center;
+}
+
+#navbar div span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#navbar ul li {
+    margin-right: 20px;
+}
+
+#mainWindow {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #e0f2f7;
+    color: #001f3f;
+}
+
+.windows {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border-color: #ffffff;
+    border: 1px solid;
+}
