@@ -1,5 +1,5 @@
 <?php
-
+require_once "modele/onduleur_modele.php";
 function GestionDemande($db, $method, $demande, $data)
 {
     $result = false;
@@ -9,10 +9,10 @@ function GestionDemande($db, $method, $demande, $data)
                 case 'marque':
                     //si une marque à commencé à être taper
                     if (isset($data['marque'])) {
-                        $result = marqueOndFiltre($db, $data['marque']);
+                        $result = onduleur::marqueOndFiltre($db, $data['marque']);
                     } else {
                         //sinon 20 marques hazard
-                        $result = marqueOnd($db);
+                        $result = onduleur::marqueOnd($db);
                     }
                     break;
             }
