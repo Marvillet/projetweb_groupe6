@@ -22,8 +22,8 @@ function tableau_insertion(data,code){
                 "            <td>"+value["surface"]+"</td>\n"+
                 "            <td>"+value["puissance_crete"]+"</td>\n"+
                 "            <td>"+value["lat"]+"lat, "+value["lon"]+"lon</td>\n"+
-                "            <td><a href=\"detail.html?id="+value["id"]+"\" className=\"btn btn-outline-primary btn-sm\" title=\"Voir le détail\"><i \n"+
-                "                className=\"bi bi-search\"></i></a></td>\n"+
+                "            <td><a href=\"detail.html?id="+value["id"]+"\" class=\"btn btn-outline-primary btn-sm\" title=\"Voir le détail\"><i \n"+
+                "                class=\"bi bi-search\"></i></a></td>\n"+
                 "        </tr>";
 
         })
