@@ -57,7 +57,7 @@ function main(){
             modal.hide();
         });
     });
-    ajaxRequest('GET',url,addlignes);//on affiche 100 lignes au hazar
+    ajaxRequest('GET',url,addlignes);//on affiche les 100 dernières installations installées
 }
 
 function addlignes(rows){
