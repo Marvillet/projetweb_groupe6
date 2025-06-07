@@ -97,7 +97,7 @@
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
                             <label for="installateur-name" class="form-label">Installateur</label>
-                            <input type="text" class="form-control" id="installateur-name" required />
+                            <select class="form-select" id="installateur-name" required ></select>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-power" class="form-label">Puissance crête</label>

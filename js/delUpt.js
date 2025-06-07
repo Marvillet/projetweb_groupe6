@@ -5,6 +5,7 @@ function main(){
     $('#installateur-name').select2({
         //Z index à mettre par dessus le modal pour pouvoir voir les options
         dropdownParent: $('#installationModal'),
+        width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher un installateur",
         ajax: {
             transport: function (params, success, failure) {
