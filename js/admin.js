@@ -72,7 +72,7 @@ function addlignes(rows){
               <td>${row['nom_standard']}</td>
               <td>${row['mois_installation']} / ${row['an_installation']}</td>
               <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary me-2" data-action="edit" data-id="${row['id']}"><i class="bi bi-pencil"></i></button>
+                <a href="modif.php?id=${row['id']}" class="btn btn-sm btn-outline-primary me-2" title='Modification' ><i class="bi bi-pencil"></i></a>
                 <button class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${row['id']}"><i class="bi bi-trash"></i></button>
                 <a href="../front/detail.html?id=${row['id']}" class='btn btn-outline-primary btn-sm' title='Voir le détail'><i class="bi bi-search"></i></a>
               </td>
