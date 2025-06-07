@@ -15,5 +15,5 @@ function installupdate(event){
 function installdelete(event){
     console.log("delete");
     let id=event.target.dataset.id;
-    ajaxRequest('DELETE','../php/request.php/installation/'+id,addlignes)
+    ajaxRequest('DELETE','../php/request.php/admin/'+id,addlignes)
 }
