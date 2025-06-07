@@ -131,7 +131,11 @@ class installation
     static function delete($db,$id){
         $stmt = $db->prepare("
             DELETE FROM installation WHERE id =:id;");
-        return $stmt->execute(['id'=>$id]);
+        $result = $stmt->execute(['id' => $id]);
+        if (!$result) {
+            error_log("DELETE failed: " . implode(" | ", $stmt->errorInfo()));
+        }
+        return $result;
     }
 
 // Modification installation
