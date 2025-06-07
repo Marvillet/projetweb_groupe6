@@ -29,6 +29,11 @@ function tableau_insertion(data,code){
     else if(code===444){
         $('#errors').html('<i class="fa fa-exclamation-circle"></i> <strong>Aucune installation avec ces filtres</strong>');
         $('#errors').show();
+
+        // Réinitialiser les selects
+        $('#panneau').val(null).trigger('change');
+        $('#onduleur').val(null).trigger('change');
+        $('#departement').val(null).trigger('change');
     }
     else{
         let messages =
@@ -84,7 +89,7 @@ window.addEventListener("DOMContentLoaded",()=>{
                 }
 
                 ajaxRequest('GET', url, function (response) {
-                    // 👇 s'assurer que response est bien un tableau
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
                         id: item.id_panneau_marque,
                         text: item.panneau_marque
