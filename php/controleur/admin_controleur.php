@@ -25,7 +25,7 @@ function GestionDemande($db,$method, $id, $data)
         case 'DELETE':
             if ($id != NULL) {
                 if(installation::delete($db,$id)){
-                    $result=installation::infosInstalls($db);
+                    $result=installation::infosInstallsAdmin($db);
                 }
                 error_log("Tentative de suppression de l'id : $id");
             }
