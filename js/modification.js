@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ajaxRequest2("PUT", `../php/request.php/admin/${id}`, function (response, status) {
             if (status === 200) {
                 alert("Installation modifiée avec succès !");
-                window.location.href = "../admin/admin.html"; // ou reste sur la page
+                window.location.href = "../back/admin.php";
             } else {
                 alert("Erreur lors de la modification.");
                 console.error("Réponse serveur : ", response);
