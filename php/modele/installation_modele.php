@@ -131,8 +131,7 @@ class installation
     static function delete($db,$id){
         $stmt = $db->prepare("
             DELETE FROM installation WHERE id =:id;");
-        $stmt->execute(['id'=>$id]);
-        return true;
+        return $stmt->execute(['id'=>$id]);
     }
 
 // Modification installation

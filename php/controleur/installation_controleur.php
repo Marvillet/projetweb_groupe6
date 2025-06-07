@@ -27,6 +27,10 @@ function GestionDemande($db,$method, $id, $data)
                 if(installation::delete($db,$id)){
                     $result=installation::infosInstalls($db);
                 }
+                else{
+                    header('HTTP/1.1 403 Bad Request');
+                    return;
+                }
             }
             break;
         case 'PUT':
