@@ -23,7 +23,8 @@ function tableau_insertion(data,code){
         if (typeof window.displayPage === 'function') {
             window.displayPage(1);
         } else {
-            console.error("⚠️ window.displayPage n’est pas défini !");
+            //debug erreur
+            console.error("️ window.displayPage n’est pas défini !");
         }
     }
     else if(code===444){
@@ -84,7 +85,7 @@ window.addEventListener("DOMContentLoaded",()=>{
                 }
 
                 ajaxRequest('GET', url, function (response) {
-                    // 👇 s'assurer que response est bien un tableau
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
                         id: item.id_panneau_marque,
                         text: item.panneau_marque
@@ -112,7 +113,7 @@ window.addEventListener("DOMContentLoaded",()=>{
                 }
 
                 ajaxRequest('GET', url, function (response) {
-                    // 👇 s'assurer que response est bien un tableau
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
                         id: item.id_onduleur_marque,
                         text: item.onduleur_marque
