@@ -15,6 +15,7 @@ function main(){
     document.getElementById("btn-add").addEventListener("click", () => {
         form.reset();//on vide le formulaire
         document.getElementById("install-id").value = "";
+        $('#installateur-name').val(null).trigger('change');
         modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
         modal.show();
     });

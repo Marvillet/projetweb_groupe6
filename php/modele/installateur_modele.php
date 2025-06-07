@@ -4,7 +4,7 @@ class installateur
 {
     // Departements
     static function installateur($db){
-        $stmt = $db->prepare("select id_installateur,installateur from installateur limit 20 ;");
+        $stmt = $db->prepare("select id_installateur,installateur.installateur as installateurs from installateur limit 20 ;");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
@@ -14,7 +14,7 @@ class installateur
         $stmt = $db->prepare("
          SELECT id_installateur,installateur.installateur 
          FROM installateur 
-         WHERE LOWER(installateur.installateur) LIKE LOWER(':term') LIMIT 20 ;
+         WHERE LOWER(installateur.installateur) LIKE LOWER(:term) LIMIT 20 ;
     ");
         $stmt->execute(['term'=>'%'.$text.'%']);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
