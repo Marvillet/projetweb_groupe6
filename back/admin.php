@@ -73,6 +73,8 @@
     </div>
     <nav>
         <ul id="pagination" class="pagination justify-content-center"></ul>
+        <label for="rowsInput">Lignes par page :</label>
+        <input type="number" id="rowsInput" min="5" max="30" value="10" style="width: 60px; margin-bottom: 10px;">
     </nav>
 </main>
 
