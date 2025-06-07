@@ -73,6 +73,7 @@ function addlignes(rows){
               <td class="text-center">
                 <button class="btn btn-sm btn-outline-primary me-2" data-action="edit" data-id="${row['id']}"><i class="bi bi-pencil"></i></button>
                 <button class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${row['id']}"><i class="bi bi-trash"></i></button>
+                <a href="detail.html?id"${row['id']} class='btn btn-outline-primary btn-sm' title='Voir le détail'><i class="bi bi-search"></i></a>
               </td>
             `;
         tr.getElementsByClassName('btn-outline-primary')[0].addEventListener("click",installupdate);
