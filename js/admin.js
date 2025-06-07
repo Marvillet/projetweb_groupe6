@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded",main);
 function main(){
-    const url = "../php/request.php/installation/";
+    const url = "../php/request.php/admin";
 
     const tbody = document.getElementById("installations-body");
     const modalEl = document.getElementById("installationModal");
@@ -46,7 +46,7 @@ function main(){
         };
 
         // Appel AJAX personnalisé
-        ajaxRequest("POST", "../php/request.php/installation", data, (response) => {
+        ajaxRequest("POST", "../php/request.php/admin", data, (response) => {
 
             // afficher toast succès
             affichetoast("Installation ajoutée avec succès");

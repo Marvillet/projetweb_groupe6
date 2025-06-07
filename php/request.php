@@ -69,6 +69,10 @@
       require_once "controleur/lieu_controleur.php";
       GestionDemande($db,$requestMethod,$id,$data);
       break;
+    case "admin":
+      require_once "controleur/admin_controleur.php";
+      GestionDemande($db,$requestMethod,$id,$data);
+      break;
     case 'test':
       echo "oui";
       break;

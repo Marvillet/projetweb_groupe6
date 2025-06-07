@@ -83,6 +83,40 @@ class installation
         return $results;
     }
 
+    // Récupération infos des 100 dernières installations chronologiquement
+    static function infosInstallsAdmin($db){
+        $stmt = $db->prepare("
+            SELECT id,c.nom_standard,mois_installation,an_installation,nb_panneaux,surface,puissance_crete,lat,lon
+            
+            FROM installation i
+            
+            -- Jointure avec l’installateur
+            LEFT JOIN installateur inst ON i.id_installateur = inst.id_installateur
+            
+            -- Jointure avec la commune
+            LEFT JOIN commune c ON i.code_insee = c.code_insee
+            
+            -- Jointure avec le département et la région
+            LEFT JOIN departement d ON c.dep_code = d.dep_code
+            LEFT JOIN region r ON d.reg_code = r.reg_code
+            LEFT JOIN pays p ON r.id_pays = p.id_pays
+            
+            -- Jointure avec le panneau
+            LEFT JOIN panneau pnn ON i.id_panneau = pnn.id_panneau
+            LEFT JOIN panneaux_modele pm ON pnn.id_panneau_modele = pm.id_panneau_modele
+            LEFT JOIN panneaux_marque pmq ON pnn.id_panneau_marque = pmq.id_panneau_marque
+            
+            -- Jointure avec l’onduleur
+            LEFT JOIN onduleur ond ON i.id_onduleur = ond.id_onduleur
+            LEFT JOIN onduleur_modele om ON ond.id_onduleur_modele = om.id_onduleur_modele
+            LEFT JOIN onduleur_marque omq ON ond.id_onduleur_marque = omq.id_onduleur_marque
+            ORDER BY an_installation DESC ,mois_installation DESC
+            LIMIT 100;");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
 
 // Insertion d'installation
     static function insert($db,$data){
@@ -109,6 +143,4 @@ class installation
             WHERE id =: id;");
         $stmt->execute(['id'=>$data['id'],'nb'=>$data['nb_panneaux'],'crete'=>$data['puissance_crete']]);
     }
-
-
 }
