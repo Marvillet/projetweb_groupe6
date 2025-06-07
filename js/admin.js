@@ -44,9 +44,8 @@ function main(){
             orientationOpt: document.getElementById("install-orientationOpt").value,
             pvgis: parseInt(document.getElementById("install-pvgis").value)
         };
-        console.log(data);
         // Appel AJAX personnalisé
-        ajaxRequest("POST", "../php/request.php/admin", data, (response) => {
+        ajaxRequest("POST", "../php/request.php/admin"+data, (response) => {
 
             // afficher toast succès
             affichetoast("Installation ajoutée avec succès");
