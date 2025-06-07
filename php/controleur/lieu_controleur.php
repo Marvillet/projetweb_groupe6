@@ -16,6 +16,15 @@ function GestionDemande($db, $method, $demande, $data)
                         $result = lieu::recupDep($db);
                     }
                     break;
+                case 'commune':
+                    //si une marque à commencé à être taper
+                    if (isset($data['commune'])) {
+                        $result = lieu::CommuneFiltre($db, $data['dep']);
+                    } else {
+                        //sinon 20 marques hazard
+                        $result = lieu::recupCommune($db);
+                    }
+                    break;
                 case 'region':
                     $result = lieu::region($db);     // pas de paramètre nécessaire
                     break;

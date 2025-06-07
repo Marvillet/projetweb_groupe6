@@ -45,4 +45,21 @@ class lieu
         return $results;
 
     }
+    static function recupCommune($db){
+        $stmt = $db->prepare("SELECT code_insee,nom_standard,code_postal FROM commune ORDER BY RAND() LIMIT 20;");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+//Récupère 20 departement de panneau commençant par $text
+    static function CommuneFiltre($db,$text){
+        $stmt = $db->prepare("
+            SELECT code_insee,nom_standard,code_postal FROM commune
+            WHERE LOWER(nom_standard) LIKE LOWER(:term) 
+            ORDER BY RAND() LIMIT 20;
+        ");
+        $stmt->execute(['term'=>'%'.$text.'%']);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
 }
