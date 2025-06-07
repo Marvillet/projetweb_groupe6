@@ -73,8 +73,9 @@ window.addEventListener("DOMContentLoaded",()=>{
         placeholder: "Rechercher une marque...",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = `../php/request.php/panneau/marque`;
                 } else {
