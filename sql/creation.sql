@@ -163,7 +163,7 @@ CREATE TABLE commune(
   #------------------------------------------------------------
 DROP TABLE if exists installation;
 CREATE TABLE installation(
-                             id                  INT NOT NULL ,
+                             id                  Int AUTO_INCREMENT NOT NULL ,
                              mois_installation   Int NOT NULL ,
                              an_installation     Int NOT NULL ,
                              nb_panneaux         Int NOT NULL ,
