@@ -16,6 +16,16 @@ function GestionDemande($db,$method, $demande, $data)
                         $result=panneau::marquePan($db);
                     }
                     break;
+                case 'modele':
+                    //si une marque à commencé à être taper
+                    if(isset($data['modele'])){
+                        $result=panneau::modeleFiltre($db,$data['modele']);
+                    }
+                    else{
+                        //sinon 20 marques hazard
+                        $result=panneau::modelePan($db);
+                    }
+                    break;
 
                 default:
                     //http_response_code(405);

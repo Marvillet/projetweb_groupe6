@@ -113,11 +113,7 @@
                         </div>
                         <div class="col-12 col-md-8">
                             <label for="install-commune" class="form-label">Commune</label>
-                            <input type="text" class="form-control" id="install-commune" required />
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <label for="codePostal" class="form-label">Code postal</label>
-                            <input type="text" class="form-control" id="codePostal" required />
+                            <select type="text" class="form-select" id="install-commune" required ></select>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-lat" class="form-label">Latitude</label>
@@ -133,11 +129,11 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-marquePanneaux" class="form-label">Marque de panneaux</label>
-                            <input type="text" class="form-control" id="install-marquePanneaux" required />
+                            <select class="form-select" id="install-marquePanneaux" required ></select>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-modelePanneaux" class="form-label">Modèle des panneaux</label>
-                            <input type="text" class="form-control" id="install-modelePanneaux" required />
+                            <select  class="form-select" id="install-modelePanneaux" required ></select>
                         </div>
                         <div class="col-12 col-md-8">
                             <label for="nbOnduleur" class="form-label">Nombre d'Onduleur</label>
@@ -145,11 +141,11 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-marqueOnduleur" class="form-label">Marque d'Onduleur</label>
-                            <input type="text" class="form-control" id="install-marqueOnduleur" required />
+                            <select class="form-select" id="install-marqueOnduleur" required ></select>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-modeleOnduleur" class="form-label">Modèle d'onduleur</label>
-                            <input type="text" class="form-control" id="install-modeleOnduleur" required />
+                            <select class="form-select" id="install-modeleOnduleur" required ></select>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="install-surface" class="form-label">Surface</label>

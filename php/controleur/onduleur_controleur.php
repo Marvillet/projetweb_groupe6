@@ -15,6 +15,16 @@ function GestionDemande($db, $method, $demande, $data)
                         $result = onduleur::marqueOnd($db);
                     }
                     break;
+                case 'modele':
+                    //si une marque à commencé à être taper
+                    if (isset($data['modele'])) {
+                        $result = onduleur::modeleOndFiltre($db, $data['modele']);
+                    } else {
+                        //sinon 20 marques hazard
+                        $result = onduleur::modeleOnd($db);
+                    }
+                    break;
+
             }
             break;
         //seule la methode Get est autorisé pour les statistiques
