@@ -15,7 +15,7 @@ function main(){
     document.getElementById("btn-add").addEventListener("click", () => {
         form.reset();//on vide le formulaire
         document.getElementById("install-id").value = "";
-        $('#installateur-name').val(null).trigger('change');
+        //$('#installateur-name').val(null).trigger('change');
         modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
         modal.show();
     });
@@ -25,7 +25,7 @@ function main(){
 
         const data = {
             id: document.getElementById("install-id").value,
-            installateur: document.getElementById("installateur-name").value,
+            //installateur: document.getElementById("installateur-name").value,
             puissance: parseFloat(document.getElementById("install-power").value),
             annee: parseInt(document.getElementById("install-year").value),
             mois: document.getElementById("install-mois").value,
