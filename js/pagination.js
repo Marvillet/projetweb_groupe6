@@ -1,20 +1,6 @@
-let rowsPerPage = 10; // Valeur par défaut
+const rowsPerPage = 10;
 
-// Met à jour rowsPerPage à partir de l'input utilisateur
-document.getElementById("rowsInput").addEventListener("input", function () {
-    let value = parseInt(this.value, 10);
-
-    if (isNaN(value) || value < 5) {
-        value = 5;
-    } else if (value > 30) {
-        value = 30;
-    }
-
-    rowsPerPage = value;
-    window.displayPage(1); // Rafraîchir depuis la première page
-});
-
-window.displayPage = function (page) {
+window.displayPage = function(page) {
     const tbody = document.getElementById("resultat");
     const pagination = document.getElementById("pagination");
 
@@ -68,9 +54,4 @@ window.displayPage = function (page) {
     nextBtn.onclick = () => window.displayPage(page + 1);
     nextLi.appendChild(nextBtn);
     pagination.appendChild(nextLi);
-};
-
-// Initialisation à la première page
-window.addEventListener("DOMContentLoaded", () => {
-    window.displayPage(1);
-});
+}
