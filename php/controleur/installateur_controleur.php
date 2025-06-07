@@ -12,6 +12,7 @@ function GestionDemande($db, $method, $id, $data)
             }
             else{
                 if(isset($data["filtre"])){
+
                     $result=installateur::installateurFiltre($db,$data["filtre"]);
                 }
                 else{
