@@ -77,6 +77,7 @@
             </tbody>
         </table>
     </div>
+    <br>
     <nav>
         <ul id="pagination" class="pagination justify-content-center"></ul>
     </nav>
