@@ -193,7 +193,6 @@
 <script src="../js/pagination.js"></script>
 <script src="../js/ajax.js"></script>
 <script src="../js/admin.js"></script>
-<script src="../js/delUpt.js"></script>
 
 <footer class="bg-dark text-white text-center py-3 mt-4">
     <div class="container">

@@ -12,6 +12,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- J query -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body class="bg-light p-4">
 
@@ -67,12 +71,12 @@
                 </li>
                 <li class="list-group-item">
                     <label>Marque des panneaux :
-                        <select class="form-select" id="install-marquePanneaux" required ></select>
+                        <select class="form-select" id="panneau_marque" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Modèle des panneaux :
-                        <select  class="form-select" id="install-modelePanneaux" required ></select>
+                        <select  class="form-select" id="panneau_modele" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
@@ -82,12 +86,12 @@
                 </li>
                 <li class="list-group-item">
                     <label>Marque onduleur :
-                        <select class="form-select" id="install-marqueOnduleur" required ></select>
+                        <select class="form-select" id="onduleur_marque" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Modèle onduleur :
-                        <select class="form-select" id="install-modeleOnduleur" required ></select>
+                        <select class="form-select" id="onduleur_modele" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
@@ -118,27 +122,27 @@
                 </li>
                 <li class="list-group-item">
                     <label>Installateur :
-                        <input type="text" class="form-control" name="installateur" required>
+                        <input type="text" class="form-control" name="id_installateur" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Production PVGIS estimée (kWh/an) :
-                        <input type="number" class="form-control" name="pvgis" required>
+                        <input type="number" class="form-control" name="puissance_pvgis" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Latitude :
-                        <input type="number" step="0.01" class="form-control" name="latitude" required>
+                        <input type="number" step="0.01" class="form-control" name="lat" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Longitude :
-                        <input type="number" step="0.01" class="form-control" name="longitude" required>
+                        <input type="number" step="0.01" class="form-control" name="lon" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Localité :
-                        <input type="text" class="form-control" name="localite">
+                        <select type="text" class="form-control" id="code_insee" ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
@@ -149,11 +153,6 @@
                 <li class="list-group-item">
                     <label>pente optimum (°) :
                         <input type="number" class="form-control" name="pente_optimum" required>
-                    </label>
-                </li>
-                <li class="list-group-item">
-                    <label>Production pvgis :
-                        <input type="number" step="0.1" class="form-control" name="puissance_pvgis" required>
                     </label>
                 </li>
             </ul>
@@ -167,7 +166,8 @@
         </div>
     </form>
 </div>
-
+<script src="../js/ajax.js"></script>
+<script src="../js/select2.js"></script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
