@@ -52,12 +52,7 @@
 <body>
 
 <div class="container container-form">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Modifier une installation</h2>
-        <a href="admin.php" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i> Retour
-        </a>
-    </div>
+
 
     <form id="installation-form" class="row g-4">
         <!-- Colonne 1 -->
