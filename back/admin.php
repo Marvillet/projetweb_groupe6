@@ -55,7 +55,7 @@
 <main class="container-fluid px-3 px-md-5 mt-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
         <h2 class="h5 mb-0">Liste des dernières installations ajoutées</h2>
-        <button href="add.php" id="btn-add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
+        <button id="btn-add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
             Ajouter une installation
         </button>
     </div>
