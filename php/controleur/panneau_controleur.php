@@ -33,7 +33,32 @@ function GestionDemande($db,$method, $demande, $data)
                     break;
             }
             break;
-        //seule la methode Get est autorisé pour les statistiques
+        case 'POST':
+            if ($demande=="marque" && isset($data['marque'])) {
+                if(panneau::addMarquePanneau($db, $data['marque'])) {
+                    http_response_code(201);
+                    echo json_encode('Marque Panneau bien ajoute');
+                    return;
+                }
+                else{
+                    http_response_code(400);
+                    echo json_encode('Echec ajout d\'une marque Panneau');
+                    return;
+                }
+            }
+            if ($demande=="modele" && isset($data['modele'])) {
+                if(panneau::addModelePanneau($db, $data['modele'])) {
+                    http_response_code(201);
+                    echo json_encode('Modele panneau bien ajoute');
+                    return;
+                }
+                else{
+                    http_response_code(400);
+                    echo json_encode('Echec ajout d\'un modele panneau');
+                    return;
+                }
+            }
+            break;
         default:
             //http_response_code(405);
             echo json_encode(["error" => "Méthode non autorisee"]);
