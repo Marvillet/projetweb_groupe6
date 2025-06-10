@@ -24,6 +24,7 @@
 
     <!-- Scripts -->
     <script src="../js/ajax.js"></script>
+    <script src="../js/add.js"></script>
     <script src="../js/modification.js" defer></script>
 </head>
 
