@@ -87,7 +87,7 @@ function recupReg(regions) {
 }
 
 // ==== Initialisation principale ====
-document.addEventListener("DOMContentLoaded", function () {
+function main() {
     const currentPage = window.location.pathname.split("/").pop();
 
     document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
@@ -96,9 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             link.classList.add("active");
         }
     });
-});
 
-function main() {
     // Statistiques globales
     ajaxRequest('GET', '../php/request.php/stat/total', nbInstall)
     ajaxRequest('GET', '../php/request.php/stat/installateur', nbInstallateurs)
