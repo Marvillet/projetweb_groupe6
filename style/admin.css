@@ -10,7 +10,7 @@
   --pv-success: #198754;          /* Vert d'acceptation */
   --pv-danger: #dc3545;           /* Rouge d’erreur */
   --pv-dark: #212529;             /* Gris très foncé */
-  --pv-border-radius: 0.75rem;    /* ≈ 12 px */
+  --pv-border-radius: 0.75rem;
 }
 
 /* ---------------------------  Base  --------------------------- */
@@ -193,4 +193,11 @@
     border-radius: 20px;
     border-color: #ffffff;
     border: 1px solid;
+}
+
+.nav-link.active {
+    color: #1807ff !important;
+    font-weight: bold;
+    border-bottom: 2px solid #3407ff;
+    background-color: #e0f2f7;
 }

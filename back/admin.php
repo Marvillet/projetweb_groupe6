@@ -41,7 +41,7 @@
             <li class="nav-item"><a class="nav-link" href="../front/recherche.html">Recherche</a></li>
             <li class="nav-item"><a class="nav-link" href="../front/carte.html">Carte</a></li>
             <li class="nav-item">
-                <a class="nav-link" href="#" title="Espace admin"><i class="bi bi-person-gear fs-5"></i></a>
+                <a class="nav-link" href="" title="Espace admin"><i class="bi bi-person-gear fs-5"></i></a>
             </li>
             <li class="nav-item">
                 <a href="logout.php" class="btn btn-danger btn-sm px-3 py-2 rounded-pill">

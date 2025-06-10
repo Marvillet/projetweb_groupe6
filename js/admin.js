@@ -1,5 +1,14 @@
 window.addEventListener("DOMContentLoaded",main);
 function main(){
+    const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+        const linkPage = link.getAttribute("href").split("/").pop();
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
     const url = "../php/request.php/admin";
 
     const tbody = document.getElementById("installations-body");
