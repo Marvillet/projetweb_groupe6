@@ -69,7 +69,17 @@ function recherche() {
     ajaxRequest2('GET', url, tableau_insertion)
 }
 
+
 window.addEventListener("DOMContentLoaded",()=>{
+    const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+        const linkPage = link.getAttribute("href").split("/").pop();
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
     recherche();
     document.getElementById("formulaire").addEventListener("submit",(event)=>{
         event.preventDefault();
