@@ -197,7 +197,7 @@
 <footer class="bg-dark text-white text-center py-3 mt-4">
     <div class="container">
         <small>&copy; 2025 ML Photovoltaic. Tous droits réservés.</small><br>
-        <small>Louis Marvillet / Mathis Brosseau / Mathis Letellier — CIR2</small>
+        <small>Louis Marvillet / Mathis Brosseau / Mathis Letellier — Groupe 6 — CIR2</small>
     </div>
 </footer>
 
