@@ -101,7 +101,7 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
-                            <label for="choix" class="form-label">Installateur</label>
+                            <label for="choix" class="form-label">Instances</label>
                             <select class="form-select form-control" id="choix" required >
                                 <option value="" disabled selected>Choisir quelle instance ajouter</option>
                                 <option value="1">Installateur</option>
