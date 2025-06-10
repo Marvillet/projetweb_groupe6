@@ -21,25 +21,32 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const panMa = document.getElementById('id_panneau_marque');
+        const panMo = document.getElementById('id_panneau_modele');
+        const onMa = document.getElementById('id_onduleur_marque');
+        const onMo = document.getElementById('id_onduleur_modele');
+        const insta = document.getElementById('id_installateur');
+        const comm = document.getElementById('code_insee');
+
+        panMa.innerHTML+=`<option value="${data.id_panneau_marque}" selected>${dat.panneau_marque}</option>`;
+        panMo.innerHTML+=`<option value="${data.id_panneau_modele}" selected>${dat.panneau_modele}</option>`;
+        onMa.innerHTML+=`<option value="${data.id_onduleur_marque}" selected>${dat.onduleur_marque}</option>`;
+        onMo.innerHTML+=`<option value="${data.id_onduleur_modele}" selected>${dat.onduleur_modele}</option>`;
+        insta.innerHTML+=`<option value="${data.id_installateur}" selected>${dat.installateurs}</option>`;
+        comm.innerHTML+=`<option value="${data.code_insee}" selected>${dat.nom_standard}</option>`;
 
         const mapping = {
             mois_installation: 'mois_installation',
             an_installation: 'an_installation',
             nb_panneaux: 'nb_panneaux',
-            id_panneau_marque: 'panneau_marque',
-            id_panneau_modele: 'panneau_modele',
             nb_onduleur: 'nb_onduleur',
-            id_onduleur_marque: 'onduleur_marque',
-            id_onduleur_modele: 'onduleur_modele',
             puissance_crete: 'puissance_crete',
             surface: 'surface',
             orientation: 'orientation',
             orientation_opt: 'orientation_optimum',
-            id_installateur: 'installateur',
             puissance_pvgis: 'puissance_pvgis',
             lat: 'lat',
             lon: 'lon',
-            code_insee: 'commune',
             pente: 'pente',
             pente_optimum: 'pente_optimum'
         };
