@@ -2,6 +2,12 @@
     height: 40px;
     margin-right: 15px;
 }
+.nav-link.active {
+    color: #1807ff !important;
+    font-weight: bold;
+    border-bottom: 2px solid #3407ff;
+    background-color: #e0f2f7;
+}
 
 #navbar{
     background-color: #001f3f;
@@ -126,9 +132,3 @@ ul{
   list-style-type: none;
 }
 
-.nav-link.active {
-    color: #1807ff !important;
-    font-weight: bold;
-    border-bottom: 2px solid #3407ff;
-    background-color: #e0f2f7;
-}
