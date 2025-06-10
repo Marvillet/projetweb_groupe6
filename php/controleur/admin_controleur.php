@@ -56,6 +56,7 @@ function GestionDemande($db,$method, $id, $data)
             }
             break;
         case 'PUT':
+            parse_str(file_get_contents('php://input'), $_PUT);
             error_log("Données reçues pour PUT: " . print_r($data, true));
             if ($id != NULL && is_array($data)) {
                 if (isset($data['mois_installation']) && isset($data['an_installation'])) {
