@@ -9,7 +9,7 @@ function tableau_insertion(data,code){
         let text="";
         data.forEach((value)=> {
             text+="<tr>\n"+
-                "            <td>"+mois[value["mois_installation"]]+" "+value["an_installation"]+"</td>\n"+
+                "            <td>"+mois[value["mois_installation"]-1]+" "+value["an_installation"]+"</td>\n"+
                 "            <td>"+value["nb_panneaux"]+"</td>\n"+
                 "            <td>"+value["surface"]+"</td>\n"+
                 "            <td>"+value["puissance_crete"]+"</td>\n"+

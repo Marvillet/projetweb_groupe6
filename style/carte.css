@@ -397,3 +397,9 @@ footer {
     color: #e0f2f7;
     border: 1px solid #e0f2f7;
 }
+
+.nav-link.active {
+    color: #ffc107 !important; /* jaune clair */
+    font-weight: bold;
+    border-bottom: 2px solid #ffc107;
+}
