@@ -69,7 +69,8 @@ function recherche() {
     ajaxRequest2('GET', url, tableau_insertion)
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+
+window.addEventListener("DOMContentLoaded",()=>{
     const currentPage = window.location.pathname.split("/").pop();
 
     document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
@@ -78,9 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             link.classList.add("active");
         }
     });
-});
 
-window.addEventListener("DOMContentLoaded",()=>{
     recherche();
     document.getElementById("formulaire").addEventListener("submit",(event)=>{
         event.preventDefault();
