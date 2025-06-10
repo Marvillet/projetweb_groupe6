@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const insta = document.getElementById('id_installateur');
         const comm = document.getElementById('code_insee');
 
-        panMa.innerHTML+=`<option value="${data.id_panneau_marque}" selected>${dat.panneau_marque}</option>`;
-        panMo.innerHTML+=`<option value="${data.id_panneau_modele}" selected>${dat.panneau_modele}</option>`;
-        onMa.innerHTML+=`<option value="${data.id_onduleur_marque}" selected>${dat.onduleur_marque}</option>`;
-        onMo.innerHTML+=`<option value="${data.id_onduleur_modele}" selected>${dat.onduleur_modele}</option>`;
-        insta.innerHTML+=`<option value="${data.id_installateur}" selected>${dat.installateurs}</option>`;
-        comm.innerHTML+=`<option value="${data.code_insee}" selected>${dat.nom_standard}</option>`;
+        panMa.innerHTML+=`<option value="${data.id_panneau_marque}" selected>${data.panneau_marque}</option>`;
+        panMo.innerHTML+=`<option value="${data.id_panneau_modele}" selected>${data.panneau_modele}</option>`;
+        onMa.innerHTML+=`<option value="${data.id_onduleur_marque}" selected>${data.onduleur_marque}</option>`;
+        onMo.innerHTML+=`<option value="${data.id_onduleur_modele}" selected>${data.onduleur_modele}</option>`;
+        insta.innerHTML+=`<option value="${data.id_installateur}" selected>${data.installateurs}</option>`;
+        comm.innerHTML+=`<option value="${data.code_insee}" selected>${data.nom_standard}</option>`;
 
         const mapping = {
             mois_installation: 'mois_installation',
