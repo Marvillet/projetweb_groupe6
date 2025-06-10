@@ -138,7 +138,7 @@ function addModeleO(data){
 function addInstallateur(data){
     const select = document.getElementById('id_installateur');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id_installateur}">${dat.installateur}</option>`;
+        select.innerHTML += `<option value="${dat.id_installateur}">${dat.installateurs}</option>`;
     });
 }
 
