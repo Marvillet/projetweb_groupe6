@@ -23,7 +23,7 @@
 
     <!-- Bouton retour -->
     <div class="back">
-        <button onclick="window.history.go(-1)" id="retour">
+        <button onclick="document.location='admin.php'" id="retour">
             <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1"
                  viewBox="0 0 1024 1024">
                 <path
@@ -61,47 +61,47 @@
                 </li>
                 <li class="list-group-item">
                     <label>Année d'installation :
-                        <input type="number" class="form-control" name="an_installation" required>
+                        <input type="number" class="form-control" id="an_installation" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Nombre de panneaux :
-                        <input type="number" class="form-control" name="nb_panneaux" required>
+                        <input type="number" class="form-control" id="nb_panneaux" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Marque des panneaux :
-                        <select class="form-select" id="panneau_marque" required ></select>
+                        <select class="form-select" id="id_panneau_marque" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Modèle des panneaux :
-                        <select  class="form-select" id="panneau_modele" required ></select>
+                        <select  class="form-select" id="id_panneau_modele" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Nombre d’onduleurs :
-                        <input type="number" class="form-control" name="nb_onduleur">
+                        <input type="number" class="form-control" id="nb_onduleur">
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Marque onduleur :
-                        <select class="form-select" id="onduleur_marque" required ></select>
+                        <select class="form-select" id="id_onduleur_marque" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Modèle onduleur :
-                        <select class="form-select" id="onduleur_modele" required ></select>
+                        <select class="form-select" id="id_onduleur_modele" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Puissance crête (kWc) :
-                        <input type="number" step="0.1" class="form-control" name="puissance_crete" required>
+                        <input type="number" step="0.1" class="form-control" id="puissance_crete" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Surface (m²) :
-                        <input type="number" step="0.1" class="form-control" name="surface" required>
+                        <input type="number" step="0.1" class="form-control" id="surface" required>
                     </label>
                 </li>
             </ul>
@@ -112,32 +112,32 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <label>Orientation :
-                        <input type="number" class="form-control" name="orientation" required>
+                        <input type="number" class="form-control" id="orientation" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Orientation optimale :
-                        <input type="number" class="form-control" name="orientation_opt" required>
+                        <input type="number" class="form-control" id="orientation_opt" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Installateur :
-                        <input type="text" class="form-control" name="id_installateur" required>
+                        <input type="text" class="form-select" id="id_installateur" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Production PVGIS estimée (kWh/an) :
-                        <input type="number" class="form-control" name="puissance_pvgis" required>
+                        <input type="number" class="form-control" id="puissance_pvgis" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Latitude :
-                        <input type="number" step="0.01" class="form-control" name="lat" required>
+                        <input type="number" step="0.01" class="form-control" id="lat" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>Longitude :
-                        <input type="number" step="0.01" class="form-control" name="lon" required>
+                        <input type="number" step="0.01" class="form-control" id="lon" required>
                     </label>
                 </li>
                 <li class="list-group-item">
@@ -147,12 +147,12 @@
                 </li>
                 <li class="list-group-item">
                     <label>Pente (°) :
-                        <input type="number" class="form-control" name="pente" required>
+                        <input type="number" class="form-control" id="pente" required>
                     </label>
                 </li>
                 <li class="list-group-item">
                     <label>pente optimum (°) :
-                        <input type="number" class="form-control" name="pente_optimum" required>
+                        <input type="number" class="form-control" id="pente_optimum" required>
                     </label>
                 </li>
             </ul>
@@ -165,6 +165,16 @@
             </button>
         </div>
     </form>
+</div>
+
+<!-- Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toast-msg" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fermer"></button>
+        </div>
+    </div>
 </div>
 <script src="../js/ajax.js"></script>
 <script src="../js/add.js"></script>
