@@ -60,13 +60,17 @@ function GestionDemande($db,$method, $id, $data)
             if ($id != NULL && is_array($data)) {
                 if (isset($data['mois_installation']) && isset($data['an_installation'])) {
                     error_log("Tentative de mise à jour de l'installation $id");
-                    $result = installation::update($db, $id, $data);
+                    $id_panneau = panneau::findPanneau($db, $data['id_panneau_marque'], $data['id_panneau_modele']);
+                    $id_onduleur = onduleur::findOnduleur($db, $data['id_onduleur_marque'], $data['id_onduleur_modele']);
+                    $result = installation::update($db, $id, $data,(int)$id_panneau,(int)$id_onduleur);
                     if ($result) {
-                        http_response_code(200);
+                        http_response_code(201);
                         echo json_encode(["message" => "Modification réussie !"]);
+                        return;
                     } else {
                         http_response_code(500);
                         echo json_encode(["error" => "Échec de la mise à jour"]);
+                        return;
                     }
                 }
                 else {

@@ -18,7 +18,11 @@ class installation
                 pm.panneau_modele,
                 pmq.panneau_marque,
                 om.onduleur_modele,
-                omq.onduleur_marque
+                omq.onduleur_marque,
+                pnn.id_panneau_marque,
+                pnn.id_panneau_modele,
+                ond.id_onduleur_marque,
+                ond.id_onduleur_modele
             
             FROM installation i
             
@@ -161,7 +165,7 @@ class installation
     }
 
 // Modification installation
-    static function update($db, $id, $data) {
+    static function update($db, $id, $data,$id_pan,$id_ond) {
         $stmt = $db->prepare("UPDATE installation SET
         mois_installation = :mois,
         an_installation = :annee,
@@ -177,10 +181,12 @@ class installation
         pente = :pente,
         puissance_pvgis = :puissance_pvgis,
         pente_optimum = :pente_optimum,
-        orientation_optimum = :orientation_optimum
+        orientation_optimum = :orientation_optimum,
+        id_panneau = :id_panneau,
+        id_onduleur = :id_onduleur
         WHERE id = :id");
 
-        $stmt->execute([
+        return $stmt->execute([
             ':mois' => $data['mois_installation'],
             ':annee' => $data['an_installation'],
             ':nb_panneaux' => $data['nb_panneaux'],
@@ -196,7 +202,9 @@ class installation
             ':puissance_pvgis' => $data['puissance_pvgis'],
             ':pente_optimum' => $data['pente_optimum'],
             ':orientation_optimum' => $data['orientation_optimum'],
-            ':id' => $id
+            ':id' => $id,
+            'id_panneau' => $id_pan,
+            'id_onduleur' => $id_ond
         ]);
     }
 }

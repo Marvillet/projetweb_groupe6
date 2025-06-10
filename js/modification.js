@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
         insta.innerHTML+=`<option value="${data.id_installateur}" selected>${data.installateur}</option>`;
         comm.innerHTML+=`<option value="${data.code_insee}" selected>${data.commune}</option>`;
 
+        console.log(comm.value);
+
         const mapping = {
             mois_installation: 'mois_installation',
             an_installation: 'an_installation',
@@ -81,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mois_installation: data.mois_installation,
             an_installation: data.an_installation,
             nb_panneaux: data.nb_panneaux,
-            id_panneau_marque: data.panneau_marque,
+            id_panneau_marque: data.id_panneau_marque,
             id_panneau_modele: data.id_panneau_modele,
             nb_onduleur: data.nb_onduleur,
             id_onduleur_marque: data.id_onduleur_marque,
@@ -90,15 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
             surface: data.surface,
             orientation: data.orientation,
             orientation_optimum: data.orientation_opt,
-            installateur: data.id_installateur,
+            id_installateur: data.id_installateur,
             puissance_pvgis: data.puissance_pvgis,
             lat: data.lat,
             lon: data.lon,
-            commune: data.code_insee,
+            code_insee: data.code_insee,
             pente: data.pente,
             pente_optimum: data.pente_optimum
         };
-
 
         ajaxRequest2("PUT", `../php/request.php/admin/${id}`, function (response, status) {
             if (status === 201) {
@@ -111,9 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, encodeFormData(finalData));
     });
 });
-
-
-
 
 
 function addMarqueP(data){
