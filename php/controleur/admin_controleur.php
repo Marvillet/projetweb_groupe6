@@ -1,6 +1,8 @@
 <?php
 //on récupère le modèle
 require_once "modele/installation_modele.php";
+require_once "modele/onduleur_modele.php";
+require_once "modele/panneau_modele.php";
 function GestionDemande($db,$method, $id, $data)
 {
     $result=false;
@@ -15,12 +17,34 @@ function GestionDemande($db,$method, $id, $data)
             }
             break;
         case 'POST':
-            /*
-            if (isset($_POST['id']) && isset($_POST['comment'])) {
-                $result = 'on ajoute la result';
+            if (isset($data['mois_installation']) &&
+                isset($data['an_installation']) &&
+                isset($data['nb_panneaux']) &&
+                isset($data['surface']) &&
+                isset($data['puissance_crete']) &&
+                isset($data['orientation']) &&
+                isset($data['lat']) &&
+                isset($data['lon']) &&
+                isset($data['code_insee']) &&
+                isset($data['id_panneau_marque']) &&
+                isset($data['id_panneau_modele']) &&
+                isset($data['id_onduleur_marque']) &&
+                isset($data['id_onduleur_modele']) &&
+                isset($data['id_installateur']) &&
+                isset($data['nb_onduleur']) &&
+                isset($data['pente']) &&
+                isset($data['puissance_pvgis']) &&
+                isset($data['pente_optimum']) &&
+                isset($data['orientation_optimum'])) {
+                    $id_panneau = panneau::findPanneau($db, $data['id_panneau_marque'], $data['id_panneau_modele']);
+                    $id_onduleur = onduleur::findOnduleur($db, $data['id_onduleur_marque'], $data['id_onduleur_modele']);
+                    installation::insert($db, $data, $id_panneau, $id_onduleur);
+                    http_response_code(201);
+                    return;
             }
-            */
-            installation::insert($db,$data);
+            else{
+                error_log("Tentative POST mais toutes les datas ne sont pas défini");
+            }
             break;
         case 'DELETE':
             if ($id != NULL) {
@@ -41,7 +65,7 @@ function GestionDemande($db,$method, $id, $data)
             */
             break;
         default:
-            //http_response_code(405);
+            http_response_code(405);
             echo json_encode(["error" => "Méthode non autorisee"]);
     }
 
