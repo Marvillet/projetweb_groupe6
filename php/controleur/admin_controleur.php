@@ -56,15 +56,27 @@ function GestionDemande($db,$method, $id, $data)
             }
             break;
         case 'PUT':
-            if($id != NULL && isset($data['nb']) && isset($data['surface']) && isset($data['crete'])) {
-                installation::update($db,$data,$id);
+            error_log("probleme");
+            if ($id != NULL && is_array($data)) { // Check if $data is an array (from JSON)
+
+                if (isset($data['mois_installation']) && isset($data['an_installation'])) {
+                    installation::update($db, $id, $data); // Correct order of parameters
+                    http_response_code(200); // Success
+                    echo json_encode(["message" => "Modification réussie !"]);
+                } else {
+                    http_response_code(400); // Bad Request
+                    echo json_encode(["error" => "Données manquantes ou incorrectes pour la modification."]);
+                }
+            } else {
+                http_response_code(400); // Bad Request
+                echo json_encode(["error" => "ID d'installation manquant ou format de données invalide."]);
             }
+            break;
             /*
             if (isset($_PUT['comment']) && $id != NULL) {
                 $data = dbModifyComment($db, $login, $id, $_PUT['comment']);
             }
             */
-            break;
         default:
             http_response_code(405);
             echo json_encode(["error" => "Méthode non autorisee"]);
