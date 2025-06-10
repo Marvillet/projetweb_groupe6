@@ -107,7 +107,6 @@ function remplirDetailsVille(data) {
     detailBtn.href = `detail.html?id=${data[0]['id']}`;
 }
 
-
 function main() {
 
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee);
@@ -121,6 +120,15 @@ function main() {
     } else {
         console.error("Le bouton #search est introuvable !");
     }
+
+    const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+        const linkPage = link.getAttribute("href").split("/").pop();
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+    });
 }
 
 window.addEventListener("DOMContentLoaded", main);
