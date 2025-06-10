@@ -42,8 +42,8 @@ class onduleur
     }
     static function addOnduleur($db,$id_onduleur_marque,$id_onduleur_modele){
         $stmt = $db->prepare("INSERT INTO onduleur (id_onduleur_marque, id_onduleur_modele)
-                                VALUES (:id_onduleur_modele, :id_onduleur_marque);");
-        $stmt->execute(['id_onduleur_marque'=>$id_onduleur_marque,'id_onduleur_modele'=>$id_onduleur_modele]);
+                                VALUES ( :id_onduleur_marque,:id_onduleur_modele);");
+        $stmt->execute(['id_onduleur_modele'=>$id_onduleur_modele,'id_onduleur_marque'=>$id_onduleur_marque]);
         return $db->lastInsertId();
     }
     //Si le onduleur avec ces id existe renvoie son id
@@ -59,7 +59,7 @@ class onduleur
             return $results;
         }
         else{
-            return onduleur::addonduleur($db,$id_onduleur_modele,$id_onduleur_modele);
+            return onduleur::addonduleur($db,$id_onduleur_marque,$id_onduleur_modele);
         }
     }
 }

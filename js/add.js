@@ -1,10 +1,16 @@
 'use strict'
 window.addEventListener("DOMContentLoaded",main);
-
+let toastEl;
+let toast;
 function main(){
+    toastEl = document.getElementById("toast-msg");
+    toast = new bootstrap.Toast(toastEl);
+
     definitionselect();
     let form =document.getElementById("installation-form");
-    form.addEventListener("submit",addinstall)
+    form.addEventListener("submit",addinstall);
+
+
 }
 function addinstall(event){
     event.preventDefault();
@@ -12,11 +18,11 @@ function addinstall(event){
         mois_installation: document.getElementById('mois_installation').value,
         an_installation: document.getElementById('an_installation').value,
         nb_panneaux: document.getElementById('nb_panneaux').value,
-        panneau_marque: $('#id_panneau_marque').val(),
-        panneau_modele: $('#id_panneau_modele').val(),
+        id_panneau_marque: $('#id_panneau_marque').val(),
+        id_panneau_modele: $('#id_panneau_modele').val(),
         nb_onduleur: document.getElementById('nb_onduleur').value,
-        onduleur_marque: $('#id_onduleur_marque').val(),
-        onduleur_modele: $('#id_onduleur_modele').val(),
+        id_onduleur_marque: $('#id_onduleur_marque').val(),
+        id_onduleur_modele: $('#id_onduleur_modele').val(),
         puissance_crete: document.getElementById('puissance_crete').value,
         surface: document.getElementById('surface').value,
         orientation: document.getElementById('orientation').value,
@@ -29,7 +35,25 @@ function addinstall(event){
         pente: document.getElementById('pente').value,
         pente_optimum: document.getElementById('pente_optimum').value
     };
-    console.log(formData);
+    console.log(encodeFormData(formData));
+    ajaxRequest2('POST',"../php/request.php/admin",affichetoast,encodeFormData(formData))
+}
+function affichetoast(message, status){
+    toastEl.classList.remove("bg-success", "bg-danger");
+    if(status===201 || status===200){
+        toastEl.classList.add("bg-success");
+        toastEl.querySelector(".toast-body").textContent = message;
+    }
+    else{
+        toastEl.classList.add("bg-danger");
+        toastEl.querySelector(".toast-body").textContent = "Erreur ajout";
+    }
+    toast.show();
+}
+function encodeFormData(data) {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+        .join('&');
 }
 function definitionselect(){
     $('#id_installateur').select2({
