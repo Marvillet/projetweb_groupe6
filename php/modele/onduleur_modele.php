@@ -62,4 +62,14 @@ class onduleur
             return onduleur::addonduleur($db,$id_onduleur_marque,$id_onduleur_modele);
         }
     }
+    static function addMarqueOnduleur($db,$marque){
+        $stmt = $db->prepare("INSERT INTO onduleur_marque (onduleur_marque)
+                                VALUES ( :marque);");
+        return $stmt->execute(['marque'=>$marque]);
+    }
+    static function addModeleOnduleur($db,$modele)
+    {
+        $stmt = $db->prepare("INSERT INTO onduleur_modele (onduleur_modele) VALUES ( :modele);");
+        $stmt->execute(['modele'=>$modele]);
+    }
 }

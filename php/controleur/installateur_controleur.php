@@ -33,8 +33,7 @@ function GestionDemande($db, $method, $id, $data)
                 echo json_encode('Echec ajout d\'un installateur');
                 return;
             }
-
-        //seule la methode Get est autorisé pour les statistiques
+            break;
         default:
             http_response_code(405);
             echo json_encode(["error" => "Methode non autorisee"]);

@@ -24,10 +24,37 @@ function GestionDemande($db, $method, $demande, $data)
                         $result = onduleur::modeleOnd($db);
                     }
                     break;
-
+                default:
+                    break;
             }
             break;
-        //seule la methode Get est autorisé pour les statistiques
+        case 'POST':
+            if ($demande=="marque" && isset($data['marque'])) {
+                if(onduleur::addMarqueOnduleur($db, $data['marque'])) {
+                    http_response_code(201);
+                    echo json_encode('Marque onduleur bien ajoute');
+                    return;
+                }
+                else{
+                    http_response_code(400);
+                    echo json_encode('Echec ajout d\'une marque Onduleur');
+                    return;
+                }
+            }
+            if ($demande=="modele" && isset($data['modele'])) {
+                if(onduleur::addModeleOnduleur($db, $data['modele'])) {
+                    http_response_code(201);
+                    echo json_encode('Modele onduleur bien ajoute');
+                    return;
+                }
+                else{
+                    http_response_code(400);
+                    echo json_encode('Echec ajout d\'un modele Onduleur');
+                    return;
+                }
+            }
+
+            break;
         default:
             header('HTTP/1.1 405 Method Not Allowed');
             echo json_encode(["error" => "Méthode non autorisee"]);
