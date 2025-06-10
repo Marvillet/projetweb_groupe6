@@ -34,7 +34,7 @@ function GestionDemande($db,$method, $id, $data)
             }
             break;
         case 'PUT':
-            error_log("probleme")
+            error_log("probleme");
             if ($id != NULL && is_array($data)) { // Check if $data is an array (from JSON)
 
                 if (isset($data['mois_installation']) && isset($data['an_installation'])) {
