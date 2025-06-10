@@ -1,6 +1,6 @@
-# 🌞 Projet Web Photovoltaïque — CIR2 2025
+#  Projet Web Photovoltaïque — CIR2 2025
 
-## 🎯 Objectif
+##  Objectif
 
 Ce projet a pour but de concevoir et développer une application web de **gestion des installations photovoltaïques** chez les particuliers.  
 L'application permet de :
@@ -11,7 +11,7 @@ L'application permet de :
 
 ---
 
-## 🧱 Structure du Projet
+##  Structure du Projet
 
 ### Front-end (HTML/CSS/JS)
 - Accueil avec statistiques globales

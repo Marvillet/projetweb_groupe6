@@ -95,7 +95,7 @@
                     </label>
                 </li>
                 <li class="list-group-item">
-                    <label>Puissance crête (kWc) :
+                    <label>Puissance crête (Wc) :
                         <input type="number" step="0.1" class="form-control" id="puissance_crete" required>
                     </label>
                 </li>
