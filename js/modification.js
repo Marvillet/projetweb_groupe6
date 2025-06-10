@@ -104,12 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
 
-        ajaxRequest2("PUT", `../php/request.php/admin/${id}`, function (response, status) {
+        ajaxRequest2("PUT", `../php/request.php/admin/`, function (response, status) {
             if (status === 200) {
                 alert("Installation modifiée avec succès !");
                 window.location.href = "../back/admin.php";
             } else {
-                alert("Erreur lors de la modification.");
+                alert("Erreur lors de la modification !");
                 console.error("Réponse serveur : ", response);
             }
         }, finalData);
