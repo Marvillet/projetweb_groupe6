@@ -134,7 +134,7 @@
                 </li>
                 <li class="list-group-item">
                     <label>Installateur :
-                        <input type="text" class="form-select" id="id_installateur" required>
+                        <select class="form-select" id="id_installateur" required ></select>
                     </label>
                 </li>
                 <li class="list-group-item">

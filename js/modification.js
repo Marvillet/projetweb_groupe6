@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ajaxRequest("GET","../php/request.php/onduleur/modele",addModeleO);
     ajaxRequest("GET","../php/request.php/panneau/marque",addMarqueP);
     ajaxRequest("GET","../php/request.php/panneau/modele",addModeleP);
+    ajaxRequest("GET","../php/request.php/installateur",addInstallateur);
+    ajaxRequest("GET","../php/request.php/lieu/commune",addComm);
     const id = new URLSearchParams(window.location.search).get("id");
     if (!id) return;
 
@@ -111,24 +113,38 @@ document.addEventListener("DOMContentLoaded", () => {
 function addMarqueP(data){
     const select = document.getElementById('id_panneau_marque');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.panneau_marque}</option>`;
+        select.innerHTML += `<option value="${dat.id_panneau_marque}">${dat.panneau_marque}</option>`;
     });
 }
 function addModeleP(data){
     const select = document.getElementById('id_panneau_modele');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.panneau_modele}</option>`;
+        select.innerHTML += `<option value="${dat.id_panneau_modele}">${dat.panneau_modele}</option>`;
     });
 }
 function addMarqueO(data){
     const select = document.getElementById('id_onduleur_marque');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.onduleur_marque}</option>`;
+        select.innerHTML += `<option value="${dat.id_onduleur_marque}">${dat.onduleur_marque}</option>`;
     });
 }
 function addModeleO(data){
     const select = document.getElementById('id_onduleur_modele');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.onduleur_modele}</option>`;
+        select.innerHTML += `<option value="${dat.id_onduleur_modele}">${dat.onduleur_modele}</option>`;
+    });
+}
+
+function addInstallateur(data){
+    const select = document.getElementById('id_installateur');
+    data.forEach(dat => {
+        select.innerHTML += `<option value="${dat.id_installateur}">${dat.installateurs}</option>`;
+    });
+}
+
+function addComm(data){
+    const select = document.getElementById('code_insee');
+    data.forEach(dat => {
+        select.innerHTML += `<option value="${dat.code_insee}">${dat.nom_standard}</option>`;
     });
 }

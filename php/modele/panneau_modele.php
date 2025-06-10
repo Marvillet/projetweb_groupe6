@@ -60,4 +60,14 @@ class panneau
             return panneau::addPanneau($db,$id_panneau_marque,$id_panneau_modele);
         }
     }
+    static function addMarquePanneau($db,$marque){
+        $stmt = $db->prepare("INSERT INTO panneaux_marque (panneau_marque)
+                                VALUES ( :marque);");
+        return $stmt->execute(['marque'=>$marque]);
+    }
+    static function addModelePanneau($db,$modele)
+    {
+        $stmt = $db->prepare("INSERT INTO panneaux_modele (panneau_modele) VALUES ( :modele);");
+        return $stmt->execute(['modele'=>$modele]);
+    }
 }

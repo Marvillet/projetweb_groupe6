@@ -70,6 +70,6 @@ class onduleur
     static function addModeleOnduleur($db,$modele)
     {
         $stmt = $db->prepare("INSERT INTO onduleur_modele (onduleur_modele) VALUES ( :modele);");
-        $stmt->execute(['modele'=>$modele]);
+        return $stmt->execute(['modele'=>$modele]);
     }
 }
