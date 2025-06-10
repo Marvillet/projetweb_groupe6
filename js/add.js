@@ -1,13 +1,12 @@
 'use strict'
-window.addEventListener("DOMContentLoaded", main);
+window.addEventListener("DOMContentLoaded",main);
 
-function main() {
+function main(){
     definitionselect();
-    let form = document.getElementById("installation-form");
-    form.addEventListener("submit", addinstall)
+    let form =document.getElementById("installation-form");
+    form.addEventListener("submit",addinstall)
 }
-
-function addinstall(event) {
+function addinstall(event){
     event.preventDefault();
     const formData = {
         mois_installation: document.getElementById('mois_installation').value,
@@ -32,216 +31,193 @@ function addinstall(event) {
     };
     console.log(formData);
 }
-
-function definitionselect() {
+function definitionselect(){
     $('#id_installateur').select2({
-        width: '100%',
+        //Z index à mettre par dessus le modal pour pouvoir voir les options
+        width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher un installateur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = '../php/request.php/installateur';
                 } else {
                     url = `../php/request.php/installateur?filtre=${encodeURIComponent(query)}`;
+
                 }
 
                 ajaxRequest('GET', url, function (response) {
+
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_installateur,
-                        text: item.installateurs
+                        id: item.id_installateur, //id de l'option
+                        text: item.installateurs //text afficher
                     }));
+                    console.log(formattedResults);
                     success({
                         results: formattedResults
-                    });
-                }, failure); // Pass failure callback to ajaxRequest
-            },
-            cache: true // Important for performance
-        },
-        // ** Crucial part for displaying selected value **
-        templateSelection: function (data) {
-            // If data has 'text' property, use it. This is for results from AJAX.
-            if (data.text) {
-                return data.text;
+                    })
+
+                })
             }
-            // If data has 'id' but no 'text' (e.g., pre-existing value loaded from DB)
-            // you might need to fetch the text, or assume it's already there from initial option load.
-            // For pre-existing values, we'll manually add the option in modification.js
-            return data.id; // Fallback to ID if text isn't directly available yet
-        },
-        templateResult: function (data) {
-            return data.text;
         }
     });
-
-    // You will need to apply similar templateSelection and templateResult logic
-    // to your other Select2 instances (code_insee, id_panneau_marque, etc.)
-    // if you encounter the same issue with them.
-
     $('#code_insee').select2({
-        width: '100%',
+        width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher une commune",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = '../php/request.php/lieu/commune';
                 } else {
                     url = `../php/request.php/lieu/commune?commune=${encodeURIComponent(query)}`;
+
                 }
 
                 ajaxRequest('GET', url, function (response) {
+
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.code_insee,
-                        text: item.nom_standard + "( " + item.code_postal + " )"
+                        id: item.code_insee, //id de l'option
+                        text: item.nom_standard+"( "+item.code_postal+" )" //text afficher
                     }));
+                    console.log(formattedResults);
                     success({
                         results: formattedResults
-                    });
-                }, failure);
-            },
-            cache: true
-        },
-        templateSelection: function (data) {
-            return data.text || data.id;
-        },
-        templateResult: function (data) {
-            return data.text;
+                    })
+
+                })
+            }
         }
     });
-
     $('#id_panneau_marque').select2({
-        width: '100%',
-        placeholder: "Rechercher une marque de panneau", // Corrected placeholder
+        width: '100%', //Forcer à occuper toute la largeur du parent
+        placeholder: "Rechercher un installateur",
         dropdownPosition: 'below',
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = '../php/request.php/panneau/marque';
                 } else {
                     url = `../php/request.php/panneau/marque?marque=${encodeURIComponent(query)}`;
+
                 }
 
                 ajaxRequest('GET', url, function (response) {
+
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_panneau_marque,
-                        text: item.panneau_marque
+                        id: item.id_panneau_marque, //id de l'option
+                        text: item.panneau_marque //text afficher
                     }));
+                    console.log(formattedResults);
                     success({
                         results: formattedResults
-                    });
-                }, failure);
-            },
-            cache: true
-        },
-        templateSelection: function (data) {
-            return data.text || data.id;
-        },
-        templateResult: function (data) {
-            return data.text;
+                    })
+
+                })
+            }
         }
     });
-
     $('#id_panneau_modele').select2({
-        width: '100%',
-        placeholder: "Rechercher un modèle de panneau", // Corrected placeholder
+        width: '100%', //Forcer à occuper toute la largeur du parent
+        placeholder: "Rechercher un installateur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = '../php/request.php/panneau/modele';
                 } else {
                     url = `../php/request.php/panneau/modele?modele=${encodeURIComponent(query)}`;
+
                 }
 
                 ajaxRequest('GET', url, function (response) {
+
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_panneau_modele,
-                        text: item.panneau_modele
+                        id: item.id_panneau_modele, //id de l'option
+                        text: item.panneau_modele //text afficher
                     }));
+                    console.log(formattedResults);
                     success({
                         results: formattedResults
-                    });
-                }, failure);
-            },
-            cache: true
-        },
-        templateSelection: function (data) {
-            return data.text || data.id;
-        },
-        templateResult: function (data) {
-            return data.text;
+                    })
+
+                })
+            }
         }
     });
-
     $('#id_onduleur_marque').select2({
-        width: '100%',
-        placeholder: "Rechercher une marque d'onduleur", // Corrected placeholder
+        width: '100%', //Forcer à occuper toute la largeur du parent
+        placeholder: "Rechercher un installateur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = '../php/request.php/onduleur/marque';
                 } else {
                     url = `../php/request.php/onduleur/marque?marque=${encodeURIComponent(query)}`;
+
                 }
 
                 ajaxRequest('GET', url, function (response) {
+
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_onduleur_marque,
-                        text: item.onduleur_marque
+                        id: item.id_onduleur_marque, //id de l'option
+                        text: item.onduleur_marque //text afficher
                     }));
+                    console.log(formattedResults);
                     success({
                         results: formattedResults
-                    });
-                }, failure);
-            },
-            cache: true
-        },
-        templateSelection: function (data) {
-            return data.text || data.id;
-        },
-        templateResult: function (data) {
-            return data.text;
+                    })
+
+                })
+            }
         }
     });
-
     $('#id_onduleur_modele').select2({
-        width: '100%',
-        placeholder: "Rechercher un modèle d'onduleur", // Corrected placeholder
+        width: '100%', //Forcer à occuper toute la largeur du parent
+        placeholder: "Rechercher un installateur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';
+                const query = params.data.term || '';//récupère le texte
                 let url = "";
+                //l'url change en fonction de si un texte à commecer à être tapé
                 if (query === '') {
                     url = '../php/request.php/onduleur/modele';
                 } else {
                     url = `../php/request.php/onduleur/modele?modele=${encodeURIComponent(query)}`;
+
                 }
 
                 ajaxRequest('GET', url, function (response) {
+
+                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_onduleur_modele,
-                        text: item.onduleur_modele
+                        id: item.id_onduleur_modele, //id de l'option
+                        text: item.onduleur_modele //text afficher
                     }));
+                    console.log(formattedResults);
                     success({
                         results: formattedResults
-                    });
-                }, failure);
-            },
-            cache: true
-        },
-        templateSelection: function (data) {
-            return data.text || data.id;
-        },
-        templateResult: function (data) {
-            return data.text;
+                    })
+
+                })
+            }
         }
     });
 }
