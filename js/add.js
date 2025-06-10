@@ -50,11 +50,6 @@ function affichetoast(message, status){
     }
     toast.show();
 }
-function encodeFormData(data) {
-    return Object.keys(data)
-        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-        .join('&');
-}
 function definitionselect(){
     $('#id_installateur').select2({
         //Z index à mettre par dessus le modal pour pouvoir voir les options

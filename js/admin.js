@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded",main);
+let toast;
 function main(){
     const currentPage = window.location.pathname.split("/").pop();
 
@@ -9,7 +10,7 @@ function main(){
         }
     });
 
-    const url = "../php/request.php/admin";
+    const urlrecherche = "../php/request.php/admin";
 
     const tbody = document.getElementById("installations-body");
     const modalEl = document.getElementById("installationModal");
@@ -19,56 +20,66 @@ function main(){
     //fenetre pop qui demande les infos
     const modal = new bootstrap.Modal(modalEl);
     //petite notif en bas de l'image
-    const toast = new bootstrap.Toast(toastEl);
+    toast = new bootstrap.Toast(toastEl);
 
     document.getElementById("btn-add").addEventListener("click", () => {
         form.reset();//on vide le formulaire
-        document.getElementById("install-id").value = "";
-        //$('#installateur-name').val(null).trigger('change');
         modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
         modal.show();
     });
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const data = {
-            id: document.getElementById("install-id").value,
-            //installateur: document.getElementById("installateur-name").value,
-            puissance: parseFloat(document.getElementById("install-power").value),
-            annee: parseInt(document.getElementById("install-year").value),
-            mois: document.getElementById("install-mois").value,
-            commune: document.getElementById("install-commune").value,
-            codePostal: document.getElementById("codePostal").value,
-            lat: parseFloat(document.getElementById("install-lat").value),
-            lon: parseFloat(document.getElementById("install-lon").value),
-            nbPanneaux: parseInt(document.getElementById("nbPanneaux").value),
-            marquePanneaux: document.getElementById("install-marquePanneaux").value,
-            modelePanneaux: document.getElementById("install-modelePanneaux").value,
-            nbOnduleur: parseInt(document.getElementById("nbOnduleur").value),
-            marqueOnduleur: document.getElementById("install-marqueOnduleur").value,
-            modeleOnduleur: document.getElementById("install-modeleOnduleur").value,
-            surface: parseFloat(document.getElementById("install-surface").value),
-            pente: document.getElementById("install-Pente").value,
-            orientation: document.getElementById("install-orientation").value,
-            orientationOpt: document.getElementById("install-orientationOpt").value,
-            pvgis: parseInt(document.getElementById("install-pvgis").value)
-        };
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let choix = document.getElementById("choix");
+        let denomination = document.getElementById("denomination").value;
+        let url2 = "";
+        let msg = "";
+        let data="";
+        switch (parseInt(choix.value)) {
+            case 1:
+                msg = "Installateur";
+                url2 = "../php/request.php/installateur";
+                data="installateur";
+                //console.log("test request 1 " + url2);
+                break;
+            case 2:
+                msg = "Modele de Panneau";
+                url2 = "../php/request.php/panneau/modele";
+                data="modele";
+                break;
+            case 3:
+                msg = "Marque de Panneau";
+                url2 = "../php/request.php/panneau/marque";
+                data="marque";
+                break;
+            case 4:
+                msg = "Modele de Onduleur";
+                url2 = "../php/request.php/onduleur/modele";
+                data="modele";
+                break;
+            case 5:
+                msg = "Modele de Onduleur";
+                url2 = "../php/request.php/onduleur/marque";
+                data="marque";
+                break;
+        }
+        //console.log("test request 2 " + url2);
         // Appel AJAX personnalisé
-        ajaxRequest("POST", "../php/request.php/admin"+data, (response) => {
-
-            // afficher toast succès
-            affichetoast("Installation ajoutée avec succès");
-
-            // Réinitialiser et fermer le modal
-            form.reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById("installationModal"));
-            modal.hide();
-        });
-    });
-    ajaxRequest('GET',url,addlignes);//on affiche les 100 dernières installations installées
+        ajaxRequest2("POST", url2, (json, code) => { add(json,code,msg,toastEl)}, data+"=" + denomination);
+    })
+    ajaxRequest('GET',urlrecherche,addlignes);//on affiche les 100 dernières installations installées
 }
-
+function add(json,code,msg,toastEl){
+    if(code===200 || code===201){
+        affichetoast(toastEl,msg+" reussie")
+        ajaxRequest('GET',"../php/request.php/admin",addlignes);//on affiche les 100 dernières installations installées
+    }
+    else{
+        affichetoast(toastEl,"Echec de l'ajoue de "+msg, true)
+    }
+    const modal = bootstrap.Modal.getInstance(document.getElementById("installationModal"));
+    modal.hide();
+}
 function addlignes(rows){
     let tbody=document.getElementById("resultat");
     tbody.innerHTML = "";
