@@ -56,20 +56,23 @@ function GestionDemande($db,$method, $id, $data)
             }
             break;
         case 'PUT':
-            error_log("probleme");
-            if ($id != NULL && is_array($data)) { // Check if $data is an array (from JSON)
-
+            error_log("Données reçues pour PUT: " . print_r($data, true));
+            if ($id != NULL && is_array($data)) {
                 if (isset($data['mois_installation']) && isset($data['an_installation'])) {
-                    installation::update($db, $id, $data); // Correct order of parameters
-                    http_response_code(200); // Success
-                    echo json_encode(["message" => "Modification réussie !"]);
-                } else {
-                    http_response_code(400); // Bad Request
-                    echo json_encode(["error" => "Données manquantes ou incorrectes pour la modification."]);
+                    error_log("Tentative de mise à jour de l'installation $id");
+                    $result = installation::update($db, $id, $data);
+                    if ($result) {
+                        http_response_code(200);
+                        echo json_encode(["message" => "Modification réussie !"]);
+                    } else {
+                        http_response_code(500);
+                        echo json_encode(["error" => "Échec de la mise à jour"]);
+                    }
                 }
-            } else {
-                http_response_code(400); // Bad Request
-                echo json_encode(["error" => "ID d'installation manquant ou format de données invalide."]);
+                else {
+                    http_response_code(400); // Bad Request
+                    echo json_encode(["error" => "ID d'installation manquant ou format de données invalide."]);
+                }
             }
             break;
             /*

@@ -161,56 +161,41 @@ class installation
     }
 
 // Modification installation
-    static function update($db,$id,$data){
+    static function update($db, $id, $data) {
         $stmt = $db->prepare("UPDATE installation SET
         mois_installation = :mois,
         an_installation = :annee,
         nb_panneaux = :nb_panneaux,
-        marque_panneaux = :marque_p,
-        modele_panneaux = :modele_p,
-        nb_onduleurs = :nb_onduleurs,
-        marque_onduleur = :marque_o,
-        modele_onduleur = :modele_o,
-        puissance_crete = :puissance,
         surface = :surface,
-        pente = :pente,
+        puissance_crete = :puissance,
         orientation = :orientation,
-        orientation_opt = :orientation_opt,
-        installateur = :installateur,
-        pvgis = :pvgis,
-        latitude = :lat,
-        longitude = :lon,
-        pays = :pays,
-        code_postal = :cp,
-        localite = :localite,
-        region = :region,
-        departement = :departement
-        WHERE id = :id
-    ");
+        lat = :lat,
+        lon = :lon,
+        code_insee = :code_insee,
+        id_installateur = :id_installateur,
+        nb_onduleur = :nb_onduleur,
+        pente = :pente,
+        puissance_pvgis = :puissance_pvgis,
+        pente_optimum = :pente_optimum,
+        orientation_optimum = :orientation_optimum
+        WHERE id = :id");
 
         $stmt->execute([
             ':mois' => $data['mois_installation'],
             ':annee' => $data['an_installation'],
             ':nb_panneaux' => $data['nb_panneaux'],
-            ':marque_p' => $data['marque_panneaux'],
-            ':modele_p' => $data['modele_panneaux'],
-            ':nb_onduleurs' => $data['nb_onduleurs'],
-            ':marque_o' => $data['marque_onduleur'],
-            ':modele_o' => $data['modele_onduleur'],
-            ':puissance' => $data['puissance_crete'],
             ':surface' => $data['surface'],
-            ':pente' => $data['pente'],
+            ':puissance' => $data['puissance_crete'],
             ':orientation' => $data['orientation'],
-            ':orientation_opt' => $data['orientation_opt'],
-            ':installateur' => $data['installateur'],
-            ':pvgis' => $data['pvgis'],
-            ':lat' => $data['latitude'],
-            ':lon' => $data['longitude'],
-            ':pays' => $data['pays'],
-            ':cp' => $data['code_postal'],
-            ':localite' => $data['localite'],
-            ':region' => $data['region'],
-            ':departement' => $data['departement'],
+            ':lat' => $data['lat'],
+            ':lon' => $data['lon'],
+            ':code_insee' => $data['code_insee'],
+            ':id_installateur' => $data['id_installateur'],
+            ':nb_onduleur' => $data['nb_onduleur'],
+            ':pente' => $data['pente'],
+            ':puissance_pvgis' => $data['puissance_pvgis'],
+            ':pente_optimum' => $data['pente_optimum'],
+            ':orientation_optimum' => $data['orientation_optimum'],
             ':id' => $id
         ]);
     }
