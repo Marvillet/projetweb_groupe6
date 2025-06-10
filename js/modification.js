@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = document.getElementById(inputId); // Select by ID
             if (input && data[dataKey] !== undefined) {
                 input.value = data[dataKey];
-                // For select2 elements, trigger change to update display
                 if ($(input).hasClass('select2-hidden-accessible')) {
                     $(input).trigger('change');
                 }
@@ -108,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, new URLSearchParams(finalData).toString()); // Convert object to URL-encoded string
     });
 });
+
 
 
 function addMarqueP(data){
