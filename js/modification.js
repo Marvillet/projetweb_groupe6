@@ -21,25 +21,32 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const panMa = document.getElementById('id_panneau_marque');
+        const panMo = document.getElementById('id_panneau_modele');
+        const onMa = document.getElementById('id_onduleur_marque');
+        const onMo = document.getElementById('id_onduleur_modele');
+        const insta = document.getElementById('id_installateur');
+        const comm = document.getElementById('code_insee');
+
+        panMa.innerHTML+=`<option value="${data.id_panneau_marque}" selected>${data.panneau_marque}</option>`;
+        panMo.innerHTML+=`<option value="${data.id_panneau_modele}" selected>${data.panneau_modele}</option>`;
+        onMa.innerHTML+=`<option value="${data.id_onduleur_marque}" selected>${data.onduleur_marque}</option>`;
+        onMo.innerHTML+=`<option value="${data.id_onduleur_modele}" selected>${data.onduleur_modele}</option>`;
+        insta.innerHTML+=`<option value="${data.id_installateur}" selected>${data.installateur}</option>`;
+        comm.innerHTML+=`<option value="${data.code_insee}" selected>${data.commune}</option>`;
 
         const mapping = {
             mois_installation: 'mois_installation',
             an_installation: 'an_installation',
             nb_panneaux: 'nb_panneaux',
-            id_panneau_marque: 'panneau_marque',
-            id_panneau_modele: 'panneau_modele',
             nb_onduleur: 'nb_onduleur',
-            id_onduleur_marque: 'onduleur_marque',
-            id_onduleur_modele: 'onduleur_modele',
             puissance_crete: 'puissance_crete',
             surface: 'surface',
             orientation: 'orientation',
             orientation_opt: 'orientation_optimum',
-            id_installateur: 'installateur',
             puissance_pvgis: 'puissance_pvgis',
             lat: 'lat',
             lon: 'lon',
-            code_insee: 'commune',
             pente: 'pente',
             pente_optimum: 'pente_optimum'
         };
@@ -48,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = document.getElementById(inputId); // Select by ID
             if (input && data[dataKey] !== undefined) {
                 input.value = data[dataKey];
-                // For select2 elements, trigger change to update display
                 if ($(input).hasClass('select2-hidden-accessible')) {
                     $(input).trigger('change');
                 }
@@ -108,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, new URLSearchParams(finalData).toString()); // Convert object to URL-encoded string
     });
 });
+
 
 
 function addMarqueP(data){
