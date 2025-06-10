@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const finalData = {
+            id: id,
             mois_installation: data.mois_installation,
             an_installation: data.an_installation,
             nb_panneaux: data.nb_panneaux,
