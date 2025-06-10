@@ -52,3 +52,4 @@ LEFT JOIN commune ON commune.nom_standard=mytable.locality and commune.code_post
 drop table if exists mytable;
 drop table if exists data_commune;
 
+

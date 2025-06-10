@@ -119,32 +119,33 @@ class installation
 
 
 // Insertion d'installation
-    static function insert($db,$data){
+    static function insert($db,$data,$id_panneau,$id_onduleur){
         $stmt = $db->prepare("INSERT INTO installation (mois_installation, an_installation, nb_panneaux, surface, puissance_crete, orientation, lat, lon,
                                 code_insee, id_panneau, id_onduleur, id_installateur, nb_onduleur, pente, puissance_pvgis,
                                 pente_optimum, orientation_optimum)
-                                VALUES (:mois, :annee, :nb, :surface, :pcrete, :orientation, :lat, :lon,
-                                :commune_code, :id_panneau, :id_onduleur, :id_installateur, :nb_onduleur, :pente, :pvgis,
-                                :p_optimum, :orientation_optimum);");
-        $stmt->execute([
-            'mois' => $data['mois'],
-            'annee' => $data['annee'],
-            'nb' => $data['nb_pan'],
+                                VALUES (:mois_installation, :an_installation, :nb_panneaux, :surface, :puissance_crete, :orientation, :lat, :lon,
+                                :code_insee, :id_panneau, :id_onduleur, :id_installateur, :nb_onduleur, :pente, :puissance_pvgis,
+                                :pente_optimum, :orientation_optimum);");
+        $bool=$stmt->execute([
+            'mois_installation' => $data['mois_installation'],
+            'an_installation' => $data['an_installation'],
+            'nb_panneaux' => $data['nb_panneaux'],
             'surface' => $data['surface'],
-            'pcrete' => $data['crete'],
+            'puissance_crete' => $data['puissance_crete'],
             'orientation' => $data['orientation'],
             'lat' => $data['lat'],
             'lon' => $data['lon'],
-            'commune_code' => $data['commune_code'],
-            'id_panneau' => $data['id_panneau'],
-            'id_onduleur' => $data['id_onduleur'],
+            'code_insee' => $data['code_insee'],
+            'id_panneau' => $id_panneau,
+            'id_onduleur' => $id_onduleur,
             'id_installateur' => $data['id_installateur'],
             'nb_onduleur' => $data['nb_onduleur'],
             'pente' => $data['pente'],
-            'pvgis' => $data['pvgis'],
-            'p_optimum' => $data['pente_optimum'],
+            'puissance_pvgis' => $data['puissance_pvgis'],
+            'pente_optimum' => $data['pente_optimum'],
             'orientation_optimum' => $data['orientation_optimum']
         ]);
+        return $bool;
 
     }
 
