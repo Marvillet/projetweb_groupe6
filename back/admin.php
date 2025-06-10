@@ -53,17 +53,18 @@
 </nav>
 
 <main class="container-fluid px-3 px-md-5 mt-4">
+    <div class="d-flex justify-content-center mb-5 bg-gray-200 p-3">
+        <button id="btn-add-installation" type="button" class="btn btn-primary btn-lg btn-block" onclick="document.location='add.php'">
+            Ajouter une installation
+        </button>
+    </div>
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
         <h2 class="h5 mb-0">Liste des dernières installations ajoutées</h2>
         <button id="btn-add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
             Ajouter des instances
         </button>
     </div>
-    <div>
-    <button id="btn-add-installation" type="button" class="btn btn-primary" >
-        Ajouter une installation
-    </button>
-    </div>
+
 
     <div class="table-responsive shadow-sm rounded bg-white">
         <table class="table table-hover align-middle mb-0">

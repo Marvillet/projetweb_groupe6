@@ -21,10 +21,13 @@ function main(){
     const modal = new bootstrap.Modal(modalEl);
     //petite notif en bas de l'image
     toast = new bootstrap.Toast(toastEl);
-
+    document.getElementById("choix").addEventListener("change",(event)=>{
+        console.log(event.target)
+        modalEl.querySelector(".modal-title").textContent = "Ajouter "+event.target.selected;
+    })
     document.getElementById("btn-add").addEventListener("click", () => {
         form.reset();//on vide le formulaire
-        modalEl.querySelector(".modal-title").textContent = "Ajouter une installation";
+        modalEl.querySelector(".modal-title").textContent = "Ajouter une instance";
         modal.show();
     });
 

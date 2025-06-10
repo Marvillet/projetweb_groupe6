@@ -42,7 +42,7 @@ function affichetoast(message, status){
     toastEl.classList.remove("bg-success", "bg-danger");
     if(status===201 || status===200){
         toastEl.classList.add("bg-success");
-        toastEl.querySelector(".toast-body").textContent = message;
+        toastEl.querySelector(".toast-body").textContent = "Ajout des datas réussies";
     }
     else{
         toastEl.classList.add("bg-danger");
