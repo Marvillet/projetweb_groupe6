@@ -59,6 +59,11 @@
             Ajouter des instances
         </button>
     </div>
+    <div>
+    <button id="btn-add-installation" type="button" class="btn btn-primary" >
+        Ajouter une installation
+    </button>
+    </div>
 
     <div class="table-responsive shadow-sm rounded bg-white">
         <table class="table table-hover align-middle mb-0">

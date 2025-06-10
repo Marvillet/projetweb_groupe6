@@ -29,8 +29,9 @@
       $data = $_POST;
       break;
     case 'PUT':
+      parse_str(file_get_contents("php://input"),$data);
+      break;
     case 'DELETE':
-      $data = json_decode(file_get_contents("php://input"), true);
       break;
     default:
       //http_response_code(405);
