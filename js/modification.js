@@ -4,6 +4,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = new URLSearchParams(window.location.search).get("id");
     if (!id) return;
 
+    // Function to populate select2 dropdowns
+    // (You might already have these in add.js or ajax.js)
+    function populateSelect2(selector, url, idField, textField, initialValue = null) {
+        $(selector).select2({
+            ajax: {
+                url: url,
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.map(item => ({
+                            id: item[idField],
+                            text: item[textField]
+                        }))
+                    };
+                },
+                cache: true
+            },
+            placeholder: 'Sélectionnez une option',
+            minimumInputLength: 0 // Allow displaying all options on focus if desired
+        });
+
+        // Set initial value if provided
+        if (initialValue) {
+            // Fetch the text for the initial value if not already in the options
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: { id: initialValue } // Assuming your API can fetch by ID
+            }).then(function (data) {
+                if (data && data.length > 0) {
+                    const option = new Option(data[0][textField], data[0][idField], true, true);
+                    $(selector).append(option).trigger('change');
+                }
+            });
+        }
+    }
+
+
     ajaxRequest("GET", `../php/request.php/admin/${id}`, function(data) {
         if (Array.isArray(data) && data.length === 1) {
             data = data[0];
@@ -15,39 +60,139 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Updated mapping to use 'id' attributes from modif.php
         const mapping = {
             mois_installation: 'mois_installation',
             an_installation: 'an_installation',
             nb_panneaux: 'nb_panneaux',
-            id_panneau_marque: 'panneau_marque', // Changed to id_panneau_marque
-            id_panneau_modele: 'panneau_modele', // Changed to id_panneau_modele
-            nb_onduleur: 'nb_onduleur',       // Changed to nb_onduleur
-            id_onduleur_marque: 'onduleur_marque', // Changed to id_onduleur_marque
-            id_onduleur_modele: 'onduleur_modele', // Changed to id_onduleur_modele
+            id_panneau_marque: 'panneau_marque',
+            id_panneau_modele: 'panneau_modele',
+            nb_onduleur: 'nb_onduleur',
+            id_onduleur_marque: 'onduleur_marque',
+            id_onduleur_modele: 'onduleur_modele',
             puissance_crete: 'puissance_crete',
             surface: 'surface',
             orientation: 'orientation',
             orientation_opt: 'orientation_optimum',
-            id_installateur: 'installateur',    // Changed to id_installateur
+            id_installateur: 'installateur',
             puissance_pvgis: 'puissance_pvgis',
-            lat: 'lat',                       // Changed to lat
-            lon: 'lon',                       // Changed to lon
-            code_insee: 'commune',          // Changed to code_insee (assuming 'commune' from data maps to this select)
+            lat: 'lat',
+            lon: 'lon',
+            code_insee: 'commune', // Assuming 'commune' from data maps to code_insee
             pente: 'pente',
-            pente_optimum: 'pente_optimum'    // Changed to pente_optimum
+            pente_optimum: 'pente_optimum'
         };
 
+        // Populate standard input fields
         for (const [inputId, dataKey] of Object.entries(mapping)) {
-            const input = document.getElementById(inputId); // Select by ID
+            const input = document.getElementById(inputId);
             if (input && data[dataKey] !== undefined) {
-                input.value = data[dataKey];
-                // For select2 elements, trigger change to update display
-                if ($(input).hasClass('select2-hidden-accessible')) {
-                    $(input).trigger('change');
+                if (!$(input).hasClass('select2-hidden-accessible')) { // Only set value for non-select2
+                    input.value = data[dataKey];
                 }
             }
         }
+
+        // --- Handle Select2 fields specifically after data is fetched ---
+
+        // Example for id_panneau_marque (adjust URLs and fields as per your backend)
+        if (data.panneau_marque) {
+            populateSelect2(
+                '#id_panneau_marque',
+                '../php/request.php/marques_panneaux', // Example URL for panel brands
+                'id_marque_panneau', // Field in your API response that is the ID
+                'nom_marque_panneau', // Field in your API response that is the name
+                data.panneau_marque
+            );
+        } else {
+            populateSelect2(
+                '#id_panneau_marque',
+                '../php/request.php/marques_panneaux',
+                'id_marque_panneau',
+                'nom_marque_panneau'
+            );
+        }
+
+
+        // Example for id_panneau_modele (will depend on selected brand if linked)
+        // If id_panneau_modele depends on id_panneau_marque, you'll need to
+        // trigger its population after id_panneau_marque is set and potentially after its change.
+        // For now, assuming it can be populated independently with its own value:
+        if (data.panneau_modele) {
+            populateSelect2(
+                '#id_panneau_modele',
+                '../php/request.php/modeles_panneaux', // Example URL for panel models
+                'id_modele_panneau', // Field in your API response that is the ID
+                'nom_modele_panneau', // Field in your API response that is the name
+                data.panneau_modele
+            );
+        } else {
+            populateSelect2(
+                '#id_panneau_modele',
+                '../php/request.php/modeles_panneaux',
+                'id_modele_panneau',
+                'nom_modele_panneau'
+            );
+        }
+
+
+        // Repeat for Onduleur Marque, Onduleur Modele, and code_insee
+        if (data.onduleur_marque) {
+            populateSelect2(
+                '#id_onduleur_marque',
+                '../php/request.php/marques_onduleurs', // Example URL
+                'id_marque_onduleur',
+                'nom_marque_onduleur',
+                data.onduleur_marque
+            );
+        } else {
+            populateSelect2(
+                '#id_onduleur_marque',
+                '../php/request.php/marques_onduleurs',
+                'id_marque_onduleur',
+                'nom_marque_onduleur'
+            );
+        }
+
+        if (data.onduleur_modele) {
+            populateSelect2(
+                '#id_onduleur_modele',
+                '../php/request.php/modeles_onduleurs', // Example URL
+                'id_modele_onduleur',
+                'nom_modele_onduleur',
+                data.onduleur_modele
+            );
+        } else {
+            populateSelect2(
+                '#id_onduleur_modele',
+                '../php/request.php/modeles_onduleurs',
+                'id_modele_onduleur',
+                'nom_modele_onduleur'
+            );
+        }
+
+        if (data.commune) {
+            populateSelect2(
+                '#code_insee',
+                '../php/request.php/communes', // Example URL for communes
+                'code_insee', // Field in your API response that is the ID
+                'nom_commune', // Field in your API response that is the name (e.g., "ville (code_postal)")
+                data.commune
+            );
+        } else {
+            populateSelect2(
+                '#code_insee',
+                '../php/request.php/communes',
+                'code_insee',
+                'nom_commune'
+            );
+        }
+
+        // Special handling for id_installateur if it's a simple text input or a Select2 based on specific data
+        const installateurInput = document.getElementById('id_installateur');
+        if (installateurInput && data.installateur !== undefined) {
+            installateurInput.value = data.installateur;
+        }
+
     });
 });
 
@@ -67,17 +212,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Some fields in the `mapping` object (e.g., id_panneau_marque) might have different keys in the
-        // backend compared to the frontend IDs. Ensure the `data` object sent in the PUT request
-        // uses the keys expected by the backend. Based on your current `mapping`, it seems
-        // the backend expects keys like `panneau_marque`, `panneau_modele`, etc.
-        // You might need to adjust the `data` object to match the backend's expected keys.
-        // For example:
+        // Map frontend IDs to backend expected keys for the PUT request
         const finalData = {
             mois_installation: data.mois_installation,
             an_installation: data.an_installation,
             nb_panneaux: data.nb_panneaux,
-            panneau_marque: data.id_panneau_marque, // Assuming backend expects 'panneau_marque'
+            panneau_marque: data.id_panneau_marque,
             panneau_modele: data.id_panneau_modele,
             nb_onduleur: data.nb_onduleur,
             onduleur_marque: data.id_onduleur_marque,
@@ -90,11 +230,10 @@ document.addEventListener("DOMContentLoaded", () => {
             puissance_pvgis: data.puissance_pvgis,
             lat: data.lat,
             lon: data.lon,
-            commune: data.code_insee, // Assuming backend expects 'commune'
+            commune: data.code_insee, // Assuming backend expects 'commune' for code_insee
             pente: data.pente,
             pente_optimum: data.pente_optimum
         };
-
 
         ajaxRequest2("PUT", `../php/request.php/admin/${id}`, function (response, status) {
             if (status === 200) {
@@ -104,6 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Erreur lors de la modification.");
                 console.error("Réponse serveur : ", response);
             }
-        }, new URLSearchParams(finalData).toString()); // Convert object to URL-encoded string
+        }, new URLSearchParams(finalData).toString());
     });
 });
