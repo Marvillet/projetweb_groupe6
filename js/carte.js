@@ -107,6 +107,16 @@ function remplirDetailsVille(data) {
     detailBtn.href = `detail.html?id=${data[0]['id']}`;
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+        const linkPage = link.getAttribute("href").split("/").pop();
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        }
+    });
+});
 function main() {
 
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee);
