@@ -20,6 +20,20 @@ function GestionDemande($db, $method, $id, $data)
                 }
             }
             break;
+        case 'POST':
+            if(isset($data["installateur"])){
+                if(installateur::addinstallateurs($db,$data["installateur"])){
+                    http_response_code(201);
+                    echo json_encode('Installateur bien ajoute');
+                    return;
+                }
+            }
+            else{
+                http_response_code(400);
+                echo json_encode('Echec ajout d\'un installateur');
+                return;
+            }
+
         //seule la methode Get est autorisé pour les statistiques
         default:
             http_response_code(405);

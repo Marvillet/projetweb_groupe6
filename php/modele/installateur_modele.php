@@ -21,4 +21,10 @@ class installateur
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+    static function addinstallateurs($db,$installateurs){
+        $stmt = $db->prepare("
+            INSERT INTO installateur(installateur)
+            VALUES (:installateur);");
+        return $stmt->execute(['installateur'=>$installateurs]);
+    }
 }

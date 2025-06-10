@@ -57,7 +57,7 @@ class panneau
             return $results;
         }
         else{
-            return panneau::addPanneau($db,$id_panneau_modele,$id_panneau_modele);
+            return panneau::addPanneau($db,$id_panneau_marque,$id_panneau_modele);
         }
     }
 }

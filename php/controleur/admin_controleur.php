@@ -40,10 +40,11 @@ function GestionDemande($db,$method, $id, $data)
                     $id_onduleur = onduleur::findOnduleur($db, $data['id_onduleur_marque'], $data['id_onduleur_modele']);
                     installation::insert($db, $data, $id_panneau, $id_onduleur);
                     http_response_code(201);
-                    return;
+                    $result="Ajout des datas Valider";
             }
             else{
                 error_log("Tentative POST mais toutes les datas ne sont pas défini");
+                error_log(print_r($data,true));
             }
             break;
         case 'DELETE':
