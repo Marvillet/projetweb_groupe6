@@ -19,7 +19,7 @@ function GestionDemande($db, $method, $demande, $data)
                 case 'commune':
                     //si une marque à commencé à être taper
                     if (isset($data['commune'])) {
-                        $result = lieu::CommuneFiltre($db, $data['dep']);
+                        $result = lieu::CommuneFiltre($db, $data['commune']);
                     } else {
                         //sinon 20 marques hazard
                         $result = lieu::recupCommune($db);

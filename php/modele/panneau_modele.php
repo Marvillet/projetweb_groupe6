@@ -20,4 +20,22 @@ class panneau
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+    // Marque panneau
+    static function modelePan($db){
+        $stmt = $db->prepare("SELECT id_panneau_modele,panneau_modele FROM panneaux_modele ORDER BY RAND() LIMIT 20;");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+//Récupère 20 marques de panneau commençant par $text
+    static function modeleFiltre($db,$text){
+        $stmt = $db->prepare("
+        SELECT id_panneau_modele,panneau_modele FROM panneaux_modele
+        WHERE LOWER(panneau_modele) LIKE LOWER(:term) 
+        LIMIT 20;
+    ");
+        $stmt->execute(['term'=>'%'.$text.'%']);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
 }
