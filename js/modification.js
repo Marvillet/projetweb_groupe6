@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
         panMo.innerHTML+=`<option value="${data.id_panneau_modele}" selected>${data.panneau_modele}</option>`;
         onMa.innerHTML+=`<option value="${data.id_onduleur_marque}" selected>${data.onduleur_marque}</option>`;
         onMo.innerHTML+=`<option value="${data.id_onduleur_modele}" selected>${data.onduleur_modele}</option>`;
-        insta.innerHTML+=`<option value="${data.id_installateur}" selected>${data.installateurs}</option>`;
-        comm.innerHTML+=`<option value="${data.code_insee}" selected>${data.nom_standard}</option>`;
+        insta.innerHTML+=`<option value="${data.id_installateur}" selected>${data.installateur}</option>`;
+        comm.innerHTML+=`<option value="${data.code_insee}" selected>${data.commune}</option>`;
 
         const mapping = {
             mois_installation: 'mois_installation',
