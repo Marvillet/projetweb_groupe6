@@ -1,6 +1,6 @@
-# 🌞 Projet Web Photovoltaïque — CIR2 2025
+#  Projet Web Photovoltaïque — CIR2 2025
 
-## 🎯 Objectif
+##  Objectif
 
 Ce projet a pour but de concevoir et développer une application web de **gestion des installations photovoltaïques** chez les particuliers.  
 L'application permet de :
@@ -11,7 +11,7 @@ L'application permet de :
 
 ---
 
-## 🧱 Structure du Projet
+##  Structure du Projet
 
 ### Front-end (HTML/CSS/JS)
 - Accueil avec statistiques globales
@@ -73,13 +73,13 @@ L'application permet de :
 
 ## 🔗 API REST
 
-| Méthode | URL               | Description                     |
-|--------|-------------------|----------------------------------|
-| GET    | `/api/installations`   | Liste filtrée                  |
-| GET    | `/api/installation/{id}` | Détail d'une installation     |
-| POST   | `/api/installation`     | Création d'une installation   |
-| PUT    | `/api/installation/{id}`| Modification                  |
-| DELETE | `/api/installation/{id}`| Suppression                   |
+| Méthode| URL                     | Description                |
+|--------|-------------------------|----------------------------|
+| GET    | `/api/installations`    | Liste filtrée              |
+| GET    | `/api/installation/{id}`| Détail d'une installation  |
+| POST   | `/api/installation`     | Création d'une installation|
+| PUT    | `/api/installation/{id}`| Modification               |
+| DELETE | `/api/installation/{id}`| Suppression                |
 
 ---
 
