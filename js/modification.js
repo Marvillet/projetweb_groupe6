@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ajaxRequest("GET","../php/request.php/onduleur/modele",addModeleO);
     ajaxRequest("GET","../php/request.php/panneau/marque",addMarqueP);
     ajaxRequest("GET","../php/request.php/panneau/modele",addModeleP);
-    ajaxRequest("GET","../php/request.php/installateurs",addInstallateur);
+    ajaxRequest("GET","../php/request.php/installateur",addInstallateur);
     ajaxRequest("GET","../php/request.php/lieu/commune",addComm);
     const id = new URLSearchParams(window.location.search).get("id");
     if (!id) return;
