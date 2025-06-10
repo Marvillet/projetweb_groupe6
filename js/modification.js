@@ -1,6 +1,8 @@
 'use strict';
 
 document.addEventListener("DOMContentLoaded", () => {
+    let form =document.getElementById("installation-form");
+    form.addEventListener("submit",addinstall);
     const id = new URLSearchParams(window.location.search).get("id");
     if (!id) return;
 
@@ -107,3 +109,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }, new URLSearchParams(finalData).toString()); // Convert object to URL-encoded string
     });
 });
+
+function addinstall(event){
+    event.preventDefault();
+    const formData = {
+        mois_installation: document.getElementById('mois_installation').value,
+        an_installation: document.getElementById('an_installation').value,
+        nb_panneaux: document.getElementById('nb_panneaux').value,
+        // For standard selects, just use .value
+        panneau_marque: document.getElementById('id_panneau_marque').value,
+        panneau_modele: document.getElementById('id_panneau_modele').value,
+        nb_onduleur: document.getElementById('nb_onduleur').value,
+        onduleur_marque: document.getElementById('id_onduleur_marque').value,
+        onduleur_modele: document.getElementById('id_onduleur_modele').value,
+        puissance_crete: document.getElementById('puissance_crete').value,
+        surface: document.getElementById('surface').value,
+        orientation: document.getElementById('orientation').value,
+        orientation_optimum: document.getElementById('orientation_opt').value,
+        // For standard selects, just use .value
+        id_installateur: document.getElementById('id_installateur').value,
+        puissance_pvgis: document.getElementById('puissance_pvgis').value,
+        lat: document.getElementById('lat').value,
+        lon: document.getElementById('lon').value,
+        // For standard selects, just use .value
+        code_insee: document.getElementById('code_insee').value, // localisation
+        pente: document.getElementById('pente').value,
+        pente_optimum: document.getElementById('pente_optimum').value
+    };
+    console.log(formData);
+}
+
