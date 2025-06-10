@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Erreur lors de la modification.");
                 console.error("Réponse serveur : ", response);
             }
-        }, new URLSearchParams(finalData).toString()); // Convert object to URL-encoded string
+        }, JSON.stringify(finalData));
     });
 });
 
