@@ -28,7 +28,7 @@
 
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <a class="navbar-brand d-flex align-items-center" href="#">
+    <a class="navbar-brand d-flex align-items-center" href="">
         <img src="../images/logo.png" alt="Logo" id="logo" style="height: 40px;" class="me-2">
         <span>ML Photovoltaic</span>
     </a>
