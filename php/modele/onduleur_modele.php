@@ -40,4 +40,26 @@ class onduleur
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+    static function addOnduleur($db,$id_onduleur_marque,$id_onduleur_modele){
+        $stmt = $db->prepare("INSERT INTO onduleur (id_onduleur_marque, id_onduleur_modele)
+                                VALUES (:id_onduleur_modele, :id_onduleur_marque);");
+        $stmt->execute(['id_onduleur_marque'=>$id_onduleur_marque,'id_onduleur_modele'=>$id_onduleur_modele]);
+        return $db->lastInsertId();
+    }
+    //Si le onduleur avec ces id existe renvoie son id
+    //sinon ça le crée
+    static function findOnduleur($db,$id_onduleur_marque,$id_onduleur_modele)
+    {
+        $stmt = $db->prepare("
+            SELECT id_onduleur FROM onduleur
+            WHERE id_onduleur_marque=:id_onduleur_marque AND id_onduleur_modele=:id_onduleur_modele;");
+        $stmt->execute(['id_onduleur_marque'=>$id_onduleur_marque,'id_onduleur_modele'=>$id_onduleur_modele]);
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($results){
+            return $results;
+        }
+        else{
+            return onduleur::addonduleur($db,$id_onduleur_modele,$id_onduleur_modele);
+        }
+    }
 }
