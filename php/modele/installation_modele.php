@@ -162,7 +162,7 @@ class installation
 
 // Modification installation
     static function update($db,$id,$data){
-        $stmt = $db->prepare("UPDATE installations SET
+        $stmt = $db->prepare("UPDATE installation SET
         mois_installation = :mois,
         an_installation = :annee,
         nb_panneaux = :nb_panneaux,
