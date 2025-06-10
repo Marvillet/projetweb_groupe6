@@ -109,24 +109,24 @@ document.addEventListener("DOMContentLoaded", () => {
 function addMarqueP(data){
     const select = document.getElementById('id_panneau_marque');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.marquePanneaux}</option>`;
+        select.innerHTML += `<option value="${dat.id}">${dat.panneau_marque}</option>`;
     });
 }
 function addModeleP(data){
     const select = document.getElementById('id_panneau_modele');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.modelePanneaux}</option>`;
+        select.innerHTML += `<option value="${dat.id}">${dat.panneau_modele}</option>`;
     });
 }
 function addMarqueO(data){
     const select = document.getElementById('id_onduleur_marque');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.marqueOnduleur}</option>`;
+        select.innerHTML += `<option value="${dat.id}">${dat.onduleur_marque}</option>`;
     });
 }
 function addModeleO(data){
     const select = document.getElementById('id_onduleur_modele');
     data.forEach(dat => {
-        select.innerHTML += `<option value="${dat.id}">${dat.modeleOnduleur}</option>`;
+        select.innerHTML += `<option value="${dat.id}">${dat.onduleur_modele}</option>`;
     });
 }
