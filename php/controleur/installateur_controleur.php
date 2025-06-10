@@ -21,8 +21,10 @@ function GestionDemande($db, $method, $id, $data)
             }
             break;
         case 'POST':
+            error_log("Installateur");
             if(isset($data["installateur"])){
                 if(installateur::addinstallateurs($db,$data["installateur"])){
+
                     http_response_code(201);
                     echo json_encode('Installateur bien ajoute');
                     return;

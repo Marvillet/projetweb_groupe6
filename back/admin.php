@@ -56,7 +56,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
         <h2 class="h5 mb-0">Liste des dernières installations ajoutées</h2>
         <button id="btn-add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#installationModal">
-            Ajouter une installation
+            Ajouter des instances
         </button>
     </div>
 
@@ -93,79 +93,21 @@
             </div>
             <form id="installation-form" class="needs-validation" novalidate>
                 <div class="modal-body">
-                    <input type="hidden" id="install-id" />
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
-                            <label for="installateur-name" class="form-label">Installateur</label>
-                            <select class="form-select" id="installateur-name" required ></select>
+                            <label for="choix" class="form-label">Installateur</label>
+                            <select class="form-select form-control" id="choix" required >
+                                <option value="" disabled selected>Choisir quelle instance ajouter</option>
+                                <option value="1">Installateur</option>
+                                <option value="2">Modele de Panneau</option>
+                                <option value="3">Marque de Panneau</option>
+                                <option value="4">Modele d'Onduleur</option>
+                                <option value="5">Marque d'Onduleur</option>
+                            </select>
                         </div>
                         <div class="col-12 col-md-6">
-                            <label for="install-power" class="form-label">Puissance crête</label>
-                            <input type="number" step="0.01" class="form-control" id="install-power" required />
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label for="install-year" class="form-label">Année</label>
-                            <input type="number" class="form-control" id="install-year" min="1990" max="2099" required />
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <label for="install-mois" class="form-label">Mois</label>
-                            <input type="text" class="form-control" id="install-mois" required />
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <label for="install-commune" class="form-label">Commune</label>
-                            <select type="text" class="form-select" id="install-commune" required ></select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-lat" class="form-label">Latitude</label>
-                            <input type="number" step="0.000001" class="form-control" id="install-lat" required />
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-lon" class="form-label">Longitude</label>
-                            <input type="number" step="0.000001" class="form-control" id="install-lon" required />
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <label for="nbPanneaux" class="form-label">Nombre de panneaux</label>
-                            <input type="number" step="1" class="form-control" id="nbPanneaux" required />
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-marquePanneaux" class="form-label">Marque de panneaux</label>
-                            <select class="form-select" id="install-marquePanneaux" required ></select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-modelePanneaux" class="form-label">Modèle des panneaux</label>
-                            <select  class="form-select" id="install-modelePanneaux" required ></select>
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <label for="nbOnduleur" class="form-label">Nombre d'Onduleur</label>
-                            <input type="number" step="1" class="form-control" id="nbOnduleur" required />
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-marqueOnduleur" class="form-label">Marque d'Onduleur</label>
-                            <select class="form-select" id="install-marqueOnduleur" required ></select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-modeleOnduleur" class="form-label">Modèle d'onduleur</label>
-                            <select class="form-select" id="install-modeleOnduleur" required ></select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-surface" class="form-label">Surface</label>
-                            <input type="number" class="form-control" id="install-surface" required />
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-Pente" class="form-label">Pente</label>
-                            <input type="text" class="form-control" id="install-Pente" required />
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-orientation" class="form-label">Orientation</label>
-                            <input type="text" class="form-control" id="install-orientation" required />
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label for="install-orientationOpt" class="form-label">Orientation optimale</label>
-                            <input type="text" class="form-control" id="install-orientationOpt" required />
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <label for="install-pvgis" class="form-label">Production PVGIS</label>
-                            <input type="number" step="1" class="form-control" id="install-pvgis" required />
+                            <label for="denomination" class="form-label">Denomination</label>
+                            <input type="text" class="form-control" id="denomination" required />
                         </div>
                     </div>
                 </div>
