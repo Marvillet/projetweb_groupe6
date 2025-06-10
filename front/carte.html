@@ -118,6 +118,20 @@
             <small>Louis Marvillet / Mathis Brosseau / Mathis Letellier — CIR2</small>
         </div>
     </footer>
+    <script>
+        // Récupérer le chemin actuel du fichier (ex: /front/accueil.html)
+        const currentPath = window.location.pathname.split("/").pop();
+
+        // Récupère tous les liens de la navbar
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            const linkPath = link.getAttribute('href').split("/").pop();
+
+            // Si le lien correspond à la page actuelle, on lui ajoute la classe 'active'
+            if (linkPath === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
