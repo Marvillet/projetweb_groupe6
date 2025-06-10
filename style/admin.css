@@ -201,3 +201,15 @@
     border-bottom: 2px solid #3407ff;
     background-color: #e0f2f7;
 }
+
+#navbar ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.windows:hover {
+    background: radial-gradient(rgb(60, 52, 100), rgb(0, 42, 59));
+}
