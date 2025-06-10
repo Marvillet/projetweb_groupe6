@@ -154,7 +154,7 @@
                 </li>
                 <li class="list-group-item">
                     <label>Localité :
-                        <select type="text" class="form-control" id="code_insee" ></select>
+                        <select type="text" class="form-select" id="code_insee" ></select>
                     </label>
                 </li>
                 <li class="list-group-item">
