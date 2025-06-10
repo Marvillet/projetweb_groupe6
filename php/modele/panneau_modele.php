@@ -38,4 +38,26 @@ class panneau
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+    static function addPanneau($db,$id_panneau_marque,$id_panneau_modele){
+        $stmt = $db->prepare("INSERT INTO panneau (id_panneau_modele, id_panneau_marque)
+                                VALUES (:id_panneau_modele, :id_panneau_marque);");
+        $stmt->execute(['id_panneau_marque'=>$id_panneau_marque,'id_panneau_modele'=>$id_panneau_modele]);
+        return $db->lastInsertId();
+    }
+    //Si le panneau avec ces id existe renvoie son id
+    //sinon ça le crée
+    static function findPanneau($db,$id_panneau_marque,$id_panneau_modele)
+    {
+        $stmt = $db->prepare("
+            SELECT id_panneau FROM panneau
+            WHERE id_panneau_marque=:id_panneau_marque AND id_panneau_modele=:id_panneau_modele;");
+        $stmt->execute(['id_panneau_marque'=>$id_panneau_marque,'id_panneau_modele'=>$id_panneau_modele]);
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($results){
+            return $results;
+        }
+        else{
+            return panneau::addPanneau($db,$id_panneau_modele,$id_panneau_modele);
+        }
+    }
 }
