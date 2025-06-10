@@ -73,13 +73,13 @@ L'application permet de :
 
 ## 🔗 API REST
 
-| Méthode | URL               | Description                     |
-|--------|-------------------|----------------------------------|
-| GET    | `/api/installations`   | Liste filtrée                  |
-| GET    | `/api/installation/{id}` | Détail d'une installation     |
-| POST   | `/api/installation`     | Création d'une installation   |
-| PUT    | `/api/installation/{id}`| Modification                  |
-| DELETE | `/api/installation/{id}`| Suppression                   |
+| Méthode| URL                     | Description                |
+|--------|-------------------------|----------------------------|
+| GET    | `/api/installations`    | Liste filtrée              |
+| GET    | `/api/installation/{id}`| Détail d'une installation  |
+| POST   | `/api/installation`     | Création d'une installation|
+| PUT    | `/api/installation/{id}`| Modification               |
+| DELETE | `/api/installation/{id}`| Suppression                |
 
 ---
 
