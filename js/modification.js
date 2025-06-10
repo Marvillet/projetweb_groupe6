@@ -61,12 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("installation-form");
-    const id = new URLSearchParams(window.location.search).get("id");
-    if (!id) return;
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -115,6 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, encodeFormData(finalData));
     });
 });
+
+
 
 
 
