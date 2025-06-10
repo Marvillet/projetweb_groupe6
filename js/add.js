@@ -1,5 +1,36 @@
 'use strict'
 window.addEventListener("DOMContentLoaded",main);
+
+function main(){
+    definitionselect();
+    let form =document.getElementById("installation-form");
+    form.addEventListener("submit",addinstall)
+}
+function addinstall(event){
+    event.preventDefault();
+    const formData = {
+        mois_installation: document.getElementById('mois_installation').value,
+        an_installation: document.getElementById('an_installation').value,
+        nb_panneaux: document.getElementById('nb_panneaux').value,
+        panneau_marque: $('#id_panneau_marque').val(),
+        panneau_modele: $('#id_panneau_modele').val(),
+        nb_onduleur: document.getElementById('nb_onduleur').value,
+        onduleur_marque: $('#id_onduleur_marque').val(),
+        onduleur_modele: $('#id_onduleur_modele').val(),
+        puissance_crete: document.getElementById('puissance_crete').value,
+        surface: document.getElementById('surface').value,
+        orientation: document.getElementById('orientation').value,
+        orientation_optimum: document.getElementById('orientation_opt').value,
+        id_installateur: $('#id_installateur').val(),
+        puissance_pvgis: document.getElementById('puissance_pvgis').value,
+        lat: document.getElementById('lat').value,
+        lon: document.getElementById('lon').value,
+        code_insee: $('#code_insee').val(), // localisation
+        pente: document.getElementById('pente').value,
+        pente_optimum: document.getElementById('pente_optimum').value
+    };
+    console.log(formData);
+}
 function definitionselect(){
     $('#id_installateur').select2({
         //Z index à mettre par dessus le modal pour pouvoir voir les options
@@ -64,7 +95,7 @@ function definitionselect(){
             }
         }
     });
-    $('#panneau_marque').select2({
+    $('#id_panneau_marque').select2({
         width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher un installateur",
         dropdownPosition: 'below',
@@ -96,7 +127,7 @@ function definitionselect(){
             }
         }
     });
-    $('#panneau_modele').select2({
+    $('#id_panneau_modele').select2({
         width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher un installateur",
         ajax: {
@@ -127,7 +158,7 @@ function definitionselect(){
             }
         }
     });
-    $('#onduleur_marque').select2({
+    $('#id_onduleur_marque').select2({
         width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher un installateur",
         ajax: {
@@ -158,7 +189,7 @@ function definitionselect(){
             }
         }
     });
-    $('#onduleur_modele').select2({
+    $('#id_onduleur_modele').select2({
         width: '100%', //Forcer à occuper toute la largeur du parent
         placeholder: "Rechercher un installateur",
         ajax: {
@@ -189,7 +220,4 @@ function definitionselect(){
             }
         }
     });
-}
-function main(){
-    definitionselect();
 }

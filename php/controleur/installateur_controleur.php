@@ -16,7 +16,7 @@ function GestionDemande($db, $method, $id, $data)
                     $result=installateur::installateurFiltre($db,$data["filtre"]);
                 }
                 else{
-                    $result=installateur::installateur($db);
+                    $result=installateur::installateurs($db);
                 }
             }
             break;
