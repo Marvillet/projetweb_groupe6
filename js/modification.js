@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Erreur lors de la modification.");
                 console.error("Réponse serveur : ", response);
             }
-        }, JSON.stringify(finalData));
+        }, finalData);
     });
 });
 
