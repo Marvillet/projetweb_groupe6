@@ -19,25 +19,48 @@
 
 </head>
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="../images/logo.png" alt="Logo" id="logo" style="height: 40px;" class="me-2">
-            <span>ML Photovoltaic</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav ms-auto gap-2 align-items-center">
-                <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
-                <li class="nav-item"><a class="nav-link" href="recherche.html">Recherche</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Carte</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../back/admin.php" title="Espace admin"><i class="bi bi-person-gear fs-5"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="../images/logo.png" alt="Logo" id="logo" style="height: 40px;" class="me-2">
+        <span>ML Photovoltaic</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto gap-2 align-items-center">
+            <li class="nav-item"><a class="nav-link" href="accueil.html">Accueil</a></li>
+            <li class="nav-item"><a class="nav-link" href="recherche.html">Recherche</a></li>
+            <li class="nav-item"><a class="nav-link" href="carte.html">Carte</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" title="Espace admin"><i class="bi bi-person-gear fs-5"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Script pour activer le lien courant -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname.split("/").pop();
+
+        document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+            const linkPage = link.getAttribute("href").split("/").pop();
+            if (linkPage === currentPage) {
+                link.classList.add("active");
+            }
+        });
+    });
+</script>
+
+<!-- Style (optionnel) -->
+<style>
+    .nav-link.active {
+        color: #1807ff !important;
+        font-weight: bold;
+        border-bottom: 2px solid #3407ff;
+    }
+</style>
     <br>
     <div>
         <form method="GET" action="" class="container mt-4 p-4 border rounded bg-light shadow-sm">
@@ -118,20 +141,5 @@
             <small>Louis Marvillet / Mathis Brosseau / Mathis Letellier — CIR2</small>
         </div>
     </footer>
-    <script>
-        // Récupérer le chemin actuel du fichier (ex: /front/accueil.html)
-        const currentPath = window.location.pathname.split("/").pop();
-
-        // Récupère tous les liens de la navbar
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            const linkPath = link.getAttribute('href').split("/").pop();
-
-            // Si le lien correspond à la page actuelle, on lui ajoute la classe 'active'
-            if (linkPath === currentPath) {
-                link.classList.add('active');
-            }
-        });
-    </script>
-
 </body>
 </html>
