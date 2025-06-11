@@ -1,19 +1,39 @@
+/**
+ * @file installation.js
+ * @brief Script de gestion de l'ajout d'une installation photovoltaïque via un formulaire.
+ */
+
 'use strict'
-window.addEventListener("DOMContentLoaded",main);
-let toastEl;
-let toast;
-function main(){
+
+/**
+ * @brief Écouteur principal exécuté lorsque le DOM est complètement chargé.
+ * Initialise le toast et les menus déroulants.
+ */
+window.addEventListener("DOMContentLoaded", main);
+
+let toastEl;  /**< Élément HTML utilisé pour afficher les messages (toasts). */
+let toast;    /**< Instance de bootstrap.Toast pour afficher les notifications. */
+
+/**
+ * @brief Fonction principale exécutée au chargement de la page.
+ * Initialise le formulaire, les menus déroulants et les toasts.
+ */
+function main() {
     toastEl = document.getElementById("toast-msg");
     toast = new bootstrap.Toast(toastEl);
 
-    definitionselect();
-    let form =document.getElementById("installation-form");
-    form.addEventListener("submit",addinstall);
-
-
+    definitionselect(); // initialise les select2
+    let form = document.getElementById("installation-form");
+    form.addEventListener("submit", addinstall);
 }
-function addinstall(event){
+
+/**
+ * @brief Gère l'envoi du formulaire d'installation.
+ * @param {Event} event L'événement de soumission du formulaire.
+ */
+function addinstall(event) {
     event.preventDefault();
+
     const formData = {
         mois_installation: document.getElementById('mois_installation').value,
         an_installation: document.getElementById('an_installation').value,
@@ -31,211 +51,155 @@ function addinstall(event){
         puissance_pvgis: document.getElementById('puissance_pvgis').value,
         lat: document.getElementById('lat').value,
         lon: document.getElementById('lon').value,
-        code_insee: $('#code_insee').val(), // localisation
+        code_insee: $('#code_insee').val(),
         pente: document.getElementById('pente').value,
         pente_optimum: document.getElementById('pente_optimum').value
     };
+
     console.log(encodeFormData(formData));
-    ajaxRequest2('POST',"../php/request.php/admin",affichetoast,encodeFormData(formData))
+    ajaxRequest2('POST', "../php/request.php/admin", affichetoast, encodeFormData(formData));
 }
-function affichetoast(message, status){
+
+/**
+ * @brief Affiche une notification après la tentative d'ajout des données.
+ * @param {string} message Message retourné (non utilisé).
+ * @param {number} status Code HTTP de la réponse (200/201 = succès, sinon erreur).
+ */
+function affichetoast(message, status) {
     toastEl.classList.remove("bg-success", "bg-danger");
-    if(status===201 || status===200){
+
+    if (status === 201 || status === 200) {
         toastEl.classList.add("bg-success");
         toastEl.querySelector(".toast-body").textContent = "Ajout des datas réussies";
-    }
-    else{
+    } else {
         toastEl.classList.add("bg-danger");
         toastEl.querySelector(".toast-body").textContent = "Erreur ajout";
     }
+
     toast.show();
 }
-function definitionselect(){
+
+/**
+ * @brief Initialise les éléments de formulaire utilisant Select2 avec données dynamiques.
+ * Configure les champs : installateur, commune, panneau (marque/modèle), onduleur (marque/modèle).
+ */
+function definitionselect() {
+    // ========== Installateur ==========
     $('#id_installateur').select2({
-        //Z index à mettre par dessus le modal pour pouvoir voir les options
-        width: '100%', //Forcer à occuper toute la largeur du parent
+        width: '100%',
         placeholder: "Rechercher un installateur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';//récupère le texte
-                let url = "";
-                //l'url change en fonction de si un texte à commecer à être tapé
-                if (query === '') {
-                    url = '../php/request.php/installateur';
-                } else {
-                    url = `../php/request.php/installateur?filtre=${encodeURIComponent(query)}`;
-
-                }
+                const query = params.data.term || '';
+                let url = query === '' ? '../php/request.php/installateur' : `../php/request.php/installateur?filtre=${encodeURIComponent(query)}`;
 
                 ajaxRequest('GET', url, function (response) {
-
-                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_installateur, //id de l'option
-                        text: item.installateurs //text afficher
+                        id: item.id_installateur,
+                        text: item.installateurs
                     }));
-                    console.log(formattedResults);
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });
+
+    // ========== Commune ==========
     $('#code_insee').select2({
-        width: '100%', //Forcer à occuper toute la largeur du parent
+        width: '100%',
         placeholder: "Rechercher une commune",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';//récupère le texte
-                let url = "";
-                //l'url change en fonction de si un texte à commecer à être tapé
-                if (query === '') {
-                    url = '../php/request.php/lieu/commune';
-                } else {
-                    url = `../php/request.php/lieu/commune?commune=${encodeURIComponent(query)}`;
-
-                }
+                const query = params.data.term || '';
+                let url = query === '' ? '../php/request.php/lieu/commune' : `../php/request.php/lieu/commune?commune=${encodeURIComponent(query)}`;
 
                 ajaxRequest('GET', url, function (response) {
-
-                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.code_insee, //id de l'option
-                        text: item.nom_standard+"( "+item.code_postal+" )" //text afficher
+                        id: item.code_insee,
+                        text: `${item.nom_standard} (${item.code_postal})`
                     }));
-                    console.log(formattedResults);
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });
+
+    // ========== Panneau - Marque ==========
     $('#id_panneau_marque').select2({
-        width: '100%', //Forcer à occuper toute la largeur du parent
-        placeholder: "Rechercher un installateur",
-        dropdownPosition: 'below',
+        width: '100%',
+        placeholder: "Rechercher une marque de panneau",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';//récupère le texte
-                let url = "";
-                //l'url change en fonction de si un texte à commecer à être tapé
-                if (query === '') {
-                    url = '../php/request.php/panneau/marque';
-                } else {
-                    url = `../php/request.php/panneau/marque?marque=${encodeURIComponent(query)}`;
-
-                }
+                const query = params.data.term || '';
+                let url = query === '' ? '../php/request.php/panneau/marque' : `../php/request.php/panneau/marque?marque=${encodeURIComponent(query)}`;
 
                 ajaxRequest('GET', url, function (response) {
-
-                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_panneau_marque, //id de l'option
-                        text: item.panneau_marque //text afficher
+                        id: item.id_panneau_marque,
+                        text: item.panneau_marque
                     }));
-                    console.log(formattedResults);
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });
+
+    // ========== Panneau - Modèle ==========
     $('#id_panneau_modele').select2({
-        width: '100%', //Forcer à occuper toute la largeur du parent
-        placeholder: "Rechercher un installateur",
+        width: '100%',
+        placeholder: "Rechercher un modèle de panneau",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';//récupère le texte
-                let url = "";
-                //l'url change en fonction de si un texte à commecer à être tapé
-                if (query === '') {
-                    url = '../php/request.php/panneau/modele';
-                } else {
-                    url = `../php/request.php/panneau/modele?modele=${encodeURIComponent(query)}`;
-
-                }
+                const query = params.data.term || '';
+                let url = query === '' ? '../php/request.php/panneau/modele' : `../php/request.php/panneau/modele?modele=${encodeURIComponent(query)}`;
 
                 ajaxRequest('GET', url, function (response) {
-
-                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_panneau_modele, //id de l'option
-                        text: item.panneau_modele //text afficher
+                        id: item.id_panneau_modele,
+                        text: item.panneau_modele
                     }));
-                    console.log(formattedResults);
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });
+
+    // ========== Onduleur - Marque ==========
     $('#id_onduleur_marque').select2({
-        width: '100%', //Forcer à occuper toute la largeur du parent
-        placeholder: "Rechercher un installateur",
+        width: '100%',
+        placeholder: "Rechercher une marque d'onduleur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';//récupère le texte
-                let url = "";
-                //l'url change en fonction de si un texte à commecer à être tapé
-                if (query === '') {
-                    url = '../php/request.php/onduleur/marque';
-                } else {
-                    url = `../php/request.php/onduleur/marque?marque=${encodeURIComponent(query)}`;
-
-                }
+                const query = params.data.term || '';
+                let url = query === '' ? '../php/request.php/onduleur/marque' : `../php/request.php/onduleur/marque?marque=${encodeURIComponent(query)}`;
 
                 ajaxRequest('GET', url, function (response) {
-
-                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_onduleur_marque, //id de l'option
-                        text: item.onduleur_marque //text afficher
+                        id: item.id_onduleur_marque,
+                        text: item.onduleur_marque
                     }));
-                    console.log(formattedResults);
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });
+
+    // ========== Onduleur - Modèle ==========
     $('#id_onduleur_modele').select2({
-        width: '100%', //Forcer à occuper toute la largeur du parent
-        placeholder: "Rechercher un installateur",
+        width: '100%',
+        placeholder: "Rechercher un modèle d'onduleur",
         ajax: {
             transport: function (params, success, failure) {
-                const query = params.data.term || '';//récupère le texte
-                let url = "";
-                //l'url change en fonction de si un texte à commecer à être tapé
-                if (query === '') {
-                    url = '../php/request.php/onduleur/modele';
-                } else {
-                    url = `../php/request.php/onduleur/modele?modele=${encodeURIComponent(query)}`;
-
-                }
+                const query = params.data.term || '';
+                let url = query === '' ? '../php/request.php/onduleur/modele' : `../php/request.php/onduleur/modele?modele=${encodeURIComponent(query)}`;
 
                 ajaxRequest('GET', url, function (response) {
-
-                    // s'assurer que response est bien un tableau
                     const formattedResults = response.map(item => ({
-                        id: item.id_onduleur_modele, //id de l'option
-                        text: item.onduleur_modele //text afficher
+                        id: item.id_onduleur_modele,
+                        text: item.onduleur_modele
                     }));
-                    console.log(formattedResults);
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });

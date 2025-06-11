@@ -1,23 +1,43 @@
 'use strict';
 
-let map;
-let markersLayer; // Pour regrouper tous les marqueurs
+/** @fileoverview Script de gestion de carte Leaflet, affichage dynamique d'informations
+ * photovoltaïques et interaction avec des filtres AJAX.
+ */
 
+/** @var {L.Map} map - Carte Leaflet principale */
+let map;
+
+/** @var {L.LayerGroup} markersLayer - Groupe de couches pour contenir les marqueurs dynamiques */
+let markersLayer;
+
+/**
+ * Affiche les détails d'une installation photovoltaïque.
+ * @function
+ * @param {string} villeId - ID de la ville sélectionnée.
+ */
 function showInfo(villeId) {
     const info = document.getElementById('info');
     info.style.display = 'block';
 
     console.log("ID de la ville sélectionnée :", villeId);
 
-    // Appelle une requête AJAX pour charger les détails si besoin
+    // Appelle une requête AJAX pour charger les détails
     ajaxRequest('GET', `../php/request.php/installation/${villeId}`, remplirDetailsVille);
 }
 
+/**
+ * Masque la boîte d'information sur l'installation.
+ * @function
+ */
 function hideInfo() {
     const info = document.getElementById('info');
     info.style.display = 'none';
 }
 
+/**
+ * Initialise la carte Leaflet et le fond de carte OpenStreetMap.
+ * @function
+ */
 function initMap() {
     map = L.map('map').setView([46.603354, 1.888334], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -28,20 +48,20 @@ function initMap() {
     markersLayer = L.layerGroup().addTo(map);
 }
 
+/**
+ * Ajoute des marqueurs de coordonnées à la carte.
+ * @function
+ * @param {Object[]} data - Liste des objets contenant les coordonnées et identifiants.
+ */
 function ajoutCoord(data) {
-    // Référence au message
     const messageDiv = document.getElementById('message');
-
-    // Efface tous les anciens marqueurs
     markersLayer.clearLayers();
 
     if (data.length === 0) {
-        // Aucun résultat
         messageDiv.classList.remove('d-none');
         messageDiv.classList.add('d-block');
         return;
     } else {
-        // Résultats trouvés → on masque le message
         messageDiv.classList.add('d-none');
         messageDiv.classList.remove('d-block');
     }
@@ -55,14 +75,15 @@ function ajoutCoord(data) {
         }
     });
 
-    // Zoom automatique si des données sont présentes
     const bounds = L.latLngBounds(data.map(d => [d.lat, d.lon]));
     map.fitBounds(bounds, { padding: [50, 50] });
 }
 
-
-// ==== Remplissage dynamique des <select> ====
-
+/**
+ * Remplit dynamiquement le select des années.
+ * @function
+ * @param {Object[]} annees - Liste d'années à insérer dans le select.
+ */
 function recupAnnee(annees) {
     const an = document.getElementById('annee');
     an.innerHTML = '<option value="">-- Sélectionner --</option>';
@@ -70,7 +91,9 @@ function recupAnnee(annees) {
         an.innerHTML += `<option value="${annee.annee}">${annee.annee}</option>`;
     });
 }
+
 /*
+// Exemple non utilisé : remplir la liste des départements
 function recupDep(departements) {
     const dep = document.getElementById('departement');
     dep.innerHTML = '<option value="">-- Sélectionner --</option>';
@@ -79,8 +102,14 @@ function recupDep(departements) {
     });
 }
 */
+
+/**
+ * Filtre les coordonnées affichées sur la carte selon les filtres année et département.
+ * @function
+ * @param {Event} event - Événement du formulaire (click sur le bouton).
+ */
 function filtrerCoordonnees(event) {
-    event.preventDefault(); // ← important pour empêcher la soumission du formulaire
+    event.preventDefault();
 
     const annee = document.getElementById('annee').value;
     const dep = document.getElementById('departement').value;
@@ -95,21 +124,29 @@ function filtrerCoordonnees(event) {
     ajaxRequest('GET', `../php/request.php/lieu/coord?dep=${dep}&annee=${annee}`, ajoutCoord);
 }
 
+/**
+ * Remplit la section de détails d'une installation photovoltaïque.
+ * @function
+ * @param {Object[]} data - Données détaillées de l'installation sélectionnée.
+ */
 function remplirDetailsVille(data) {
     console.log(data[0]['id'])
     if (!data) return;
+
     document.getElementById('lieu-value').textContent = data[0]['commune'] || "N/A";
     document.getElementById('nbPanneaux-value').textContent = data[0]['nb_panneaux'] || "N/A";
     document.getElementById('surface-value').textContent = data[0]['surface'] + " m²" || "N/A";
     document.getElementById('puissance-value').textContent = data[0]['puissance_crete'] + " kWc" || "N/A";
-    //  Mise à jour du bouton "Fiche détails"
+
     const detailBtn = document.getElementById('detail-btn');
     detailBtn.href = `detail.html?id=${data[0]['id']}`;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-
-});
+/**
+ * Fonction principale appelée au chargement de la page.
+ * Initialise la carte, les filtres et les événements.
+ * @function
+ */
 function main() {
     const currentPage = window.location.pathname.split("/").pop();
 
@@ -121,9 +158,9 @@ function main() {
     });
 
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee);
-    //ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep);
+    // ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep);
 
-    initMap(); // Crée la carte une seule fois
+    initMap();
 
     const bouton = document.getElementById('search');
     if (bouton) {
@@ -131,17 +168,18 @@ function main() {
     } else {
         console.error("Le bouton #search est introuvable !");
     }
+
     $('#departement').select2({
         placeholder: "Rechercher un departement ...",
         ajax: {
             transport: function (params, success, failure) {
                 const query = params.data.term || '';
                 let url = "";
+
                 if (query === '') {
                     url = `../php/request.php/lieu/departement`;
                 } else {
                     url = `../php/request.php/lieu/departement?dep=${encodeURIComponent(query)}`;
-
                 }
 
                 ajaxRequest('GET', url, function (response) {
@@ -150,14 +188,12 @@ function main() {
                         text: item.dep_nom
                     }));
 
-                    success({
-                        results: formattedResults
-                    })
-
-                })
+                    success({ results: formattedResults });
+                });
             }
         }
     });
 }
 
+// Écouteur de chargement de la page
 window.addEventListener("DOMContentLoaded", main);
