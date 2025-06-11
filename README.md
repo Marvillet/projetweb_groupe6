@@ -108,12 +108,12 @@ L'application permet de :
 
 | Méthode | Endpoint                         | Description                                         |
 |--------:|----------------------------------|-----------------------------------------------------|
-|   GET   | `/marque?marque=`                | Recherche par marque (en développement).           |
-|   GET   | `/marque`                        | Liste de toutes les marques.                       |
-|   GET   | `/modele?modele=`                | Recherche par modèle.                              |
-|   GET   | `/modele`                        | Liste de tous les modèles.                         |
-|  POST   | `/marque?marque=`                | Ajout d'une nouvelle marque.                       |
-|  POST   | `/modele?modele=`                | Ajout d’un nouveau modèle.                         |
+|   GET   | `/marque?marque=`                | Recherche par marque.                               |
+|   GET   | `/marque`                        | Liste de 20 marques.                                |
+|   GET   | `/modele?modele=`                | Recherche par modèle.                               |
+|   GET   | `/modele`                        | Liste de 20 modèles.                                |
+|  POST   | `/marque?marque=`                | Ajout d'une nouvelle marque.                        |
+|  POST   | `/modele?modele=`                | Ajout d’un nouveau modèle.                          |
 
 ---
 
@@ -123,12 +123,12 @@ L'application permet de :
 
 | Méthode | Endpoint                         | Description                                         |
 |--------:|----------------------------------|-----------------------------------------------------|
-|   GET   | `/marque?marque=`                | Recherche par marque (en développement).           |
-|   GET   | `/marque`                        | Liste des marques.                                 |
-|   GET   | `/modele?modele=`                | Recherche par modèle.                              |
-|   GET   | `/modele`                        | Liste des modèles.                                 |
-|  POST   | `/marque?marque=`                | Ajout d’une marque.                                |
-|  POST   | `/modele?modele=`                | Ajout d’un modèle.                                 |
+|   GET   | `/marque?marque=`                | Recherche par marque                                |
+|   GET   | `/marque`                        | Liste de 20 marques.                                |
+|   GET   | `/modele?modele=`                | Recherche par modèle.                               |
+|   GET   | `/modele`                        | Liste de 20 modèles.                                |
+|  POST   | `/marque?marque=`                | Ajout d’une marque.                                 |
+|  POST   | `/modele?modele=`                | Ajout d’un modèle.                                  |
 
 ---
 
@@ -138,11 +138,11 @@ L'application permet de :
 
 | Méthode | Endpoint                         | Description                                         |
 |--------:|----------------------------------|-----------------------------------------------------|
-|   GET   | `/departement?dep=`              | Recherche par département (en développement).      |
-|   GET   | `/departement`                   | Liste des départements.                            |
+|   GET   | `/departement?dep=`              | Recherche par département .                        |
+|   GET   | `/departement`                   | Liste de 20 départements.                          |
 |   GET   | `/coord?dep=&annee=`             | Coordonnées géographiques par département/année.   |
 |   GET   | `/region`                        | Liste des régions.                                 |
-|   GET   | `/commune`                       | Liste des communes.                                |
+|   GET   | `/commune`                       | Liste de 20 communes.                              |
 
 ---
 
@@ -153,6 +153,8 @@ L'application permet de :
 | Méthode | Endpoint                                      | Description                                                  |
 |--------:|-----------------------------------------------|--------------------------------------------------------------|
 |   GET   | `?id_ond=&id_pan=&id_dep=`                    | Recherche combinée : onduleur, panneau, département.         |
+
+Toutes les combinaisons sont possible (seuleument id_dep et id_ond, seulement id_ond ...)
 
 ---
 
@@ -174,10 +176,11 @@ L'application permet de :
 
 | Méthode | Endpoint                             | Description                                                  |
 |--------:|--------------------------------------|--------------------------------------------------------------|
-|   POST  | `/`                                  | Ajout d'une ressource (installation, panneau, etc.).         |
+|   POST  | `/`                                  | Ajout d'une installation                                     |
 |   PUT   | `/ressource?id=`                     | Mise à jour d'une ressource spécifique.                      |
 | DELETE  | `/ressource?id=`                     | Suppression d'une ressource spécifique.                      |
 
+data à spécifier
 
 ---
 
