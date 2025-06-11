@@ -70,7 +70,7 @@ function recupAnnee(annees) {
         an.innerHTML += `<option value="${annee.annee}">${annee.annee}</option>`;
     });
 }
-
+/*
 function recupDep(departements) {
     const dep = document.getElementById('departement');
     dep.innerHTML = '<option value="">-- Sélectionner --</option>';
@@ -78,7 +78,7 @@ function recupDep(departements) {
         dep.innerHTML += `<option value="${departement.dep_code}">${departement.dep_nom}</option>`;
     });
 }
-
+*/
 function filtrerCoordonnees(event) {
     event.preventDefault(); // ← important pour empêcher la soumission du formulaire
 
@@ -121,7 +121,7 @@ function main() {
     });
 
     ajaxRequest('GET', '../php/request.php/date/annee', recupAnnee);
-    ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep);
+    //ajaxRequest('GET', '../php/request.php/lieu/departement', recupDep);
 
     initMap(); // Crée la carte une seule fois
 
@@ -131,6 +131,33 @@ function main() {
     } else {
         console.error("Le bouton #search est introuvable !");
     }
+    $('#departement').select2({
+        placeholder: "Rechercher un departement ...",
+        ajax: {
+            transport: function (params, success, failure) {
+                const query = params.data.term || '';
+                let url = "";
+                if (query === '') {
+                    url = `../php/request.php/lieu/departement`;
+                } else {
+                    url = `../php/request.php/lieu/departement?dep=${encodeURIComponent(query)}`;
+
+                }
+
+                ajaxRequest('GET', url, function (response) {
+                    const formattedResults = response.map(item => ({
+                        id: item.dep_code,
+                        text: item.dep_nom
+                    }));
+
+                    success({
+                        results: formattedResults
+                    })
+
+                })
+            }
+        }
+    });
 }
 
 window.addEventListener("DOMContentLoaded", main);
