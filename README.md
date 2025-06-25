@@ -73,13 +73,114 @@ L'application permet de :
 
 ## 🔗 API REST
 
-| Méthode| URL                     | Description                |
-|--------|-------------------------|----------------------------|
-| GET    | `/api/installations`    | Liste filtrée              |
-| GET    | `/api/installation/{id}`| Détail d'une installation  |
-| POST   | `/api/installation`     | Création d'une installation|
-| PUT    | `/api/installation/{id}`| Modification               |
-| DELETE | `/api/installation/{id}`| Suppression                |
+/php/request.php
+
+### 📊 Statistiques
+
+**Base URL** : `/stat`
+
+| Méthode | Endpoint                        | Description                                               |
+|--------:|----------------------------------|-----------------------------------------------------------|
+|   GET   | `/total`                         | Statistiques globales.                                    |
+|   GET   | `/region?id_reg=`                | Statistiques par région.                                  |
+|   GET   | `/annee?id_an=`                  | Statistiques par année.                                   |
+|   GET   | `/an_reg?id_an=&id_reg=`         | Statistiques croisant année et région.                    |
+|   GET   | `/installateur`                  | Nombre d'installateurs.                                   |
+|   GET   | `/onduleur`                      | Nombre de types d'onduleurs.                              |
+|   GET   | `/panneau`                       | Nombre de types de panneaux.                              |
+
+---
+
+### 🏗️ Installations
+
+**Base URL** : `/instalation`
+
+| Méthode | Endpoint           | Description                                     |
+|--------:|--------------------|-------------------------------------------------|
+|   GET   | `/int`             | Détails d'une installation via son ID.         |
+|   GET   | `/`                | Liste des 100 premières installations.         |
+
+---
+
+### ☀️ Panneaux
+
+**Base URL** : `/panneau`
+
+| Méthode | Endpoint                         | Description                                         |
+|--------:|----------------------------------|-----------------------------------------------------|
+|   GET   | `/marque?marque=`                | Recherche par marque.                               |
+|   GET   | `/marque`                        | Liste de 20 marques.                                |
+|   GET   | `/modele?modele=`                | Recherche par modèle.                               |
+|   GET   | `/modele`                        | Liste de 20 modèles.                                |
+|  POST   | `/marque?marque=`                | Ajout d'une nouvelle marque.                        |
+|  POST   | `/modele?modele=`                | Ajout d’un nouveau modèle.                          |
+
+---
+
+### ⚡ Onduleurs
+
+**Base URL** : `/onduleur`
+
+| Méthode | Endpoint                         | Description                                         |
+|--------:|----------------------------------|-----------------------------------------------------|
+|   GET   | `/marque?marque=`                | Recherche par marque                                |
+|   GET   | `/marque`                        | Liste de 20 marques.                                |
+|   GET   | `/modele?modele=`                | Recherche par modèle.                               |
+|   GET   | `/modele`                        | Liste de 20 modèles.                                |
+|  POST   | `/marque?marque=`                | Ajout d’une marque.                                 |
+|  POST   | `/modele?modele=`                | Ajout d’un modèle.                                  |
+
+---
+
+### 🗺️ Lieu
+
+**Base URL** : `/lieu`
+
+| Méthode | Endpoint                         | Description                                         |
+|--------:|----------------------------------|-----------------------------------------------------|
+|   GET   | `/departement?dep=`              | Recherche par département .                        |
+|   GET   | `/departement`                   | Liste de 20 départements.                          |
+|   GET   | `/coord?dep=&annee=`             | Coordonnées géographiques par département/année.   |
+|   GET   | `/region`                        | Liste des régions.                                 |
+|   GET   | `/commune`                       | Liste de 20 communes.                              |
+
+---
+
+### 🔍 Recherche Avancée
+
+**Base URL** : `/recherche`
+
+| Méthode | Endpoint                                      | Description                                                  |
+|--------:|-----------------------------------------------|--------------------------------------------------------------|
+|   GET   | `?id_ond=&id_pan=&id_dep=`                    | Recherche combinée : onduleur, panneau, département.         |
+
+Toutes les combinaisons sont possible (seuleument id_dep et id_ond, seulement id_ond ...)
+
+---
+
+### 🧰 Installateurs
+
+**Base URL** : `/installateur`
+
+| Méthode | Endpoint                    | Description                                                |
+|--------:|-----------------------------|------------------------------------------------------------|
+|   GET   | `/`                         | 20 installateurs aléatoires.                              |
+|   GET   | `?filtre=`                  | Recherche avec filtre (select2).                          |
+|  POST   | `?installateur=`            | Ajout d’un installateur.                                  |
+
+---
+
+### 🔒 Admin
+
+**Base URL** : `/admin`
+
+| Méthode | Endpoint                             | Description                                                  |
+|--------:|--------------------------------------|--------------------------------------------------------------|
+|   POST  | `/`                                  | Ajout d'une installation                                     |
+|   PUT   | `/ressource?id=`                     | Mise à jour d'une ressource spécifique.                      |
+| DELETE  | `/ressource?id=`                     | Suppression d'une ressource spécifique.                      |
+
+data à spécifier
 
 ---
 
